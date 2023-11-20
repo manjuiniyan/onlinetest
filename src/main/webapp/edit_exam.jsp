@@ -154,9 +154,9 @@
                                     <a href="question.jsp" class="dropdown-item">Questions</a>
                                     <a href="edit_question.jsp" class="dropdown-item">Edit Question</a>
                                     <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
-                                    <a href="edit_question.jsp" class="dropdown-item">Edit Question</a>
-                                   <a href="topic.jsp" class="dropdown-item">Create Topic</a>
-                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topic</a>
+                                    <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
+                                    <a href="topic.jsp" class="dropdown-item">Create Topic</a>
+                                    <a href="edit_topic.jsp" class="dropdown-item">Edit Topic</a>
                                 </div>
                             </div>
                             <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
