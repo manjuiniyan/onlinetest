@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +78,7 @@
             animation: pulsate infinite 1.5s;
         }
 
-            @-webkit-keyframes pulsate {
+           @keyframes pulsate {
                 0% {
                     -webkit-transform: scale(1, 1);
                     opacity: 1;
@@ -230,11 +231,11 @@
             if (result) {
                 console.log('Intent:', result.intent);
                 if(result.intent == 'login'){
-                    window.location.href = "login.jsp";
+                    window.location.href = "login.html";
                 }else if(result.intent == 'question'){
-                    window.location.href = "question.jsp";
+                    window.location.href = "question.html";
                 }else if(result.intent == 'edit_question'){
-                    window.location.href = "edit_question.jsp";
+                    window.location.href = "edit_question.html";
                 }else{
                     console.log('No intent matched');
                 }
@@ -305,7 +306,7 @@
     <div class="container-fluid bg-primary">
         <div class="container">
             <nav class="navbar navbar-dark navbar-expand-lg py-0">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.jsp" class="navbar-brand">
                     <h1 class="text-black-50 fw-bold d-block">Guru Tech </h1>
                 </a>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
@@ -314,7 +315,7 @@
                 </button>
                 <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                     <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                        <a href="index.html" class="nav-item nav-link active text-secondary">Home</a>
+                        <a href="index.jsp" class="nav-item nav-link active text-secondary">Home</a>
                         <a href="about.jsp" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
@@ -325,9 +326,28 @@
 
                             </div>
                         </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Topics</a>
+                            <div class="dropdown-menu rounded">
+                                <a href="create_topics.jsp" class="dropdown-item">Create Topics</a>
+                                <a href="edit_topics.jsp" class="dropdown-item">Edit Topics</a>
+
+                            </div>
+                        </div>
+
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Test</a>
+                            <div class="dropdown-menu rounded">
+                                <a href="create_question.jsp" class="dropdown-item">Create Question</a>
+                                <a href="edit_question.jsp" class="dropdown-item">Edit Question</a>
+                                <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
+                                <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
+
+                            </div>
+                        </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
-                        <a href="login.jsp" class="nav-item nav-link">Login</a>
+                        <a href="Login.jsp" class="nav-item nav-link">Login</a>
                     </div>
                 </div>
                 <div class="d-none d-xl-flex flex-shirink-0">
@@ -1104,7 +1124,7 @@
         <div class="container pt-5 pb-4">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <a href="index.html">
+                    <a href="index.jsp">
                         <h1 class="text-white fw-bold d-block">High<span class="text-secondary">Tech</span> </h1>
                     </a>
                     <p class="mt-4 text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta facere
