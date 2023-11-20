@@ -89,7 +89,8 @@
                                 <a href="question.jsp" class="dropdown-item">Questions</a>
                                 <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
                                 <a href="testimonial.jsp" class="dropdown-item">Testimonial</a>
-                                <a href="404.jsp" class="dropdown-item">404 Page</a>
+                                <a href="topic.jsp" class="dropdown-item">Create Topic</a>
+                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topic</a>
                             </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
