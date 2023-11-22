@@ -84,7 +84,7 @@
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="401.jsp">401 Page</a>
                                             <a class="nav-link" href="404.jsp">404 Page</a>
-                                           
+                                            <a class="nav-link" href="500.jsp">500 Page</a>
                                         </nav>
                                     </div>
                                 </nav>
