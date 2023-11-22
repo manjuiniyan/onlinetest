@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,7 +63,7 @@
     <div class="container-fluid bg-primary">
         <div class="container">
             <nav class="navbar navbar-dark navbar-expand-lg py-0">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.jsp" class="navbar-brand">
                     <h1 class="text-black-50 fw-bold d-block">Guru Tech </h1>
                 </a>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -70,7 +71,7 @@
                 </button>
                 <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                     <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.jsp" class="nav-item nav-link">Home</a>
                         <a href="about.jsp" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
@@ -86,12 +87,21 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle active text-secondary" data-bs-toggle="dropdown">Test</a>
                             <div class="dropdown-menu rounded">
+<<<<<<< HEAD:src/main/webapp/topic.jsp
                                 <a href="question.jsp" class="dropdown-item">Questions</a>
                                 <a href="edit_question.jsp" class="dropdown-item">Edit Question</a>
                                 <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
                                 <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
                                 <a href="topic.jsp" class="dropdown-item">Create Topic</a>
                                 <a href="edit_topic.jsp" class="dropdown-item">Edit Topic</a>
+=======
+                                <a href="create_topic.jsp" class="dropdown-item">Create Topic</a>
+                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
+                                <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
+                                <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
+                                <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
+                                <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
+>>>>>>> origin/manjuquestion:src/main/webapp/create_topic.jsp
                             </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
@@ -110,7 +120,7 @@
                     </div>
                     <div class="d-flex flex-column pe-4 border-end">
                         <span class="text-white-50">Have any questions?</span>
-                        <span class="text-secondary">Call: + 0123 456 7890</span>
+                        <span class="text-secondary">Call: +91 99944 84691</span>
                     </div>
                     <div class="d-flex align-items-center justify-content-center ms-4 ">
                         <a href="#"><i class="bi bi-search text-white fa-2x"></i> </a>
@@ -131,31 +141,15 @@
                 <div class="col-lg-6">
                     <div class="p-2 rounded contact-form fadeIn" data-wow-delay=".5s">
 
-                        <form action="QuestionServlet" method="post" class="row g-3 needs-validation" novalidate>
+                        <form action="TopicServlet" method="post" class="row g-3 needs-validation" novalidate>
+
+                            
                                 <div class="mb-4">
-                                    <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10" name="question_text" placeholder="Question Description" required ></textarea>
+                                    <input type="text" name="topic_name" class="form-control border-0 py-3" placeholder="Topic Name">
                                 </div>
-                                <div class="mb-4">
-                                    <input type="text" name="option_a" class="form-control border-0 py-3" placeholder="Option A">
-                                </div>
-                                <div class="mb-4">
-                                    <input type="text" name="option_b" class="form-control border-0 py-3" placeholder="Option B">
-                                </div>
-                                <div class="mb-4">
-                                    <input type="text" name="option_c" class="form-control border-0 py-3" placeholder="Option C">
-                                </div>
-                                <div class="mb-4">
-                                    <input type="text" name="option_d" class="form-control border-0 py-3" placeholder="Option D">
-                                </div>
-                                <div class="mb-4">
-                                    <input type="text" name="correct_option" class="form-control border-0 py-3" placeholder="Correct Answer">
-                                </div>
-                                <div class="mb-4">
-                                    <textarea class="w-100 form-control border-0 py-3" name="explaination" rows="6" cols="10" placeholder="Answer Explaination"></textarea>
-                                </div>
+                               
                                 <div class="text-start d-flex justify-content-center">
                                     <button class="btn btn-dark  text-white py-3 px-5" type="submit">Submit +</button> &nbsp;
-                                    <button class="btn btn-dark  text-white py-3 px-5" type="submit">Create</button> &nbsp;
                                     <button class="btn btn-dark  text-white py-3 px-5" type="reset">Reset</button> &nbsp;
                                 </div>
                                 
@@ -177,7 +171,7 @@
         <div class="container pt-5 pb-4">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <a href="index.html">
+                    <a href="index.jsp">
                         <h1 class="text-white fw-bold d-block">High<span class="text-secondary">Tech</span> </h1>
                     </a>
                     <p class="mt-4 text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta facere

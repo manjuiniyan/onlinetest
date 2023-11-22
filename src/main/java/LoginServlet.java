@@ -1,14 +1,8 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -16,7 +10,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -53,7 +46,7 @@ public class LoginServlet extends HttpServlet {
                 
                 if(user_type.equalsIgnoreCase("staff")){
                     System.out.println("In side user type Staff");
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("question.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("create_question.jsp");
                     dispatcher.forward(request, response);   
                 }else{
                     System.out.println("In side user type Student");

@@ -157,6 +157,8 @@
                                     <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
                                     <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
                                     <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
+                                    <a href="topic.jsp" class="dropdown-item">Create Topic</a>
+                                    <a href="edit_topic.jsp" class="dropdown-item">Edit Topic</a>
                                 </div>
                             </div>
                             <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
@@ -196,7 +198,7 @@
 
                     <div class="row justify-content-center">
                         <div class="col-8" style="display: flex; flex-direction: column;">
-                            <div class="table-bordered " style="text-decoration-color: black; background-color: blue;" id="exam_table"></div><br><br>
+                            <div class="container-fluid" id="exam_table"></div><br><br>
 
                         </div>
                         <div class="col-4 p-2 rounded contact-form fadeIn"

@@ -87,12 +87,12 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle active text-secondary" data-bs-toggle="dropdown">Test</a>
                             <div class="dropdown-menu rounded">
-                                <a href="question.jsp" class="dropdown-item">Questions</a>
-                                <a href="edit_question.jsp" class="dropdown-item">Edit Question</a>
+                                <a href="create_topic.jsp" class="dropdown-item">Create Topic</a>
+                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
+                                <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
+                                <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
                                 <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
                                 <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
-                               <a href="topic.jsp" class="dropdown-item">Create Topic</a>
-                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topic</a>
                             </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
