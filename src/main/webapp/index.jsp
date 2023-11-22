@@ -326,28 +326,10 @@
 
                             </div>
                         </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Topics</a>
-                            <div class="dropdown-menu rounded">
-                                <a href="create_topics.jsp" class="dropdown-item">Create Topics</a>
-                                <a href="edit_topics.jsp" class="dropdown-item">Edit Topics</a>
-
-                            </div>
-                        </div>
-
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Test</a>
-                            <div class="dropdown-menu rounded">
-                                <a href="create_question.jsp" class="dropdown-item">Create Question</a>
-                                <a href="edit_question.jsp" class="dropdown-item">Edit Question</a>
-                                <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
-                                <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
-
-                            </div>
-                        </div>
+                        
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
-                        <a href="Login.jsp" class="nav-item nav-link">Login</a>
+                        <a href="login.jsp" class="nav-item nav-link">Login</a>
                     </div>
                 </div>
                 <div class="d-none d-xl-flex flex-shirink-0">

@@ -71,7 +71,7 @@ public class QuestionServlet extends HttpServlet {
           
         }
 		 RequestDispatcher dispatcher = null;
-		dispatcher = req.getRequestDispatcher("question.jsp");
+		dispatcher = req.getRequestDispatcher("create_question.jsp");
 		dispatcher.forward(req, resp);
 
 	}

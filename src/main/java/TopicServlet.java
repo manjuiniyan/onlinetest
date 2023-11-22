@@ -45,7 +45,7 @@ public class TopicServlet extends HttpServlet {
 
             }
             RequestDispatcher dispatcher = null;
-		dispatcher = request.getRequestDispatcher("topic.jsp");
+		dispatcher = request.getRequestDispatcher("create_topic.jsp");
 		dispatcher.forward(request, response);
 
     }

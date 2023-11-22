@@ -155,11 +155,6 @@
                                 <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
                                 <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
                                 <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
-<<<<<<< HEAD
-                              <a href="topic.jsp" class="dropdown-item">Create Topic</a>
-                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topic</a>
-=======
->>>>>>> origin/manjuquestion
                             </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
@@ -196,8 +191,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-8" style="display: flex; flex-direction: column;" >
-                     <div class="table table-bordered table-dark" style="width:100%" id="question_table"></div> <br><br>
-                          
+                     <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="question_table"></div><br><br>    
                          
                     </div>
                     <div class="col-4 p-2 rounded contact-form fadeIn" style="display: flex; flex-direction: column;">

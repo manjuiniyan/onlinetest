@@ -87,21 +87,14 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle active text-secondary" data-bs-toggle="dropdown">Test</a>
                             <div class="dropdown-menu rounded">
-<<<<<<< HEAD:src/main/webapp/topic.jsp
-                                <a href="question.jsp" class="dropdown-item">Questions</a>
-                                <a href="edit_question.jsp" class="dropdown-item">Edit Question</a>
-                                <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
-                                <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
-                                <a href="topic.jsp" class="dropdown-item">Create Topic</a>
-                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topic</a>
-=======
+
                                 <a href="create_topic.jsp" class="dropdown-item">Create Topic</a>
                                 <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
                                 <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
                                 <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
                                 <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
                                 <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
->>>>>>> origin/manjuquestion:src/main/webapp/create_topic.jsp
+
                             </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
@@ -135,15 +128,17 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5">
         <div class="container text-center py-5">
-            <h1 class="display-2 text-white mb-4 animated slideInDown">Add Question</h1>
+            <h1 class="display-2 text-white mb-4 animated slideInDown">Add Topic</h1>
 
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="p-2 rounded contact-form fadeIn" data-wow-delay=".5s">
 
-                        <form action="TopicServlet" method="post" class="row g-3 needs-validation" novalidate>
+              9          <form action="TopicServlet" method="post" class="row g-3 needs-validation" novalidate>
 
-                            
+                                <div class="mb-4">
+                                 <input type="text" name="topic_id" class="form-control border-0 py-3" placeholder="Topic ID" >
+                                  </div>
                                 <div class="mb-4">
                                     <input type="text" name="topic_name" class="form-control border-0 py-3" placeholder="Topic Name">
                                 </div>

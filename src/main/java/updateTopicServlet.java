@@ -56,11 +56,11 @@ public class updateTopicServlet extends HttpServlet {
                 
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected > 0) {
-                    System.out.println("Successfuly inserted Topic");
-                    response.getWriter().write("Edit Topic data added successfuly");
+                    System.out.println("Successfuly Updated Topic");
+                    response.getWriter().write("Edit Topic data Updated successfuly");
                 } else {
-                    System.out.println("failed Topic inserted");
-                    response.getWriter().write("Failed to add edit topic data");
+                    System.out.println("failed Topic Updated");
+                    response.getWriter().write("Failed to Update edit topic data");
                 }
                 preparedStatement.close();
                 Connection.close();
@@ -70,7 +70,7 @@ public class updateTopicServlet extends HttpServlet {
             response.getWriter().write("Database error:" + e.getMessage());
         }
         RequestDispatcher dispatcher = null;
-        dispatcher = request.getRequestDispatcher("topic.jsp");
+        dispatcher = request.getRequestDispatcher("create_topic.jsp");
         dispatcher.forward(request, response);
     }
 
