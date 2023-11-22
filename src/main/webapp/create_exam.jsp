@@ -141,9 +141,13 @@
                                   <option value="2">Array</option>
                                   <option value="3">Confitions</option>
                                 </select>
-                                <div class="invalid-feedback">Invalid Topic</div>
                               </div>
-                                
+                              <div class="mb-4">
+                                <input type="text" name="exam_id" class="form-control border-0 py-3" placeholder="Exam ID">
+                            </div>
+                            <div class="mb-4">
+                                <input type="text" class="form-control border-0 py-3" name="topic_id" placeholder="Topic ID">
+                            </div>
                                 <div class="mb-4">
                                     <input type="text" name="exam_name" class="form-control border-0 py-3" placeholder="Exam Name">
                                 </div>

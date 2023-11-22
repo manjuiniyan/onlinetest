@@ -25,7 +25,8 @@ public class ExamServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("inside the examservlet");
-        String topicid = request.getParameter("topicid");
+        String examid = request.getParameter("exam_id");
+        String topicid = request.getParameter("topic_id");
         String examname = request.getParameter("exam_name");
         String examduration = request.getParameter("exam_duration");
         String starttime = request.getParameter("start_date");
@@ -41,7 +42,7 @@ public class ExamServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        System.out.println("Topic ID=" + topicid + "\nExamName=" + examname
+        System.out.println("Exam ID="+ examid +"\nTopic ID=" + topicid + "\nExamName=" + examname
                 + "\nExamDuration=" + examduration + "\nStartTime=" + starttime + "\nEndTime=" + endtime);
         try {
             // Class.forName("com.mysql.cj.jdbc.Driver");
@@ -53,13 +54,14 @@ public class ExamServlet extends HttpServlet {
         }
         try (Connection Connection = DriverManager.getConnection(
                 "jdbc:mysql://193.203.166.25:3306/u933391433_onlinetest", "u933391433_gurukalvi", "GuruKalvi2023");) {
-            String insert_Query = "INSERT INTO `u933391433_onlinetest`.`Exams` (`topic_id`, `exam_name`, `exam_duration`, `start_time`, `end_time`) VALUES (?,?,?,?,?)";
+            String insert_Query = "INSERT INTO `u933391433_onlinetest`.`Exams` (`exam_id`,`topic_id`, `exam_name`, `exam_duration`, `start_time`, `end_time`) VALUES (?,?,?,?,?,?)";
             try (PreparedStatement preparedStatement = Connection.prepareStatement(insert_Query)) {
-                preparedStatement.setString(1, topicid);
-                preparedStatement.setString(2, examname);
-                preparedStatement.setString(3, examduration);
-                preparedStatement.setTimestamp(4, timestamp);
-                preparedStatement.setString(5, endtime);
+                preparedStatement.setString(1, examid);
+                preparedStatement.setString(2, topicid);
+                preparedStatement.setString(3, examname);
+                preparedStatement.setString(4, examduration);
+                preparedStatement.setTimestamp(5, timestamp);
+                preparedStatement.setString(6, endtime);
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected > 0) {
                     System.out.println("Successfuly inserted Exam");
