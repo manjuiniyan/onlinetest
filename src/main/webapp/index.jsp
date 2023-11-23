@@ -231,11 +231,11 @@
             if (result) {
                 console.log('Intent:', result.intent);
                 if(result.intent == 'login'){
-                    window.location.href = "login.html";
+                    window.location.href = "login.jsp";
                 }else if(result.intent == 'question'){
-                    window.location.href = "question.html";
+                    window.location.href = "question.jsp";
                 }else if(result.intent == 'edit_question'){
-                    window.location.href = "edit_question.html";
+                    window.location.href = "edit_question.jsp";
                 }else{
                     console.log('No intent matched');
                 }
