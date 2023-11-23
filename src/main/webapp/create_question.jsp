@@ -137,25 +137,25 @@
                         <form action="QuestionServlet" method="post" class="row g-3 needs-validation" novalidate>
 
                             <div class="mb-4">
-                                <select class="form-select" name="topicid" required aria-label="select example" >
+                                <select class="form-select" name="subtopic_id" required aria-label="select example" >
                                     <option value="">Select a Topic</option>
-            <option value="1">Data Types</option>
-            <option value="2">Array</option>
-            <option value="3">Structure</option>
-            <option value="4">User Input</option>
-            <option value="5">Conditions</option>
-            <option value="6">Statement</option>
-            <option value="7">Access Modifier</option>
-            <option value="8">Inheritance</option>
-            <option value="9">Overloading</option>
-            <option value="10">Overriding</option>
-            <option value="11">Abstract</option>
-            <option value="12">Interface</option>
-            <option value="13">Exception Handling</option>
-            <option value="14">File Input/Output</option>
-            <option value="15">Threads</option>
-            <option value="16">Collections</option>
-            <option value="17">JDBC</option>
+                                    <option value="1">Data Types</option>
+                                    <option value="2">Array</option>
+                                    <option value="3">Structure</option>
+                                    <option value="4">User Input</option>
+                                    <option value="5">Conditions</option>
+                                    <option value="6">Statement</option>
+                                    <option value="7">Access Modifier</option>
+                                    <option value="8">Inheritance</option>
+                                    <option value="9">Overloading</option>
+                                    <option value="10">Overriding</option>
+                                    <option value="11">Abstract</option>
+                                    <option value="12">Interface</option>
+                                    <option value="13">Exception Handling</option>
+                                    <option value="14">File Input/Output</option>
+                                    <option value="15">Threads</option>
+                                    <option value="16">Collections</option>
+                                    <option value="17">JDBC</option>
 
                                 </select>
                                 <div class="invalid-feedback">Invalid Topic</div>
