@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/getAllExamServlet")
-public class GetAllExamServlet extends HttpServlet {
+@WebServlet("/getAllTestServlet")
+public class GetAllTestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -24,14 +24,14 @@ public class GetAllExamServlet extends HttpServlet {
         StringBuilder resultTable = new StringBuilder();
         resultTable.append("<table class=\"table table-striped\" >");
         resultTable.append(
-                "<thead><tr><th>Exam ID</th><th>Topic ID</th><th>Exam Name</th><th>Exam Duration</th><th>Start Time</th><th>End Time</th></tr></thead>");
+                "<thead><tr><th>Test ID</th><th>Test Name</th><th>Test Duration</th><th>Start Time</th><th>End Time</th><th>Test Discription</th></tr></thead>");
 
         try {
             Statement stat = connection.createStatement();
-            ResultSet resultSet = stat.executeQuery("SELECT * FROM u933391433_onlinetest.Exams");
+            ResultSet resultSet = stat.executeQuery("SELECT * FROM u933391433_onlinetest.Test");
             while (resultSet.next()) {
-                String exam_id = resultSet.getString(1);
-                resultTable.append("<tr><td> <a href='#' onclick=\"loadExam(" + exam_id + ")\">" + exam_id
+                String test_id = resultSet.getString(1);
+                resultTable.append("<tr><td> <a href='#' onclick=\"loadTest(" + test_id + ")\">" + test_id
                         + "</a> </td><td>"
                         + resultSet.getString(2)
                         + "</td><td>" + resultSet.getString(3) + "</td><td>" + resultSet.getString(4) + "</td><td>"
