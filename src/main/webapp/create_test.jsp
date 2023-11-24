@@ -31,7 +31,7 @@
 </head>
 
 <body>
-    <form action="ExamServlet" method="post">
+    <form action="TestServlet" method="post">
     <!-- Spinner Start -->
     <div id="spinner"
         class="show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -91,8 +91,8 @@
                                 <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
                                 <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
                                 <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
-                                <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
-                                <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
+                                <a href="create_test.jsp" class="dropdown-item">Create Test</a>
+                                <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
                             </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
@@ -126,7 +126,7 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5">
         <div class="container text-center py-5">
-            <h1 class="display-2 text-white mb-4 animated slideInDown">Create Exam</h1>
+            <h1 class="display-2 text-white mb-4 animated slideInDown">Create Test</h1>
 
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -135,24 +135,18 @@
                         <form class="row g-3 needs-validation" novalidate>
                                 
                             <div class="mb-3">
-                                <select class="form-select" name="topicid" required aria-label="select example"  >
+                                <select class="form-select" name="test_id" required aria-label="select example"  >
                                   <option value="">Select a Topic</option>
                                   <option value="1">Data Types</option>
                                   <option value="2">Array</option>
                                   <option value="3">Confitions</option>
                                 </select>
-                              </div>
-                              <div class="mb-4">
-                                <input type="text" name="exam_id" class="form-control border-0 py-3" placeholder="Exam ID">
-                            </div>
-                            <div class="mb-4">
-                                <input type="text" class="form-control border-0 py-3" name="topic_id" placeholder="Topic ID">
-                            </div>
+                               </div>
                                 <div class="mb-4">
-                                    <input type="text" name="exam_name" class="form-control border-0 py-3" placeholder="Exam Name">
+                                    <input type="text" name="test_name" class="form-control border-0 py-3" placeholder="Test Name">
                                 </div>
                                 <div class="mb-4">
-                                    <input type="text" class="form-control border-0 py-3" name="exam_duration" placeholder="Exam Duration in minutes">
+                                    <input type="text" class="form-control border-0 py-3" name="test_duration" placeholder="Test Duration in minutes">
                                 </div>
                                 <div class="mb-4">
                                     <input type="datetime-local" name="start_date" class="form-control border-0 py-3" placeholder="Start Date and Time">
@@ -160,7 +154,10 @@
                                 <div class="mb-4">
                                     <input type="datetime-local" name="end_date" class="form-control border-0 py-3" placeholder="End Date and Time">
                                 </div>
-                                
+                                <div class="mb-4">
+                                    <input type="text" id="formGroupExampleInput6" name="test_discription"
+                                        class="form-control border-0 py-3" placeholder="Test Discription">
+                                </div>
                                 <div class="text-start d-flex justify-content-center">
                                     <button class="btn btn-dark  text-white py-3 px-5" name="submit+" type="submit">Submit +</button> &nbsp;
                                     <button class="btn btn-dark  text-white py-3 px-5" type="submit">Create</button> &nbsp;

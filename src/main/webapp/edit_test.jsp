@@ -48,11 +48,11 @@
                 console.log("hello");
                 $.ajax({
                     type: "GET",
-                    url: "getAllExamServlet",
+                    url: "getAllTestServlet",
                     success: function (response) {
                         //$("#result").html("Success: " + response);
                         // console.log(response);
-                        $("#exam_table").append(response);
+                        $("#test_table").append(response);
                     },
                     error: function (xhr, status, error) {
                         //$("#result").html("Error: " + error);
@@ -60,24 +60,24 @@
                     }
                 });
             });
-            function loadExam(exam_id) {
-                console.log(exam_id);
+            function loadTest(test_id) {
+                console.log(test_id);
 
-                $.post('loadExamServlet',
+                $.post('loadTestServlet',
                     {
-                        "exam_id": exam_id,
+                        "test_id": test_id,
                     })
 
                     .done(function (response) {
                         console.log(response);
-                        console.log(response.topc_id);
+                        console.log(response.test_id);
                         console.log(JSON.stringify(response));
-                        $("#formGroupExampleInput").val(response.topc_id);
-                        $("#formGroupExampleInput2").val(response.exam_name);
-                        $("#formGroupExampleInput3").val(response.exam_duration);
+                        $("#formGroupExampleInput").val(response.test_id);
+                        $("#formGroupExampleInput2").val(response.test_name);
+                        $("#formGroupExampleInput3").val(response.test_duration);
                         $("#formGroupExampleInput4").val(response.start_time);
                         $("#formGroupExampleInput5").val(response.end_time);
-                        $("#formGroupExampleInput6").val(response.exam_id);
+                        $("#formGroupExampleInput6").val(response.test_discription);
 
 
                     });
@@ -152,11 +152,11 @@
                                     data-bs-toggle="dropdown">Test</a>
                                 <div class="dropdown-menu rounded">
                                     <a href="create_topic.jsp" class="dropdown-item">Create Topic</a>
-                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
-                                <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
-                                <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
-                                <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
-                                <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
+                                    <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
+                                    <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
+                                    <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
+                                    <a href="create_test.jsp" class="dropdown-item">Create Test</a>
+                                    <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
                                 
                                 </div>
                             </div>
@@ -193,16 +193,16 @@
         <div class="container-fluid page-header py-5">
             <div class="container text-center py-5">
                 <div class="container">
-                    <h1 class="display-2 text-white mb-4 animated slideInDown">Edit Exam</h1>
+                    <h1 class="display-2 text-white mb-4 animated slideInDown">Edit Test</h1>
 
                     <div class="row justify-content-center">
                         <div class="col-8" style="display: flex; flex-direction: column;">
                             <!--<div class="container-fluid" id="exam_table"></div><br><br>-->
-                            <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="exam_table"></div><br><br>
+                            <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="test_table"></div><br><br>
                         </div>
                         <div class="col-4 p-2 rounded contact-form fadeIn"
                             style="display: flex; flex-direction: column;">
-                            <form action="updateExamServlet" method="post" class="row g-3 needs-validation" novalidate>
+                            <form action="updateTestServlet" method="post" class="row g-3 needs-validation" novalidate>
 
                                 <!-- <div class="mb-4">
                                 <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10"
@@ -211,22 +211,19 @@
                                 <!-- <div class="mb-4">
                                 <input type="email" id="" class="form-control border-0 py-3" placeholder="Exam ID">
                             </div> -->
-                            <div class="mb-4">
-                                <input type="text" id="formGroupExampleInput6" name="examid"
-                                    class="form-control border-0 py-3" placeholder="Exam ID" readonly>
-                            </div>
+                           
 
                                 <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput" name="topicid"
-                                        class="form-control border-0 py-3" placeholder="Topic ID" readonly>
+                                    <input type="text" id="formGroupExampleInput" name="test_id"
+                                        class="form-control border-0 py-3" placeholder="Test ID" readonly>
                                 </div>
                                 <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput2" name="exam_name"
-                                        class="form-control border-0 py-3" placeholder="Exam Name">
+                                    <input type="text" id="formGroupExampleInput2" name="test_name"
+                                        class="form-control border-0 py-3" placeholder="Test Name">
                                 </div>
                                 <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput3" name="exam_duration"
-                                        class="form-control border-0 py-3" placeholder="Exam Duration">
+                                    <input type="text" id="formGroupExampleInput3" name="test_duration"
+                                        class="form-control border-0 py-3" placeholder="Test Duration">
                                 </div>
                                 <div class="mb-4">
                                     <input type="text" id="formGroupExampleInput4" name="start_date"
@@ -236,11 +233,14 @@
                                     <input type="text" id="formGroupExampleInput5" name="end_date"
                                         class="form-control border-0 py-3" placeholder="End Time">
                                 </div>
-
+                                <div class="mb-4">
+                                    <input type="text" id="formGroupExampleInput6" name="test_discription"
+                                        class="form-control border-0 py-3" placeholder="Test Discription">
+                                </div>
                                 <!-- <div class="mb-4">
-                                <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10"
-                                    placeholder="Answer Explaination"></textarea>
-                            </div> -->
+                                    <textarea class="form-control border-0 py-3" id="formGroupExampleInput6" name="test_description" rows="6" cols="10" placeholder="Test Description"></textarea>
+                                </div> -->
+                               
                                 <div class="text-start d-flex justify-content-center">
                                     <button class="btn btn-dark  text-white py-3 px-5" type="submit">Update</button>
                                     &nbsp;

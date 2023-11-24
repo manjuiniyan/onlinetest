@@ -148,11 +148,11 @@
                                     data-bs-toggle="dropdown">Test</a>
                                 <div class="dropdown-menu rounded">
                                     <a href="create_topic.jsp" class="dropdown-item">Create Topic</a>
-                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
-                                <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
-                                <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
-                                <a href="create_exam.jsp" class="dropdown-item">Create Exam</a>
-                                <a href="edit_exam.jsp" class="dropdown-item">Edit Exam</a>
+                                    <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
+                                    <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
+                                    <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
+                                    <a href="create_test.jsp" class="dropdown-item">Create Test</a>
+                                    <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
                                    
                                 </div>
                             </div>
