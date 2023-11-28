@@ -156,7 +156,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <input type="text" id="formGroupExampleInput6" name="test_discription"
-                                        class="form-control border-0 py-3" placeholder="Test Discription">
+                                        class="form-control border-0 py-3" placeholder="Test Description">
                                 </div>
                                 <div class="text-start d-flex justify-content-center">
                                     <button class="btn btn-dark  text-white py-3 px-5" name="submit+" type="submit">Submit +</button> &nbsp;
