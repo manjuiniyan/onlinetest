@@ -30,7 +30,7 @@ public class UpdateTestServlet extends HttpServlet {
         String test_duration = request.getParameter("test_duration");
         String start_time = request.getParameter("start_date");
         String end_time = request.getParameter("end_date");
-        String test_discription = request.getParameter("test_discription");
+        String test_discription = request.getParameter("test_description");
 
         System.out.println("Test ID=" + test_id +"\nTest Name=" + test_name + "\nTest Duration=" + test_duration
                  + "\nStart Time=" + start_time + "\nEnd Time=" +end_time+ "\nTest Discription=" + test_discription);

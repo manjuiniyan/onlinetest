@@ -77,7 +77,7 @@
                         $("#formGroupExampleInput3").val(response.test_duration);
                         $("#formGroupExampleInput4").val(response.start_time);
                         $("#formGroupExampleInput5").val(response.end_time);
-                        $("#formGroupExampleInput6").val(response.test_discription);
+                        $("#formGroupExampleInput6").val(response.test_description);
 
 
                     });
@@ -234,8 +234,8 @@
                                         class="form-control border-0 py-3" placeholder="End Time">
                                 </div>
                                 <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput6" name="test_discription"
-                                        class="form-control border-0 py-3" placeholder="Test Discription">
+                                    <input type="text" id="formGroupExampleInput6" name="test_description"
+                                        class="form-control border-0 py-3" placeholder="Test Description">
                                 </div>
                                 <!-- <div class="mb-4">
                                     <textarea class="form-control border-0 py-3" id="formGroupExampleInput6" name="test_description" rows="6" cols="10" placeholder="Test Description"></textarea>

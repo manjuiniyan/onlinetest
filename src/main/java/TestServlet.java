@@ -30,7 +30,7 @@ public class TestServlet extends HttpServlet {
         String test_duration = request.getParameter("test_duration");
         String start_time = request.getParameter("start_date");
         String end_time = request.getParameter("end_date");
-       String test_description = request.getParameter("test_description");
+       String test_description = request.getParameter("test_discription");
 
         System.out.println("Start Time=" + start_time);
         Timestamp timestamp = null;
