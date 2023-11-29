@@ -34,7 +34,8 @@ public class GetAllTestServlet extends HttpServlet {
                 resultTable.append("<tr><td> <a href='#' onclick=\"loadTest(" + test_id + ")\">" + test_id
                         + "</a> </td><td>"
                         + resultSet.getString(2)
-                        + "</td><td>" + resultSet.getString(3) + "</td><td>" + resultSet.getString(4) + "</td><td>"
+                        + "</td><td>" + resultSet.getString(3) 
+                        + "</td><td>" + resultSet.getString(4) + "</td><td>"
                         + resultSet.getString(5) + "</td><td>" + resultSet.getString(6)+"</td></tr>");
 
             }

@@ -155,6 +155,8 @@
                                 <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
                                 <a href="create_test.jsp" class="dropdown-item">Create Test</a>
                                 <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
+                                <a href="test_question.jsp" class="dropdown-item">Test Question</a>
+
                             </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
