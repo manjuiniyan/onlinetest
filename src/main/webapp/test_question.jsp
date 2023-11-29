@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>HighTech - IT Solutions Website Template</title>
+    <title>Test Question</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -48,11 +48,11 @@
                 console.log("hello");
                 $.ajax({
                     type: "GET",
-                    url: "GetAllTopicServlet",
+                    url: "TestQuestionServlet",
                     success: function (response) {
                         //$("#result").html("Success: " + response);
                         // console.log(response);
-                        $("#topic_table").append(response);
+                        $("#test_table").append(response);
                     },
                     error: function (xhr, status, error) {
                         //$("#result").html("Error: " + error);
@@ -60,20 +60,24 @@
                     }
                 });
             });
-            function loadTopic(topic_id) {
-                console.log(topic_id);
+            function loadTest(test_id) {
+                console.log(test_id);
 
-                $.post('LoadTopicServlet',
+                $.post('loadTestServlet',
                     {
-                        "topic_id": topic_id,
+                        "test_id": test_id,
                     })
 
                     .done(function (response) {
-                        console.log("This is" + response);
-                        console.log("This is topic_id" + response.topc_id);
+                        console.log(response);
+                        console.log(response.test_id);
                         console.log(JSON.stringify(response));
-                        $("#formGroupExampleInput").val(response.topc_id);
-                        $("#formGroupExampleInput2").val(response.topic_name);
+                        $("#formGroupExampleInput").val(response.test_id);
+                        $("#formGroupExampleInput2").val(response.test_name);
+                        $("#formGroupExampleInput3").val(response.test_duration);
+                        $("#formGroupExampleInput4").val(response.start_time);
+                        $("#formGroupExampleInput5").val(response.end_time);
+                        $("#formGroupExampleInput6").val(response.test_description);
 
 
                     });
@@ -155,6 +159,7 @@
                                     <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
                                     <a href="test_question.jsp" class="dropdown-item">Test Question</a>
 
+                                
                                 </div>
                             </div>
                             <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
@@ -186,32 +191,55 @@
 
 
         <!-- Page Header Start -->
+
         <div class="container-fluid page-header py-5">
             <div class="container text-center py-5">
                 <div class="container">
+                    <h1 class="display-2 text-white mb-4 animated slideInDown">Add Test Question</h1>
+
                     <div class="row justify-content-center">
                         <div class="col-8" style="display: flex; flex-direction: column;">
-                            <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 50%" id="topic_table"></div><br><br>
+                            <!--<div class="container-fluid" id="exam_table"></div><br><br>-->
+                            <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="test_table"></div><br><br>
                         </div>
                         <div class="col-4 p-2 rounded contact-form fadeIn"
                             style="display: flex; flex-direction: column;">
-                            <form action="updateTopicServlet" method="post" class="row g-3 needs-validation" novalidate>
-                                
-                                <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput" name="topic_id"
-                                        class="form-control border-0 py-3" placeholder="Topic ID" readonly >
-                                </div>
-                                <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput2" name="topic_name"
-                                        class="form-control border-0 py-3" placeholder="Topic Name">
-                                </div>
+                            <form action="TestQuestionServlet" method="get" class="row g-3 needs-validation" novalidate>
 
-                                <div class="text-start d-flex justify-content-center">
+                                <!-- <div class="mb-4">
+                                    <input type="text" id="formGroupExampleInput" name="test_id"
+                                        class="form-control border-0 py-3" placeholder="Test ID" readonly>
+                                </div>
+                                <div class="mb-4">
+                                    <input type="text" id="formGroupExampleInput2" name="test_name"
+                                        class="form-control border-0 py-3" placeholder="Test Name">
+                                </div>
+                                <div class="mb-4">
+                                    <input type="text" id="formGroupExampleInput3" name="test_duration"
+                                        class="form-control border-0 py-3" placeholder="Test Duration">
+                                </div>
+                                <div class="mb-4">
+                                    <input type="text" id="formGroupExampleInput4" name="start_date"
+                                        class="form-control border-0 py-3" placeholder="Start Time">
+                                </div>
+                                <div class="mb-4">
+                                    <input type="text" id="formGroupExampleInput5" name="end_date"
+                                        class="form-control border-0 py-3" placeholder="End Time">
+                                </div>
+                                <div class="mb-4">
+                                    <input type="text" id="formGroupExampleInput6" name="test_description"
+                                        class="form-control border-0 py-3" placeholder="Test Description">
+                                </div>
+                              <div class="mb-4">
+                                    <textarea class="form-control border-0 py-3" id="formGroupExampleInput6" name="test_description" rows="6" cols="10" placeholder="Test Description"></textarea>
+                                </div> -->
+                               
+                                  <!-- <div class="text-start d-flex justify-content-center">
                                     <button class="btn btn-dark  text-white py-3 px-5" type="submit">Update</button>
                                     &nbsp;
                                     <button class="btn btn-secondary text-white py-3 px-5" type="reset">Reset</button>
                                     &nbsp;
-                                </div>
+                                </div> -->
 
                             </form>
                         </div>
@@ -326,7 +354,6 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
-   
 </body>
 
 </html>
