@@ -59,7 +59,7 @@
         <div class="container-fluid bg-primary">
             <div class="container">
                 <nav class="navbar navbar-dark navbar-expand-lg py-0">
-                    <a href="index.html" class="navbar-brand">
+                    <a href="index.jsp" class="navbar-brand">
                         <h1 class="text-white fw-bold d-block">High<span class="text-secondary">Tech</span> </h1>
                     </a>
                     <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -67,7 +67,7 @@
                     </button>
                     <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                         <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="index.jsp" class="nav-item nav-link">Home</a>
                             <a href="about.jsp" class="nav-item nav-link">About</a>
                             <a href="service.jsp" class="nav-item nav-link">Services</a>
                             <a href="project.jsp" class="nav-item nav-link">Projects</a>

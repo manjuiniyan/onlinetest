@@ -28,7 +28,38 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <script type="text/javascript">
+    
+        function showWindow(){
+        //alert("onload function");
+        console.log("Inside the showWindow javascript method");
+        document.getElementById("usernameError").innerHTML = "";
+        document.getElementById("passwordError").innerHTML = "";
+        var usernameValue = document.getElementById("usernameId").value;
+        var passwordValue = document.getElementById("passwordId").value;
+        console.log("Username Value = "+usernameValue);
+        console.log("Password Value = "+passwordValue);
+        if(usernameValue.length <= 3 || passwordValue.length < 4){
+            if(usernameValue.length <= 3){
+                //alert("userName should be more than 3 characters");
+                document.getElementById("usernameError").innerHTML = "userName should be more than 3 characters";
+            }
+            if(passwordValue.length < 4){
+                //alert("Password should be more than 5 characters");
+                document.getElementById("passwordError").innerHTML = "Password should be more than 5 characters";
+            }
+        }
+        else{
+            document.getElementById("loginForm").submit();
+        }
+        
+    }
+    
+    </script>
 </head>
+
+
 
 <body>
 
@@ -71,7 +102,7 @@
     <div class="container-fluid bg-primary">
         <div class="container">
             <nav class="navbar navbar-dark navbar-expand-lg py-0">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.jsp" class="navbar-brand">
                     <h1 class="text-black-50 fw-bold d-block">Guru Tech </h1>
                 </a>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
@@ -80,7 +111,7 @@
                 </button>
                 <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                     <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.jsp" class="nav-item nav-link">Home</a>
                         <a href="about.jsp" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
@@ -89,7 +120,7 @@
                                 <a href="python.jsp" class="dropdown-item">Python</a>
                                 <a href="reactjs.jsp" class="dropdown-item">ReactJs</a>
                             </div>
-                        </div>|
+                        </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
                         <a href="login.jsp" class="nav-item nav-link active text-secondary">Login</a>
@@ -128,16 +159,18 @@
                     <div class="p-2 rounded contact-form fadeIn" data-wow-delay=".5s">
                         <form action="LoginServlet" method="post">
                             <div class="mb-4">
-                                <input type="text" name="user_name" class="form-control border-0 py-3"
+                                <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3"
                                     placeholder="User Name">
+                                    <div id="usernameError" style="color: black;" ></div>
                             </div>
                             <div class="mb-4">
-                                <input type="password" name="password" class="form-control border-0 py-3"
+                                <input type="password" id="passwordId" name="password" class="form-control border-0 py-3"
                                     placeholder="Password">
+                                    <div id="passwordError" style="color: black;" ></div>
                             </div>
                             <div class="text-start d-flex justify-content-center">
                                 <!-- <input type="submit" value="Login"> -->
-                                <input type="submit" class="btn btn-dark  text-white py-3 px-5">
+                                <button id="button" type="submit" onclick="showWindow()" class="btn btn-dark  text-white py-3 px-5">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -155,7 +188,7 @@
         <div class="container pt-5 pb-4">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <a href="index.html">
+                    <a href="index.jsp">
                         <h1 class="text-white fw-bold d-block">High<span class="text-secondary">Tech</span> </h1>
                     </a>
                     <p class="mt-4 text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
