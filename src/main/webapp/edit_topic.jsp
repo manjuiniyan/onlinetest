@@ -121,7 +121,7 @@
         <div class="container-fluid bg-primary">
             <div class="container">
                 <nav class="navbar navbar-dark navbar-expand-lg py-0">
-                    <a href="index.html" class="navbar-brand">
+                    <a href="index.jsp" class="navbar-brand">
                         <h1 class="text-black-50 fw-bold d-block">Guru Tech </h1>
                     </a>
                     <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
@@ -130,7 +130,7 @@
                     </button>
                     <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                         <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="index.jsp" class="nav-item nav-link">Home</a>
                             <a href="about.jsp" class="nav-item nav-link">About</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
@@ -229,7 +229,7 @@
             <div class="container pt-5 pb-4">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
-                        <a href="index.html">
+                        <a href="index.jsp">
                             <h1 class="text-white fw-bold d-block">High<span class="text-secondary">Tech</span> </h1>
                         </a>
                         <p class="mt-4 text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
