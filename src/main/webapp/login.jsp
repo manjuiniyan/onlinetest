@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <title>HighTech - IT Solutions Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -29,38 +30,9 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <script type="text/javascript">
+    <!-- Template Stylesheet -->
     
-        function showWindow(){
-        //alert("onload function");
-        console.log("Inside the showWindow javascript method");
-        document.getElementById("usernameError").innerHTML = "";
-        document.getElementById("passwordError").innerHTML = "";
-        var usernameValue = document.getElementById("usernameId").value;
-        var passwordValue = document.getElementById("passwordId").value;
-        console.log("Username Value = "+usernameValue);
-        console.log("Password Value = "+passwordValue);
-        if(usernameValue.length <= 3 || passwordValue.length < 4){
-            if(usernameValue.length <= 3){
-                //alert("userName should be more than 3 characters");
-                document.getElementById("usernameError").innerHTML = "userName should be more than 3 characters";
-            }
-            if(passwordValue.length < 4){
-                //alert("Password should be more than 5 characters");
-                document.getElementById("passwordError").innerHTML = "Password should be more than 5 characters";
-            }
-        }
-        else{
-            document.getElementById("loginForm").submit();
-        }
-        
-    }
-    
-    </script>
 </head>
-
-
-
 <body>
 
     <!-- Spinner Start -->
@@ -69,6 +41,8 @@
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
+
+   
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark py-2 d-none d-md-flex">
@@ -148,7 +122,6 @@
     </div>
     <!-- Navbar End -->
 
-
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5">
         <div class="container text-center py-5">
@@ -161,17 +134,24 @@
                             <div class="mb-4">
                                 <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3"
                                     placeholder="User Name">
-                                    <div id="usernameError" style="color: black;" ></div>
                             </div>
                             <div class="mb-4">
                                 <input type="password" id="passwordId" name="password" class="form-control border-0 py-3"
                                     placeholder="Password">
-                                    <div id="passwordError" style="color: black;" ></div>
                             </div>
                             <div class="text-start d-flex justify-content-center">
-                                <!-- <input type="submit" value="Login"> -->
-                                <button id="button" type="submit" onclick="showWindow()" class="btn btn-dark  text-white py-3 px-5">Submit</button>
+                                 <input type="submit" value="Login" class="btn btn-dark  text-white py-3 px-5"> 
+                                <!--button id="button" type="submit" onclick="showWindow()" class="btn btn-dark  text-white py-3 px-5">Submit</button>-->
                             </div>
+                            <br>
+                           
+                            <% 
+                            String errorMessage = (String) request.getAttribute("errorMessage");
+                            if(errorMessage != null) {
+                        %>
+                               <div class="text-warning bg-dark"><%= errorMessage %> </div>
+
+                        <% } %>
                         </form>
                     </div>
                 </div>
@@ -179,10 +159,7 @@
         </div>
     </div>
     <!-- Page Header End -->
-
-
-
-
+  
     <!-- Footer Start -->
     <div class="container-fluid footer bg-dark wow fadeIn" data-wow-delay=".3s">
         <div class="container pt-5 pb-4">
