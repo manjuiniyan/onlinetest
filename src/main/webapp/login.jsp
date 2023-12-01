@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <title>HighTech - IT Solutions Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -28,8 +29,10 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-</head>
 
+    <!-- Template Stylesheet -->
+    
+</head>
 <body>
 
     <!-- Spinner Start -->
@@ -38,6 +41,8 @@
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
+
+   
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark py-2 d-none d-md-flex">
@@ -71,7 +76,7 @@
     <div class="container-fluid bg-primary">
         <div class="container">
             <nav class="navbar navbar-dark navbar-expand-lg py-0">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.jsp" class="navbar-brand">
                     <h1 class="text-black-50 fw-bold d-block">Guru Tech </h1>
                 </a>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
@@ -80,7 +85,7 @@
                 </button>
                 <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                     <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.jsp" class="nav-item nav-link">Home</a>
                         <a href="about.jsp" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
@@ -89,7 +94,7 @@
                                 <a href="python.jsp" class="dropdown-item">Python</a>
                                 <a href="reactjs.jsp" class="dropdown-item">ReactJs</a>
                             </div>
-                        </div>|
+                        </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
                         <a href="login.jsp" class="nav-item nav-link active text-secondary">Login</a>
@@ -117,7 +122,6 @@
     </div>
     <!-- Navbar End -->
 
-
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5">
         <div class="container text-center py-5">
@@ -128,17 +132,26 @@
                     <div class="p-2 rounded contact-form fadeIn" data-wow-delay=".5s">
                         <form action="LoginServlet" method="post">
                             <div class="mb-4">
-                                <input type="text" name="user_name" class="form-control border-0 py-3"
+                                <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3"
                                     placeholder="User Name">
                             </div>
                             <div class="mb-4">
-                                <input type="password" name="password" class="form-control border-0 py-3"
+                                <input type="password" id="passwordId" name="password" class="form-control border-0 py-3"
                                     placeholder="Password">
                             </div>
                             <div class="text-start d-flex justify-content-center">
-                                <!-- <input type="submit" value="Login"> -->
-                                <input type="submit" class="btn btn-dark  text-white py-3 px-5">
+                                 <input type="submit" value="Login" class="btn btn-dark  text-white py-3 px-5"> 
+                                <!--button id="button" type="submit" onclick="showWindow()" class="btn btn-dark  text-white py-3 px-5">Submit</button>-->
                             </div>
+                            <br>
+                           
+                            <% 
+                            String errorMessage = (String) request.getAttribute("errorMessage");
+                            if(errorMessage != null) {
+                        %>
+                               <div class="p-3 mb-2 bg-primary text-white"><%= errorMessage %> </div>
+
+                        <% } %>
                         </form>
                     </div>
                 </div>
@@ -146,16 +159,13 @@
         </div>
     </div>
     <!-- Page Header End -->
-
-
-
-
+  
     <!-- Footer Start -->
     <div class="container-fluid footer bg-dark wow fadeIn" data-wow-delay=".3s">
         <div class="container pt-5 pb-4">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <a href="index.html">
+                    <a href="index.jsp">
                         <h1 class="text-white fw-bold d-block">High<span class="text-secondary">Tech</span> </h1>
                     </a>
                     <p class="mt-4 text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
