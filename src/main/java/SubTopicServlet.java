@@ -23,11 +23,11 @@ public class SubTopicServlet extends HttpServlet {
       System.out.println(" SubTopic Id=" + sub_topic_id +"\n Topic ID=" + topic_id + "\n SubTopic Name=" + sub_topic_name);
       try{
        Connection con = DBConnection.getConnection();
-       String insert_query ="INSERT INTO `u933391433_onlinetest`.`Subtopics` (`subtopic_id`, `topic_id`, `subtopic_name`) VALUES (?, ?,?)";
+       String insert_query ="INSERT INTO `u933391433_onlinetest`.`Subtopics` ( `topic_id`, `subtopic_name`) VALUES (?,?)";
 try(PreparedStatement preparedStatement = con.prepareStatement(insert_query)){
-preparedStatement.setString(1, sub_topic_id);
-preparedStatement.setString(2, topic_id);
-preparedStatement.setString(3, sub_topic_name);
+//preparedStatement.setString(1, sub_topic_id);
+preparedStatement.setString(1, topic_id);
+preparedStatement.setString(2, sub_topic_name);
 int rowsAffected = preparedStatement.executeUpdate();
 if(rowsAffected > 0){
   System.out.println("Sucessful Added");

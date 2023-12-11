@@ -17,6 +17,7 @@ public class QuestionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         System.out.println("inside the Question Servlet");
+        String question_id = req.getParameter("question_id");
         String questionText = req.getParameter("question_text");
         String optionA = req.getParameter("option_a");
         String optionB = req.getParameter("option_b");
@@ -26,7 +27,7 @@ public class QuestionServlet extends HttpServlet {
         String explaination = req.getParameter("explaination");
         String subtopic_id = req.getParameter("subtopic_id");
 
-        System.out.println("QuestionText=" + questionText + "\nOptionA ="
+        System.out.println("Question ID="+ question_id + "\nQuestionText=" + questionText + "\nOptionA ="
                 + optionA + "\nOptionB =" + optionB + "\nOptionC =" + optionC + "\nOptionD =" + optionD
                 + "\nCorrectOption =" + correctOption + "\nExplaination =" + explaination);
 

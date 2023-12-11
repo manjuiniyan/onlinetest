@@ -58,7 +58,6 @@
 
             $('#select_topic').change(function(){
                 console.log($(this).val());
-                alert($(this).val());
                 getQuestionForTopic($(this).val());
             });
 
@@ -90,11 +89,13 @@
                 })
                 .done(function (response) {
                     console.log(response);
-                    console.log(response.exam_id);
+                    console.log(response.test_id);
                     console.log(JSON.stringify(response));
-                    $("#test_id").html(response.exam_id);
-                    $("#test_name").html(response.exam_name);
-                    $("#test_duration").html(response.exam_duration);
+                    $("#test_id").html(response.test_id);
+                    $("#test_id_value").val(response.test_id);
+                    $("#test_name").html(response.test_name);
+                    $("#test_name_value").val(response.test_name);
+                    $("#test_duration").html(response.test_duration);
                 });
 
         }
@@ -165,17 +166,17 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle active text-secondary"
                                 data-bs-toggle="dropdown">Test</a>
-                            <div class="dropdown-menu rounded">
-                                <a href="create_topic.jsp" class="dropdown-item">Create Topic</a>
-                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
-                                <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
-                                <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>
-                                <a href="create_test.jsp" class="dropdown-item">Create Test</a>
-                                <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
-                                <a href="test_question.jsp" class="dropdown-item">Test Question</a>
-
-
-                            </div>
+                                <div class="dropdown-menu rounded">
+                                    <a href="create_topic.jsp" class="dropdown-item"> Create Topic</a>
+                                    <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
+                                    <a href="create_subtopic.jsp" class="dropdown-item"> Create SubTopic</a>
+                                    <a href="edit_subtopic.jsp" class="dropdown-item">Edit SubTopic</a>
+                                    <a href="create_question.jsp" class="dropdown-item"> Create Questions</a>
+                                    <a href="edit_question.jsp " class="dropdown-item"> Edit Question</a>
+                                    <a href="create_test.jsp" class="dropdown-item"> Create Test</a>
+                                    <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
+                                    <a href="test_question.jsp" class="dropdown-item">Test Question </a>
+                                </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
@@ -206,26 +207,21 @@
 
 
     <!-- Page Header Start -->
-
+<form action="AddTestQuestionServlet" method="get">
     <div class="container-fluid page-header py-5">
         <div class="container text-center py-5">
             <div class="container">
                 <h1 class="display-2 text-white mb-4 animated slideInDown">Add Test Question</h1>
-
                 <div class="row justify-content-center">
                     <div class="col-8" style="display: flex; flex-direction: column;">
                         <div class="table-bordered"
-                            style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 130%"
-                            id="test_table"></div><br><br>
+                        style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%; height:100%; align-self: center" id="test_table"></div><br><br>
                     </div>
-
-
                 </div>
-                <div class="row justify-content-center">
-                    
-                    <div class="col-2" style="display: flex; flex-direction: column;" id="test_id" >ID</div>
-                    <div class="col-2" style="display: flex; flex-direction: column;" id="test_name" >Name</div>
-                    <div class="col-2" style="display: flex; flex-direction: column;" id="test_duration" >Duration</div>
+                <div class="row justify-content-center"> 
+                    <div class="col-2" style="display: flex; flex-direction: column;"  > Test ID: <dev id="test_id"></dev> <input type="hidden" id="test_id_value" name="test_id_value" value="" ></input>  </div>
+                    <div class="col-2" style="display: flex; flex-direction: column;" >Name : <div id="test_name"></div> <input type="hidden" id="test_name_value" name="test_name_value" value="" ></input> </div>
+                    <div class="col-2" style="display: flex; flex-direction: column;"  > Duration: <div id="test_duration"></div></div>
                     <div class="col-4" style="display: flex; flex-direction: column;">
                         <select id="select_topic" name="topic" >
                             <option value="">---Select Topic---</option>
@@ -233,16 +229,19 @@
                             <option value="2">J2EE</option>
                         </select>
                     </div>
-                   
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-8" style="display: flex; flex-direction: column;">
                         <div class="table-bordered"
-                            style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 130%"
-                            id="test_question_table"></div><br><br>
-                    </div>
-
-
+                            style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%; height:100%; align-self: center" id="test_question_table">
+                        </div><br><br>
+                        <div class="text-start d-flex justify-content-center">
+                            <input type="submit" value="Submit" class="btn btn-dark  text-white py-3 px-5" style="margin-right: 75px;"> 
+                            <input type="reset" value="Reset" class="btn btn-dark  text-white py-3 px-5">
+                            <!--button id="button" type="submit" onclick="showWindow()" class="btn btn-dark  text-white py-3 px-5">Submit</button>-->
+                       </div>
+                        </div>
+                </form>
                 </div>
             </div>
         </div>
