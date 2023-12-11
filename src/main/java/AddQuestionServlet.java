@@ -30,7 +30,7 @@ public class AddQuestionServlet extends HttpServlet {
                 PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
 
                 for (String questionId : question_id) {
-                    System.out.println("Test Id="+test_id+" Question ID=" +questionId);
+                    System.out.println("test Id="+test_id+" Question ID=" +questionId);
 
                     preparedStatement.setString(1, test_id);
                     preparedStatement.setString(2, questionId);
@@ -38,7 +38,7 @@ public class AddQuestionServlet extends HttpServlet {
                 }
 
                 int[] result = preparedStatement.executeBatch();
-                System.out.println("Result . Length =" + result.length);
+                System.out.println("Result .=" + result.length);
 
                 // Check the result array if you want to handle success or failure
                 // (result[i] > 0 means the ith batch update was successful)

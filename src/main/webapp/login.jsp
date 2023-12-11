@@ -149,7 +149,7 @@
                             String errorMessage = (String) request.getAttribute("errorMessage");
                             if(errorMessage != null) {
                         %>
-                               <div class="text-warning bg-dark"><%= errorMessage %> </div>
+                               <div class="p-3 mb-2 bg-primary text-white"><%= errorMessage %> </div>
 
                         <% } %>
                         </form>

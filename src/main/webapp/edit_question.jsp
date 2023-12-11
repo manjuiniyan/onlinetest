@@ -148,16 +148,17 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle active text-secondary"
                                 data-bs-toggle="dropdown">Test</a>
-                            <div class="dropdown-menu rounded">
-                                <a href="create_topic.jsp" class="dropdown-item">Create Topic</a>
-                                <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
-                                <a href="create_question.jsp" class="dropdown-item">Create Questions</a>
-                                <a href="edit_question.jsp " class="dropdown-item">Edit Question</a>   
-                                <a href="create_test.jsp" class="dropdown-item">Create Test</a>
-                                <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
-                                <a href="test_question.jsp" class="dropdown-item">Test Question</a>
-
-                            </div>
+                                <div class="dropdown-menu rounded">
+                                    <a href="create_topic.jsp" class="dropdown-item"> Create Topic</a>
+                                    <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
+                                    <a href="create_subtopic.jsp" class="dropdown-item"> Create SubTopic</a>
+                                    <a href="edit_subtopic.jsp" class="dropdown-item">Edit SubTopic</a>
+                                    <a href="create_question.jsp" class="dropdown-item"> Create Questions</a>
+                                    <a href="edit_question.jsp " class="dropdown-item"> Edit Question</a>
+                                    <a href="create_test.jsp" class="dropdown-item"> Create Test</a>
+                                    <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
+                                    <a href="test_question.jsp" class="dropdown-item">Test Question </a>
+                                </div>
                         </div>
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>

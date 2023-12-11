@@ -102,23 +102,15 @@
                                     Test
                                 </a>
                                 <div class="dropdown-menu rounded">
-                                    <a href="create_topic.jsp" class="dropdown-item">
-                                        Create Topic
-                                    </a>
+                                    <a href="create_topic.jsp" class="dropdown-item"> Create Topic</a>
                                     <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
-                                    <a href="create_question.jsp" class="dropdown-item">
-                                        Create Questions
-                                    </a>
-                                    <a href="edit_question.jsp " class="dropdown-item">
-                                        Edit Question
-                                    </a>
-                                    <a href="create_test.jsp" class="dropdown-item">
-                                        Create Test
-                                    </a>
+                                    <a href="create_subtopic.jsp" class="dropdown-item"> Create SubTopic</a>
+                                    <a href="edit_subtopic.jsp" class="dropdown-item">Edit SubTopic</a>
+                                    <a href="create_question.jsp" class="dropdown-item"> Create Questions</a>
+                                    <a href="edit_question.jsp " class="dropdown-item"> Edit Question</a>
+                                    <a href="create_test.jsp" class="dropdown-item"> Create Test</a>
                                     <a href="edit_test.jsp" class="dropdown-item">Edit Test</a>
-                                    <a href="test_question.jsp" class="dropdown-item">
-                                        Test Question
-                                    </a>
+                                    <a href="test_question.jsp" class="dropdown-item">Test Question </a>
                                 </div>
                             </div>
                             <a href="testimonial.jsp" class="nav-item nav-link">
@@ -168,6 +160,15 @@
                                 class="row g-3 needs-validation"
                                 novalidate
                             >
+                            <div class="mb-4">
+                                <input
+                                    type="text"
+                                    name="question_id"
+                                    class="form-control border-0 py-3"
+                                    placeholder="Question Id"
+                                >
+                            </div>
+
                                 <div class="mb-4">
                                     <select
                                         class="form-select"
