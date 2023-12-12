@@ -9,6 +9,25 @@
         <title>Static Navigation - SB Admin</title>
         <link href="css/student/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link href="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script >
+            $(document).ready(function() {
+                // code to be executed when the DOM is ready
+                $.ajax({
+                type: "GET",
+                url: "getAllTestQuestionServlet",
+                success: function (response) {
+                    $("#test_table").append(response);
+                },
+                error: function (xhr, status, error) {
+                    console.log("error in ajax call " + error + " status " + status);
+                }
+            });
+            });
+        </script>
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -44,7 +63,7 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="student_index.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                Test Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -54,8 +73,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.jsp">Static Navigation</a>
-                                    <a class="nav-link" href="layout-sidenav-light.jsp">Light Sidenav</a>
+                                    <a class="nav-link" href="layout-static.jsp">Attend Test</a>
+                                    <a class="nav-link" href="layout-sidenav-light.jsp">Test Results</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -109,10 +128,10 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Static Navigation</h1>
+                        <h1 class="mt-4">Attend Test</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="student_index.jsp">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Static Navigation</li>
+                            <li class="breadcrumb-item active">Attend Test</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -123,6 +142,10 @@
                                     <code>body</code>
                                     , the top navigation and side navigation will become static on scroll. Scroll down this page to see an example.
                                 </p>
+
+                                <div class="card-body" id="test_table" >
+                                    
+                                </div>
                             </div>
                         </div>
                         <div style="height: 100vh"></div>
@@ -145,5 +168,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
