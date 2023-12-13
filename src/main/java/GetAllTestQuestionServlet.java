@@ -32,13 +32,14 @@ public class GetAllTestQuestionServlet extends HttpServlet {
             ResultSet resultSet = stat.executeQuery(test_question_query);
             while (resultSet.next()) {
                 String test_id = resultSet.getString(1);
-                resultTable.append("<tr><td> <a href='#' onclick=\"loadTest(" + test_id + ")\">" + test_id
-                        + "</a> </td><td>"
-                        + resultSet.getString(2)
-                        + "</td><td>" + resultSet.getString(3)
-                        + "</td><td>" + resultSet.getString(4) + "</td><td>"
-                        + resultSet.getString(5) + "</td><td>" + resultSet.getString(6) + "</td><td>"
-                        + resultSet.getString(7) + "</td></tr>");
+                resultTable
+                        .append("<tr><td> <a href='loadTestAttemptQuestionServlet?test_id=" + test_id + "'>" + test_id
+                                + "</a> </td><td>"
+                                + resultSet.getString(2)
+                                + "</td><td>" + resultSet.getString(3)
+                                + "</td><td>" + resultSet.getString(4) + "</td><td>"
+                                + resultSet.getString(5) + "</td><td>" + resultSet.getString(6) + "</td><td>"
+                                + resultSet.getString(7) + "</td></tr>");
 
             }
             resultTable.append("</table>");

@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -21,7 +22,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("Inside the Login Servlet");
         response.setContentType("text/html");
-
+        HttpSession session = request.getSession(true);
         String username = request.getParameter("user_name");
         String password = request.getParameter("password");
         String errorMessage = "";
@@ -34,6 +35,8 @@ public class LoginServlet extends HttpServlet {
             // Validate user from the database
             String userType = validateUser(username, password);
             System.out.println("User Type=" + userType);
+            session.setAttribute("userName", username);
+            session.setAttribute("userType", userType);
 
             if (userType.equals("staff")) {
                 System.out.println("In side user type Staff");

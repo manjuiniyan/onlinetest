@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin: 10px 0;
+        }
+        #timer {
+            font-size: 20px;
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h1>Multiple Choice Quiz</h1>
+    <div class="question" id="question"></div>
+    <ul class="options" id="options"></ul>
+    <p id="timer"></p>
+    <button onclick="submitAnswer()">Submit Answer</button>
+</div>
+
+<script>
+    // Quiz data
+    const quizData = [
+        {
+            question: "What is the capital of France?",
+            options: ["Paris", "Berlin", "Madrid", "Rome"],
+            correctAnswer: "Paris"
+        },
+        {
+            question: "Which planet is known as the Red Planet?",
+            options: ["Earth", "Mars", "Venus", "Jupiter"],
+            correctAnswer: "Mars"
+        },
+        // Add more questions as needed
+    ];
+
+    // Timer variables
+    let timer;
+    let timeRemaining = 60; // seconds
+
+    // Quiz variables
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    // Function to start the quiz
+    function startQuiz() {
+        displayQuestion();
+        startTimer();
+    }
+
+    // Function to display a question
+    function displayQuestion() {
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+
+        // Clear previous question and options
+        questionElement.textContent = "";
+        optionsElement.innerHTML = "";
+
+        // Display the current question
+        questionElement.textContent = quizData[currentQuestionIndex].question;
+
+        // Display options
+        quizData[currentQuestionIndex].options.forEach((option, index) => {
+            const li = document.createElement("li");
+            li.textContent = option;
+            li.onclick = () => selectAnswer(option);
+            optionsElement.appendChild(li);
+        });
+    }
+
+    // Function to select an answer
+    function selectAnswer(selectedOption) {
+        const correctAnswer = quizData[currentQuestionIndex].correctAnswer;
+
+        if (selectedOption === correctAnswer) {
+            score++;
+        }
+
+        // Move to the next question
+        currentQuestionIndex++;
+
+        // Check if it's the last question
+        if (currentQuestionIndex === quizData.length) {
+            endQuiz();
+        } else {
+            displayQuestion();
+        }
+    }
+
+    // Function to end the quiz
+    function endQuiz() {
+        clearInterval(timer);
+        alert(`Quiz completed! Your score: ${score}/${quizData.length}`);
+    }
+
+    // Function to start the countdown timer
+    function startTimer() {
+        timer = setInterval(() => {
+            timeRemaining--;
+
+            // Display the remaining time
+            document.getElementById("timer").textContent = `Time Remaining: ${timeRemaining}s`;
+
+            // Check if time is up
+            if (timeRemaining === 0) {
+                endQuiz();
+            }
+        }, 1000);
+    }
+
+    // Function to submit the answer (can be triggered by a button)
+    function submitAnswer() {
+        // You can implement additional logic here if needed
+        // For example, show feedback to the user after submitting an answer
+        // For simplicity, we'll just move to the next question
+        currentQuestionIndex++;
+
+        // Check if it's the last question
+        if (currentQuestionIndex === quizData.length) {
+            endQuiz();
+        } else {
+            displayQuestion();
+        }
+    }
+
+    // Start the quiz when the page loads
+    window.onload = startQuiz;
+</script>
+
+</body>
+</html>

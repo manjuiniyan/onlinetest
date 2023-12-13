@@ -6,10 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Static Navigation - SB Admin</title>
+        <title>GuruTech</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/student/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <link href="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -17,22 +18,45 @@
             $(document).ready(function() {
                 // code to be executed when the DOM is ready
                 $.ajax({
-                type: "GET",
-                url: "getAllTestQuestionServlet",
-                success: function (response) {
-                    $("#test_table").append(response);
-                },
-                error: function (xhr, status, error) {
-                    console.log("error in ajax call " + error + " status " + status);
-                }
+                    type: "GET",
+                    url: "getAllTestQuestionServlet",
+                    success: function (response) {
+                        $("#test_table").append(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("error in ajax call " + error + " status " + status);
+                    }
                 });
             });
+
+        function loadTest(test_id) {
+            console.log(test_id);
+
+            $.post('loadTestAttemptQuestionServlet',
+                {
+                    "test_id": test_id,
+                })
+                .done(function (response) {
+                    console.log(response);
+                    console.log(response.test_id);
+                    var questions = response.test_questions;
+                    console.log(response.test_questions);
+                    console.log(JSON.stringify(response));
+                    //$("#test_id").html(response.test_id);
+                    //$("#test_id_value").val(response.test_id);
+                    //$("#test_name").html(response.test_name);
+                    //$("#test_name_value").val(response.test_name);
+                    //$("#test_duration").html(response.test_duration);
+                });
+
+        }
+
         </script>
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="student_index.jsp">Start Bootstrap</a>
+            <a class="navbar-brand ps-3" href="student_index.jsp">Guru Technology</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -48,7 +72,7 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><a class="dropdown-item" href="#!">Change Password</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="#!">Logout</a></li>
                     </ul>
@@ -63,47 +87,48 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="student_index.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Test Dashboard
+                               Test Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Layouts
+                                Test
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.jsp">Attend Test</a>
-                                    <a class="nav-link" href="layout-sidenav-light.jsp">Test Results</a>
+                                    <a class="nav-link" href="list_all_test.jsp">Attend Test</a>
+                                    <a class="nav-link" href="test_results.jsp">Test Results</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
+                                Your Courses
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
+                                        Java
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.jsp">Login</a>
-                                            <a class="nav-link" href="register.jsp">Register</a>
-                                            <a class="nav-link" href="password.jsp">Forgot Password</a>
+                                            <a class="nav-link" href="core_java.jsp">Core Java</a>
+                                            <a class="nav-link" href="jee.jsp">JEE</a>
+                                            <a class="nav-link" href="spring.jsp">Spring Framework</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
+                                        Python
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.jsp">401 Page</a>
-                                            <a class="nav-link" href="404.jsp">404 Page</a>
-                                            <a class="nav-link" href="500.jsp">500 Page</a>
+                                            <a class="nav-link" href="401.jsp">Python</a>
+                                            <a class="nav-link" href="404.jsp">DJango</a>
+                                            <a class="nav-link" href="500.jsp">Flask</a>
+                                            <a class="nav-link" href="500.jsp">Machine Learning</a>
                                         </nav>
                                     </div>
                                 </nav>
@@ -168,6 +193,9 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>

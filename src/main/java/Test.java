@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Test {
     String test_id;
     String test_name;
@@ -5,6 +7,16 @@ public class Test {
     String start_time;
     String end_time;
     String test_description;
+    List<String> test_questions;
+
+    public List<String> getTest_questions() {
+        return test_questions;
+    }
+
+    public void setTest_questions(List<String> test_questions) {
+        this.test_questions = test_questions;
+    }
+
     public String getTest_id() {
         return test_id;
     }
@@ -20,13 +32,15 @@ public class Test {
     public String getStart_time() {
         return start_time;
     }
-    public String getEnd_time(){
-        return end_time; 
+
+    public String getEnd_time() {
+        return end_time;
     }
-     public String getTest_description() {
+
+    public String getTest_description() {
         return test_description;
     }
-    
+
     public void setTest_id(String test_id) {
         this.test_id = test_id;
     }
@@ -42,10 +56,12 @@ public class Test {
     public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
-   public void setEnd_time(String end_time){
-    this.end_time = end_time;
-   }
-   public void setTest_description(String test_discription) {
+
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
+
+    public void setTest_description(String test_discription) {
         this.test_description = test_discription;
     }
 }

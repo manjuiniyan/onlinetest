@@ -59,8 +59,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.jsp">Attend Test</a>
-                                    <a class="nav-link" href="layout-sidenav-light.jsp">Test Results</a>
+                                    <a class="nav-link" href="list_all_test.jsp">Attend Test</a>
+                                    <a class="nav-link" href="test_results.jsp">Test Results</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
