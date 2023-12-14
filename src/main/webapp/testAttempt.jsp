@@ -74,7 +74,8 @@
         }
 
         function startTest() {
-            alert("confirm start test");
+            console.log("start test");
+            window.location="test.html";
         }
 
     </script>
