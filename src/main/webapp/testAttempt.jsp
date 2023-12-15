@@ -1,17 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.*"%>
 
     <% 
         session=request.getSession(false); 
         String userName=null; 
         String test_name="" , test_duration="" ; 
+        Map<String, String> testData= (HashMap)session.getAttribute("testObj");
+        String test_questions = "";
         //Test test=null; 
         if (session==null) { 
             response.sendRedirect("login.jsp"); 
         }else{
             userName=(String)session.getAttribute("userName"); 
             System.out.println("******username ******="+userName);
-            test_name = (String) session.getAttribute(" test_name"); 
+            test_name = (String) session.getAttribute("test_name"); 
             test_duration=(String)session.getAttribute("test_duration"); 
+            test_questions = testData.get("test_questions");
+
+            System.out.println("test Question "+test_questions);
+            
+
             //session.getAttribute("testData");
             //test=(Test)session.getAttribute("testData"); 
             System.out.println("the test Name in JSP page="+test_name+" ****test_duration****=="+test_duration);
@@ -221,9 +230,7 @@
                 let countdownTimer;
                 let currentQuestionIndex = 0;
                 
-                function addition(mark1, mark2){
-
-                }
+                
 
 
                 function startCountdown(duration) {
@@ -431,9 +438,7 @@
                 }
 
                 $(document).ready(function () {
-                    loadQuestion(currentQuestionIndex);
-                    startCountdown(30);
-
+                    $("#test_attempt").hide();
                     // code to be executed when the DOM is ready
                     $.ajax({
                         type: "GET",
@@ -470,7 +475,11 @@
                 }
 
                 function startTest() {
+                    $("#test_confirmation").hide();
+                    $("#test_attempt").show();
                     console.log("start test");
+                    loadQuestion(currentQuestionIndex);
+                    startCountdown(30);
 
                 }
 
@@ -606,42 +615,49 @@
                                 <li class="breadcrumb-item active">Attend Test</li>
                             </ol>
                             <div class="card mb-4">
-                                <div class="card-body">
-                                    <p class="mb-0">
-                                        This page is an example of using static navigation. By removing the
-                                        <code>.sb-nav-fixed</code>
-                                        class from the
-                                        <code>body</code>
-                                        , the top navigation and side navigation will become static on scroll. Scroll
-                                        down this
-                                        page to see an example.
-                                    </p>
-                                    <!--  test details confirm button-->
-
-                                </div>
-
-
-                                <div class="card mb-4">
+                                <div class="card mb-4" id="test_confirmation" >
                                     <div class="card-header">
                                         <i class="fas fa-table me-1"></i>
-                                        DataTable Example
+                                        Ready for the Test?
                                     </div>
                                     <div class="card-body">
-                                        <p class="mb-0" class="sb-nav-fixed">
-                                            Your about to take a test on
-                                        <div id="test_name">
-                                            <%= test_name %>
-                                        </div>
-                                        Test duration <div>
-                                            <%= test_duration %>
-                                        </div>
-                                        Number of Question <div> 8</div>
-                                        </p>
-                                        <input type="button" class="btn btn-primary" value="Start Test"
-                                            onclick="startTest()">
+                                        <div class="row">
+                                            <div class="col">
+                                              <p class="mb-0" class="sb-nav-fixed">
+                                                Your about to take a test on
+                                              </p>
+                                            </div>
+                                            <div class="col">
+                                              <div id="test_name">
+                                                <%= test_name %>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col">
+                                              Test duration
+                                            </div>
+                                            <div class="col">
+                                              <%= test_duration %>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col">
+                                              Number of Question
+                                            </div>
+                                            <div class="col">
+                                              <%= test_questions %>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col text-end">
+                                              <input type="button" class="btn btn-primary" value="Start Test" onclick="startTest()">
+                                            </div>
+                                          </div>
                                     </div>
+                                    
                                 </div>
-                                <div class="card mb-4">
+                                <div class="card mb-4" id="test_attempt" >
 
                                     <div id="quiz-container" class="container mt-5">
                                         <h1 class="mb-4">Java Quiz</h1>

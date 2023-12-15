@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.cj.xdevapi.PreparableStatement;
@@ -37,18 +39,27 @@ public class LoadTestAttemptQuestionServlet extends HttpServlet {
             ResultSet resultSet = statement.executeQuery();
             List<String> list = new ArrayList<>();
             Test testObj = new Test();
+            Map<String, String> testMap = new HashMap<>();
             while (resultSet.next()) {
                 String question_id = resultSet.getString(7);
                 list.add(question_id);
                 testObj.setTest_id(test_id);
-                testObj.setTest_name(resultSet.getString(2));
-                testObj.setTest_duration(resultSet.getString(3));
+                testMap.put(test_id, test_id);
+                String test_name = resultSet.getString(2);
+                testObj.setTest_name(test_name);
+                testMap.put("test_name", test_name);
+                String test_duration = resultSet.getString(3);
+                testObj.setTest_duration(test_duration);
+                testMap.put("test_duration", test_duration);
                 out.println(question_id);
 
             }
+
+            testMap.put("test_questions", list.size() + "");
             testObj.setTest_questions(list);
             session.setAttribute("test_name", testObj.test_name);
             session.setAttribute("test_duration", testObj.test_duration);
+            session.setAttribute("testObj", testMap);
 
             ObjectMapper mapper = new ObjectMapper();
             String responseJson = mapper.writeValueAsString(testObj);
