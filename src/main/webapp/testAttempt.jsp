@@ -257,6 +257,28 @@
 
                 function loadQuestion(index) {
                     var quizContainer = $("#questions-container");
+
+                    //post ajax call to load question
+
+                    $.ajax({
+                        url: 'loadTestAttemptQuestions',
+                        dataType: 'json',
+                        method: 'POST',
+                        //data: { key1: value1, key2: value2 }, // Replace with your data
+                        success: function(response) {
+                            // Success handler
+                            console.log("ajax question response *************** \n "+response);
+                            console.log("ajax STRING JSON response +===============\n "+JSON.parse(response));
+                            var jsonArray = JSON.parse(jsonString);
+                            console.log(jsonArray);
+                            quizData = JSON.parse(response);
+                        },
+                        error: function(xhr, status, error) {
+                            // Error handler
+                            console.log(error);
+                        }
+                    });
+
                     const questionData = quizData[index];
                     //console.log("loadQuestion questionData:", questionData);
                     //const questionElement = document.createElement("div");
@@ -282,12 +304,7 @@
                             </a>
                         `);
 
-                        // optionContainer.innerHTML += `
-                        //     <a href="#" class="custom-control custom-radio" onclick="selectOption('${inputId}')">
-                        //         <input type="radio" id="${inputId}" name="q${index}" class="custom-control-input" value="${option}">
-                        //         <label class="custom-control-label" for="${inputId}">${option}</label>
-                        //     </a>
-                        // `;
+
                     });
 
                     //questionElement.appendChild(optionContainer);
@@ -396,27 +413,14 @@
                     console.log("time to complete test ="+timerText)
                     const timeSpent = (30 * 60) - (timerText.split(":").reduce((acc, time) => acc * 60 + +time, 0));
 
-                    // document.getElementById(
-                    //     "result-message"
-                    // ).textContent = `You got ${correctCount} out of ${quizData.length} questions correct!`;
                     $("#result-message").text(`You got ${correctCount} out of ${quizData.length} questions correct!`);
-                    // document.getElementById(
-                    //     "percentage"
-                    // ).textContent = `Percentage: ${percentage.toFixed(2)}%`;
                     $("#percentage").text(`Percentage: ${percentage.toFixed(2)}%`);
 
-                    // document.getElementById(
-                    //     "time-spent"
-                    // ).textContent = `Time Spent: ${formatTime(timeSpent)}`;
                     $("#time-spent").text(`Time Spent: ${formatTime(timeSpent)}`);
 
-                    // Show "Submit Quiz" button, hide "Check Your Answers" button
-                    //document.getElementById("submitBtn").style.display = "block";
                     $("#submitBtn").css("display", "block");
-                    //document.getElementById("quiz-container").style.display = "none";
                     $("#result-container").css("display", "none");
 
-                    //document.getElementById("result-container").style.display = "block";
                     $("#result-container").css("display", "block");
                 }
 

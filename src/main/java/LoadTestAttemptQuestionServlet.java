@@ -60,6 +60,7 @@ public class LoadTestAttemptQuestionServlet extends HttpServlet {
             session.setAttribute("test_name", testObj.test_name);
             session.setAttribute("test_duration", testObj.test_duration);
             session.setAttribute("testObj", testMap);
+            session.setAttribute("test", testObj);
 
             ObjectMapper mapper = new ObjectMapper();
             String responseJson = mapper.writeValueAsString(testObj);
