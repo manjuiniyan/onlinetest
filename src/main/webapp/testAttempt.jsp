@@ -124,96 +124,98 @@
 
             <script>
 
-                const quizData = [
-                    {
-                        question:
-                            "Question 1: What is the main purpose of Java Virtual Machine (JVM)?",
-                        options: [
-                            "To provide an interpreter for Java bytecode",
-                            "To compile Java source code",
-                            "To manage memory in Java",
-                            "To execute Java applications",
-                        ],
-                        correctAnswer: "To execute Java applications",
-                    },
-                    {
-                        question:
-                            "Question 2: Which keyword is used for inheritance in Java?",
-                        options: ["extends", "inherit", "implements", "extension"],
-                        correctAnswer: "extends",
-                    },
-                    {
-                        question:
-                            'Question 3: What is the output of the following code?\n```java\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, Java!");\n    }\n}\n```',
-                        options: ["Hello, World!", "Hello, Java!", "Java!", "No output"],
-                        correctAnswer: "Hello, Java!",
-                    },
-                    {
-                        question:
-                            "Question 4: Which of the following is NOT a primitive data type in Java?",
-                        options: ["int", "float", "char", "class"],
-                        correctAnswer: "class",
-                    },
-                    {
-                        question:
-                            "Question 5: What is the purpose of the 'finally' block in a try-catch-finally statement?",
-                        options: [
-                            "To define a block of code to be executed if an exception occurs",
-                            "To specify the exception type to catch",
-                            "To ensure a block of code is always executed, regardless of exception occurrence",
-                            "To indicate the end of the try-catch block",
-                        ],
-                        correctAnswer:
-                            "To ensure a block of code is always executed, regardless of exception occurrence",
-                    },
-                    {
-                        question:
-                            "Question 6: What is the default value of the data members of a class in Java?",
-                        options: ["0", "null", "undefined", "Depends on the data type"],
-                        correctAnswer: "Depends on the data type",
-                    },
-                    {
-                        question:
-                            "Question 7: Which method is called when an object is garbage collected in Java?",
-                        options: ["dispose()", "delete()", "finalize()", "clean()"],
-                        correctAnswer: "finalize()",
-                    },
-                    {
-                        question:
-                            "Question 8: What is the purpose of the 'super' keyword in Java?",
-                        options: [
-                            "To refer to the superclass or parent class",
-                            "To invoke a static method",
-                            "To declare a constant variable",
-                            "To access the current instance of the class",
-                        ],
-                        correctAnswer: "To refer to the superclass or parent class",
-                    },
-                    {
-                        question:
-                            "Question 9: What is the difference between '== 'and '.equals()' in Java?",
-                        options: [
-                            "They are the same",
-                            "'==' compares object references, '.equals()' compares object content",
-                            "'==' compares object content, '.equals()' compares object references",
-                            "There is no such method as '.equals()' in Java",
-                        ],
-                        correctAnswer:
-                            "'==' compares object references, '.equals()' compares object content",
-                    },
-                    {
-                        question:
-                            "Question 10: Which of the following statements is true about Java interfaces?",
-                        options: [
-                            "Interfaces can have method implementations",
-                            "A class can implement multiple interfaces",
-                            "Interfaces can extend classes",
-                            "An interface cannot have any methods",
-                        ],
-                        correctAnswer: "A class can implement multiple interfaces",
-                    },
-                    // Add more questions here...
-                ];
+                var quizData = [];
+
+                // var quizData = [
+                //     {
+                //         question:
+                //             "Question 1: What is the main purpose of Java Virtual Machine (JVM)?",
+                //         options: [
+                //             "To provide an interpreter for Java bytecode",
+                //             "To compile Java source code",
+                //             "To manage memory in Java",
+                //             "To execute Java applications",
+                //         ],
+                //         correctAnswer: "To execute Java applications",
+                //     },
+                //     {
+                //         question:
+                //             "Question 2: Which keyword is used for inheritance in Java?",
+                //         options: ["extends", "inherit", "implements", "extension"],
+                //         correctAnswer: "extends",
+                //     },
+                //     {
+                //         question:
+                //             'Question 3: What is the output of the following code?\n```java\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, Java!");\n    }\n}\n```',
+                //         options: ["Hello, World!", "Hello, Java!", "Java!", "No output"],
+                //         correctAnswer: "Hello, Java!",
+                //     },
+                //     {
+                //         question:
+                //             "Question 4: Which of the following is NOT a primitive data type in Java?",
+                //         options: ["int", "float", "char", "class"],
+                //         correctAnswer: "class",
+                //     },
+                //     {
+                //         question:
+                //             "Question 5: What is the purpose of the 'finally' block in a try-catch-finally statement?",
+                //         options: [
+                //             "To define a block of code to be executed if an exception occurs",
+                //             "To specify the exception type to catch",
+                //             "To ensure a block of code is always executed, regardless of exception occurrence",
+                //             "To indicate the end of the try-catch block",
+                //         ],
+                //         correctAnswer:
+                //             "To ensure a block of code is always executed, regardless of exception occurrence",
+                //     },
+                //     {
+                //         question:
+                //             "Question 6: What is the default value of the data members of a class in Java?",
+                //         options: ["0", "null", "undefined", "Depends on the data type"],
+                //         correctAnswer: "Depends on the data type",
+                //     },
+                //     {
+                //         question:
+                //             "Question 7: Which method is called when an object is garbage collected in Java?",
+                //         options: ["dispose()", "delete()", "finalize()", "clean()"],
+                //         correctAnswer: "finalize()",
+                //     },
+                //     {
+                //         question:
+                //             "Question 8: What is the purpose of the 'super' keyword in Java?",
+                //         options: [
+                //             "To refer to the superclass or parent class",
+                //             "To invoke a static method",
+                //             "To declare a constant variable",
+                //             "To access the current instance of the class",
+                //         ],
+                //         correctAnswer: "To refer to the superclass or parent class",
+                //     },
+                //     {
+                //         question:
+                //             "Question 9: What is the difference between '== 'and '.equals()' in Java?",
+                //         options: [
+                //             "They are the same",
+                //             "'==' compares object references, '.equals()' compares object content",
+                //             "'==' compares object content, '.equals()' compares object references",
+                //             "There is no such method as '.equals()' in Java",
+                //         ],
+                //         correctAnswer:
+                //             "'==' compares object references, '.equals()' compares object content",
+                //     },
+                //     {
+                //         question:
+                //             "Question 10: Which of the following statements is true about Java interfaces?",
+                //         options: [
+                //             "Interfaces can have method implementations",
+                //             "A class can implement multiple interfaces",
+                //             "Interfaces can extend classes",
+                //             "An interface cannot have any methods",
+                //         ],
+                //         correctAnswer: "A class can implement multiple interfaces",
+                //     },
+                //     // Add more questions here...
+                // ];
 
                 //const quizContainer = document.getElementById("questions-container");
                 var quizContainer = $("#questions-container");
@@ -240,13 +242,8 @@
                         const minutes = Math.floor(timer / 60);
                         const seconds = timer % 60;
                         var time = minutes + ":" + seconds;
-                        //console.log("the timer - "+minutes + " : " +seconds);
-                        //countdownElement.textContent = `${minutes}:${seconds}`;
-                        //countdownElement.html("Timer");
                         
                         $("#countdown").html(time);
-                        //countdownElement.html(time);
-                        //countdownElement.html(`${minutes}:${seconds}`);
                         if (--timer < 0) {
                             clearInterval(countdownTimer);
                             alert("Time's up! Quiz submitted.");
@@ -259,62 +256,60 @@
                     var quizContainer = $("#questions-container");
 
                     //post ajax call to load question
+                    if( quizData.length == 0 ){
+                        console.log("making AJAX call......");
+                        $.ajax({
+                            url: 'loadTestAttemptQuestions',
+                            dataType: 'json',
+                            method: 'POST',
+                            async: false,
+                            success: function(response) {
+                                console.log("ajax question response *************** \n "+response);
+                                console.log("old json data "+quizData);
+                                var jsonStr = JSON.stringify(response);
+                                console.log("new json data string ="+jsonStr);
+                                var responseJson   = JSON.parse(jsonStr);
+                                quizData = responseJson;
+                                console.log("new json data "+quizData);
+                            },
+                            error: function(xhr, status, error) {
+                                // Error handler
+                                console.log(error);
+                            }
+                        });
+                    }
 
-                    $.ajax({
-                        url: 'loadTestAttemptQuestions',
-                        dataType: 'json',
-                        method: 'POST',
-                        //data: { key1: value1, key2: value2 }, // Replace with your data
-                        success: function(response) {
-                            // Success handler
-                            console.log("ajax question response *************** \n "+response);
-                            console.log("ajax STRING JSON response +===============\n "+JSON.parse(response));
-                            var jsonArray = JSON.parse(jsonString);
-                            console.log(jsonArray);
-                            quizData = JSON.parse(response);
-                        },
-                        error: function(xhr, status, error) {
-                            // Error handler
-                            console.log(error);
-                        }
-                    });
+                            const questionData = quizData[index];
+                            console.log("loadQuestion questionData:", questionData);
+                            var questionElement = $("<div>");
+                            questionElement.addClass("question mb-3 p-3 square");
+                            console.log("questionData.question = "+ questionData.question);
+                            questionElement.html("<p>"+questionData.question+"</p>");
 
-                    const questionData = quizData[index];
-                    //console.log("loadQuestion questionData:", questionData);
-                    //const questionElement = document.createElement("div");
-                    var questionElement = $("<div>");
-                    //questionElement.classList.add("question", "mb-3", "p-3", "square");
-                    questionElement.addClass("question mb-3 p-3 square");
-                    //questionElement.innerHTML = `<p>${questionData.question}</p>`;
-                    console.log("questionData.question = "+ questionData.question);
-                    questionElement.html("<p>"+questionData.question+"</p>");
+                            var optionContainer = $("<div>");
+                            optionContainer.addClass("option-container");
 
-                    //const optionContainer = document.createElement("div");
-                    var optionContainer = $("<div>");
-                    //optionContainer.classList.add("option-container");
-                    optionContainer.addClass("option-container");
-
-                    questionData.options.forEach((option, optionIndex) => {
-                        const inputId = `q${index}_o${optionIndex}`;
-                        console.log("inputId = "+inputId);
-                        optionContainer.append(`
-                            <a href="#" class="custom-control custom-radio" onclick="selectOption('${inputId}')">
-                                <input type="radio" id="${inputId}" name="q${index}" class="custom-control-input" value="${option}">
-                                <label class="custom-control-label" for="${inputId}">${option}</label>
-                            </a>
-                        `);
+                            questionData.options.forEach((option, optionIndex) => {
+                                const inputId = `q${index}_o${optionIndex}`;
+                                console.log("inputId = "+inputId);
+                                optionContainer.append(`
+                                    <a href="#" class="custom-control custom-radio" onclick="selectOption('${inputId}')">
+                                        <input type="radio" id="${inputId}" name="q${index}" class="custom-control-input" value="${option}">
+                                        <label class="custom-control-label" for="${inputId}">${option}</label>
+                                    </a>
+                                `);
 
 
-                    });
+                            });
 
-                    //questionElement.appendChild(optionContainer);
-                    questionElement.append(optionContainer);
-                    //quizContainer.innerHTML = "";
-                    quizContainer.html("");
-                    quizContainer.append(questionElement);
+                            questionElement.append(optionContainer);
+                            quizContainer.html("");
+                            quizContainer.append(questionElement);
 
-                    updateQuestionInfo();
-                    updateButtons();
+                            updateQuestionInfo();
+                            updateButtons();
+
+                    
                 }
 
                 function selectOption(inputId) {
