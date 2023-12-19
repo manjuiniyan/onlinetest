@@ -10,12 +10,31 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/student/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link href="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     </head>
     <body class="sb-nav-fixed">
 
+        <script>
+            $(document).ready(function(){
+                console.log("hello");
+               $.ajax({
+                type: "GET",
+                url: "TestResultServlet",
+                success: function(response) {
+                    $("#question_table").append(response);
+                },
+                error: function (xhr, status, error) {
+                    console.log("error in ajax call " + error + " stutus " + status);
+                }
+    
+               });
+            });
+            </script>
+
        <!--Session data-->
-
-
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="student_index.jsp">Guru Technology</a>
@@ -135,6 +154,9 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="question_table"></div><br><br>    
+
                         <div style="height: 100vh"></div>
                         <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
                     </div>
