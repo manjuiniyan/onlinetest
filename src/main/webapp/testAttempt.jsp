@@ -668,15 +668,15 @@
                                         <div id="questions-container"></div>
 
                                         <div class="btn-group">
-                                            <button class="btn btn-outline-primary mr-3" onclick="previousQuestion()"
+                                            <button class="btn btn-outline-primary mx-3" onclick="previousQuestion()"
                                                 id="prevBtn">
                                                 Previous Question
                                             </button>
-                                            <button class="btn btn-outline-primary" onclick="nextQuestion()"
+                                            <button class="btn btn-outline-primary mx-3" onclick="nextQuestion()"
                                                 id="nextBtn">
                                                 Next Question
                                             </button>
-                                            <button class="btn btn-primary mt-2 mr-3" onclick="submitQuiz()"
+                                            <button class="btn btn-primary mt-2 mx-3" onclick="submitQuiz()"
                                                 id="submitBtn" style="display: none">
                                                 Submit Quiz
                                             </button>
