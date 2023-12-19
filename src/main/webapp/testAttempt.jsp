@@ -325,7 +325,7 @@
                         data: {
                             userID: userID,
                             testID: testID,
-                            attemptID: attemptID,
+                            attemptID: 3,
                             correctCount: correctCount,
                             timeSpent: timeSpent
                         },
