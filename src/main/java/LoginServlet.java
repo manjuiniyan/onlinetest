@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -33,9 +36,12 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             // Validate user from the database
-            String userType = validateUser(username, password);
+            Map<String, String> userDetailsMap = validateUser(username, password);
+            String userType = userDetailsMap.get("userType");
             System.out.println("User Type=" + userType);
             session.setAttribute("userName", username);
+            String userId = userDetailsMap.get("userID");
+            session.setAttribute("userID", userId);
             session.setAttribute("userType", userType);
 
             if (userType.equals("staff")) {
@@ -53,8 +59,8 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    private String validateUser(String username, String password) {
-
+    private Map<String, String> validateUser(String username, String password) {
+        Map<String, String> userDetailsMap = new HashMap();
         try {
             // JDBC connection to MySQL database
             Connection con = DBConnection.getConnection();
@@ -65,12 +71,17 @@ public class LoginServlet extends HttpServlet {
             pstmt.setString(2, password);
             System.out.println("User Name=" + username + "\nPassword=" + password);
             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return rs.getString("user_type");
+            String userID = "";
+            String user_type = "";
+            while (rs.next()) {
+                userID = String.valueOf(rs.getString("student_id"));
+                user_type = String.valueOf(rs.getString("user_type"));
+                userDetailsMap.put("userID", userID);
+                userDetailsMap.put("userType", user_type);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "invalid";
+        return userDetailsMap;
     }
 }

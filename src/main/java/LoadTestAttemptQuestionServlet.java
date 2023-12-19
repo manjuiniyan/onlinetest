@@ -57,6 +57,7 @@ public class LoadTestAttemptQuestionServlet extends HttpServlet {
 
             testMap.put("test_questions", list.size() + "");
             testObj.setTest_questions(list);
+            session.setAttribute("test_id", test_id);
             session.setAttribute("test_name", testObj.test_name);
             session.setAttribute("test_duration", testObj.test_duration);
             session.setAttribute("testObj", testMap);

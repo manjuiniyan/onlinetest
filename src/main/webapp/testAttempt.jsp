@@ -5,7 +5,8 @@
     <% 
         session=request.getSession(false); 
         String userName=null; 
-        String test_name="" , test_duration="" ; 
+        String userID = "";
+        String test_name="" , test_duration="", test_id = "" ; 
         Map<String, String> testData= (HashMap)session.getAttribute("testObj");
         String test_questions = "";
         //Test test=null; 
@@ -13,8 +14,11 @@
             response.sendRedirect("login.jsp"); 
         }else{
             userName=(String)session.getAttribute("userName"); 
+            userID = (String) session.getAttribute("userID");
+
             System.out.println("******username ******="+userName);
             test_name = (String) session.getAttribute("test_name"); 
+            test_id = (String) session.getAttribute("test_id");
             test_duration=(String)session.getAttribute("test_duration"); 
             test_questions = testData.get("test_questions");
 
@@ -126,114 +130,17 @@
 
                 var quizData = [];
 
-                // var quizData = [
-                //     {
-                //         question:
-                //             "Question 1: What is the main purpose of Java Virtual Machine (JVM)?",
-                //         options: [
-                //             "To provide an interpreter for Java bytecode",
-                //             "To compile Java source code",
-                //             "To manage memory in Java",
-                //             "To execute Java applications",
-                //         ],
-                //         correctAnswer: "To execute Java applications",
-                //     },
-                //     {
-                //         question:
-                //             "Question 2: Which keyword is used for inheritance in Java?",
-                //         options: ["extends", "inherit", "implements", "extension"],
-                //         correctAnswer: "extends",
-                //     },
-                //     {
-                //         question:
-                //             'Question 3: What is the output of the following code?\n```java\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, Java!");\n    }\n}\n```',
-                //         options: ["Hello, World!", "Hello, Java!", "Java!", "No output"],
-                //         correctAnswer: "Hello, Java!",
-                //     },
-                //     {
-                //         question:
-                //             "Question 4: Which of the following is NOT a primitive data type in Java?",
-                //         options: ["int", "float", "char", "class"],
-                //         correctAnswer: "class",
-                //     },
-                //     {
-                //         question:
-                //             "Question 5: What is the purpose of the 'finally' block in a try-catch-finally statement?",
-                //         options: [
-                //             "To define a block of code to be executed if an exception occurs",
-                //             "To specify the exception type to catch",
-                //             "To ensure a block of code is always executed, regardless of exception occurrence",
-                //             "To indicate the end of the try-catch block",
-                //         ],
-                //         correctAnswer:
-                //             "To ensure a block of code is always executed, regardless of exception occurrence",
-                //     },
-                //     {
-                //         question:
-                //             "Question 6: What is the default value of the data members of a class in Java?",
-                //         options: ["0", "null", "undefined", "Depends on the data type"],
-                //         correctAnswer: "Depends on the data type",
-                //     },
-                //     {
-                //         question:
-                //             "Question 7: Which method is called when an object is garbage collected in Java?",
-                //         options: ["dispose()", "delete()", "finalize()", "clean()"],
-                //         correctAnswer: "finalize()",
-                //     },
-                //     {
-                //         question:
-                //             "Question 8: What is the purpose of the 'super' keyword in Java?",
-                //         options: [
-                //             "To refer to the superclass or parent class",
-                //             "To invoke a static method",
-                //             "To declare a constant variable",
-                //             "To access the current instance of the class",
-                //         ],
-                //         correctAnswer: "To refer to the superclass or parent class",
-                //     },
-                //     {
-                //         question:
-                //             "Question 9: What is the difference between '== 'and '.equals()' in Java?",
-                //         options: [
-                //             "They are the same",
-                //             "'==' compares object references, '.equals()' compares object content",
-                //             "'==' compares object content, '.equals()' compares object references",
-                //             "There is no such method as '.equals()' in Java",
-                //         ],
-                //         correctAnswer:
-                //             "'==' compares object references, '.equals()' compares object content",
-                //     },
-                //     {
-                //         question:
-                //             "Question 10: Which of the following statements is true about Java interfaces?",
-                //         options: [
-                //             "Interfaces can have method implementations",
-                //             "A class can implement multiple interfaces",
-                //             "Interfaces can extend classes",
-                //             "An interface cannot have any methods",
-                //         ],
-                //         correctAnswer: "A class can implement multiple interfaces",
-                //     },
-                //     // Add more questions here...
-                // ];
-
-                //const quizContainer = document.getElementById("questions-container");
                 var quizContainer = $("#questions-container");
-                //const countdownElement = document.getElementById("countdown");
                 var countdownElement = $("#countdown");
-                //const questionInfoElement = document.getElementById("question-info");
                 var questionInfoElement = $("#question-info");
-                //const prevBtn = document.getElementById("prevBtn");
                 var prevBtn = $("#prevBtn");
-                //const nextBtn = document.getElementById("nextBtn");
                 var nextBtn = $("#nextBtn");
-                //const submitBtn = document.getElementById("submitBtn");
                 var submitBtn = $("#submitBtn");
                 let countdownTimer;
                 let currentQuestionIndex = 0;
-                
-                
-
+                var duration = <%= test_duration %>;
+                var testID = <%= test_id %>;
+                var userID = <%= userID %>;
 
                 function startCountdown(duration) {
                     let timer = duration * 60;
@@ -313,40 +220,26 @@
                 }
 
                 function selectOption(inputId) {
-                    // const radioButton = document.getElementById(inputId);
-                    // radioButton.checked = true;
                     const radioButton = $("#" + inputId);
                     radioButton.prop("checked", true);
                 }
 
                 function updateQuestionInfo() {
                     $("#question-info").html(`Question ${currentQuestionIndex + 1} of ${quizData.length}`);
-                    // questionInfoElement.text(`Question ${currentQuestionIndex + 1
-                    //     } of ${quizData.length}`);
+                    
                 }
 
                 function updateButtons() {
                     if (currentQuestionIndex === 0) {
-                        // First question
-                        //nextBtn.style.display = "block";
                         $(nextBtn).show();
-                        //prevBtn.style.display = "none";
                         $(prevBtn).hide();
-                        //submitBtn.style.display = "none";
                         $(submitBtn).hide();
                     } else if (currentQuestionIndex === quizData.length - 1) {
-                        // Last question
-                        //nextBtn.style.display = "none";
-                        //prevBtn.style.display = "block";
-                        //submitBtn.style.display = "block";
                         $(nextBtn).hide();
                         $(prevBtn).show();
                         $(submitBtn).show();
                     } else {
-                        // In between questions
-                        // nextBtn.style.display = "block";
-                        // prevBtn.style.display = "block";
-                        // submitBtn.style.display = "none";
+                        
                         $(nextBtn).show();
                         $(prevBtn).show();
                         $(submitBtn).hide();
@@ -364,9 +257,13 @@
                     updateButtons();
                 }
                 function nextQuestion() {
+                    console.log("currentQuestionIndex = "+currentQuestionIndex);
+
                     const selectedOption = document.querySelector(
                         `input[name="q${currentQuestionIndex}"]:checked`
                     );
+
+                    console.log("selectedOption ="+(selectedOption));
 
                     if (!selectedOption) {
                         alert("Please select an option.");
@@ -390,6 +287,7 @@
                 }
 
                 function checkAnswers() {
+                    
                     var countdownElement = $("#countdown");
                     let correctCount = 0;
                     quizData.forEach((question, index) => {
@@ -406,7 +304,7 @@
                     console.log("scrore percentage "+percentage);
                     timerText = countdownElement.text();
                     console.log("time to complete test ="+timerText)
-                    const timeSpent = (30 * 60) - (timerText.split(":").reduce((acc, time) => acc * 60 + +time, 0));
+                    const timeSpent = (duration * 60) - (timerText.split(":").reduce((acc, time) => acc * 60 + +time, 0));
 
                     $("#result-message").text(`You got ${correctCount} out of ${quizData.length} questions correct!`);
                     $("#percentage").text(`Percentage: ${percentage.toFixed(2)}%`);
@@ -417,15 +315,35 @@
                     $("#result-container").css("display", "none");
 
                     $("#result-container").css("display", "block");
+                    console.log("userID ="+userID);
+                    console.log("testID = "+testID);
+                    //ajax call to save the result
+                    //attemptID is generated by server
+                    $.ajax({
+                        type: "POST",
+                        url: "saveTestResultServlet",
+                        data: {
+                            userID: userID,
+                            testID: testID,
+                            attemptID: attemptID,
+                            correctCount: correctCount,
+                            timeSpent: timeSpent
+                        },
+                        success: function (response) {
+                            console.log("response = "+response);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("error in ajax call " + error + " status " + status);
+                        }
+                    });
+
                 }
 
                 function tryAgain() {
                     currentQuestionIndex = 0;
                     loadQuestion(currentQuestionIndex);
-                    startCountdown(30);
-                    //document.getElementById("quiz-container").style.display = "block";
+                    startCountdown(duration);
                     $("#quiz-container").css("display", "block");
-                    //document.getElementById("result-container").style.display = "none";
                     $("#result-container").css("display", "none");
                 }
 
@@ -464,21 +382,23 @@
                             var questions = response.test_questions;
                             console.log(response.test_questions);
                             console.log(JSON.stringify(response));
-                            //$("#test_id").html(response.test_id);
-                            //$("#test_id_value").val(response.test_id);
-                            //$("#test_name").html(response.test_name);
-                            //$("#test_name_value").val(response.test_name);
-                            //$("#test_duration").html(response.test_duration);
+                            
                         });
 
                 }
 
                 function startTest() {
+                    // Attempt ID:
+                    //ajax call to get the attempt id
+
+
+
                     $("#test_confirmation").hide();
                     $("#test_attempt").show();
                     console.log("start test");
                     loadQuestion(currentQuestionIndex);
-                    startCountdown(30);
+                    //var duration = <%= test_duration %>;
+                    startCountdown(duration);
 
                 }
 
@@ -668,15 +588,15 @@
                                         <div id="questions-container"></div>
 
                                         <div class="btn-group">
-                                            <button class="btn btn-outline-primary mr-3" onclick="previousQuestion()"
+                                            <button class="btn btn-outline-primary mx-3" onclick="previousQuestion()"
                                                 id="prevBtn">
                                                 Previous Question
                                             </button>
-                                            <button class="btn btn-outline-primary" onclick="nextQuestion()"
+                                            <button class="btn btn-outline-primary mx-3" onclick="nextQuestion()"
                                                 id="nextBtn">
                                                 Next Question
                                             </button>
-                                            <button class="btn btn-primary mt-2 mr-3" onclick="submitQuiz()"
+                                            <button class="btn btn-primary mt-2 mx-3" onclick="submitQuiz()"
                                                 id="submitBtn" style="display: none">
                                                 Submit Quiz
                                             </button>
