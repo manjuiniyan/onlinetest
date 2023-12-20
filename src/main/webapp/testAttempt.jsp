@@ -95,6 +95,7 @@
                 }
           
                 .custom-control {
+                text-decoration: none;
                   background-color: #e7e9eb;
                   color: #000000;
                   border-radius: 2px;
