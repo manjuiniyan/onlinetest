@@ -293,10 +293,7 @@
                     let correctCount = 0;
                     quizData.forEach((question, index) => {
                         const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
-                        if (
-                            selectedOption &&
-                            selectedOption.value === question.correctAnswer
-                        ) {
+                        if (selectedOption && selectedOption.value === question.correctAnswer) {
                             correctCount++;
                         }
                     });
@@ -313,9 +310,9 @@
                     $("#time-spent").text(`Time Spent: ${formatTime(timeSpent)}`);
 
                     $("#submitBtn").css("display", "block");
-                    $("#result-container").css("display", "none");
+                    //$("#result-container").css("display", "none");
 
-                    $("#result-container").css("display", "block");
+                    
                     console.log("userID ="+userID);
                     console.log("testID = "+testID);
                     //ajax call to save the result
@@ -326,12 +323,22 @@
                         data: {
                             userID: userID,
                             testID: testID,
-                            attemptID: 3,
+                            score: percentage,
                             correctCount: correctCount,
                             timeSpent: timeSpent
                         },
                         success: function (response) {
                             console.log("response = "+response);
+                            var saveResult = response;
+                            if(response == "saved success"){
+                                $("#db-saved").text(response);
+                               console.log("DB saved success "+response); 
+                               
+                            }else{
+                                $("#db-saved").text(response);
+                                console.log("DB saved Failed "+response); 
+                            }
+                            $("#result-container").css("display", "block");
                         },
                         error: function (xhr, status, error) {
                             console.log("error in ajax call " + error + " status " + status);
@@ -608,6 +615,7 @@
                                         <p id="result-message"></p>
                                         <p id="percentage"></p>
                                         <p id="time-spent"></p>
+                                        <p id="db-saved"></p>
                                         <button class="btn btn-primary mr-3" onclick="checkAnswers()"
                                             id="checkAnswersBtn">
                                             Check Your Answers
