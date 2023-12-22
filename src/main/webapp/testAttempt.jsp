@@ -142,7 +142,7 @@
                 var duration = <%= test_duration %>;
                 var testID = <%= test_id %>;
                 var userID = <%= userID %>;
-
+                var selectedAnswer = [];
                 function startCountdown(duration) {
                     let timer = duration * 60;
                     //console.log(countdownElement);
@@ -264,6 +264,8 @@
                         `input[name="q${currentQuestionIndex}"]:checked`
                     );
 
+                    selectedAnswer[currentQuestionIndex] = selectedOption;
+
                     console.log("selectedOption ="+(selectedOption));
 
                     if (!selectedOption) {
@@ -292,7 +294,8 @@
                     var countdownElement = $("#countdown");
                     let correctCount = 0;
                     quizData.forEach((question, index) => {
-                        const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+                        //document.querySelector(`input[name="q${index}"]:checked`);
+                        const selectedOption = selectedAnswer[index];
                         if (selectedOption && selectedOption.value === question.correctAnswer) {
                             correctCount++;
                         }
@@ -325,6 +328,7 @@
                             testID: testID,
                             score: percentage,
                             correctCount: correctCount,
+                            userSelectedAnswer: selectedAnswer, 
                             timeSpent: timeSpent
                         },
                         success: function (response) {

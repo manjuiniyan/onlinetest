@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("Inside the Login Servlet");
         response.setContentType("text/html");
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true); // true create new session
         String username = request.getParameter("user_name");
         String password = request.getParameter("password");
         String errorMessage = "";

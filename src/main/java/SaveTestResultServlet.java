@@ -22,12 +22,17 @@ public class SaveTestResultServlet extends HttpServlet {
         // Retrieve parameters from the request
         String userID = request.getParameter("userID");
         String testID = request.getParameter("testID");
-        String attemptID = request.getParameter("attemptID");
+        // String attemptID = request.getParameter("attemptID");
         String score = request.getParameter("score");
         String correctCount = request.getParameter("correctCount");
         String timeSpent = request.getParameter("timeSpent");
 
-        System.out.println("userID=" + userID + "\ntestID=" + testID + "\nattemptID=" + attemptID + "\ncorrectCount="
+        // get user selectedAnswer
+        String userSelectedAnswer = request.getParameter("userSelectedAnswer");
+        System.out.println("the user selected answer " + userSelectedAnswer);
+        // get list of Questions get from session.getAtt test object
+
+        System.out.println("userID=" + userID + "\ntestID=" + testID + "\ncorrectCount="
                 + correctCount + "\ntimeSpent=" + timeSpent + " \n score=" + score);
 
         Connection connection = DBConnection.getConnection();
@@ -56,6 +61,17 @@ public class SaveTestResultServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+    }
+
+    public String getAttemptID() {
+        // sql Attepth Table
+        // select max(attempid()) from attempts;
+        return "attemptID";
+    }
+
+    public boolean saveUserAnswer(String attempID, String userid, String[] questionID) {
+        // for loop of question array
+        return true;
     }
 
 }
