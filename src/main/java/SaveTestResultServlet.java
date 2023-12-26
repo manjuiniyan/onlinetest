@@ -1,13 +1,21 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/saveTestResultServlet")
 public class SaveTestResultServlet extends HttpServlet {
@@ -15,6 +23,8 @@ public class SaveTestResultServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false);
 
         System.out.println("inside the Save Test Result Servlet");
         response.setContentType("text/plain");
@@ -31,6 +41,29 @@ public class SaveTestResultServlet extends HttpServlet {
         String userSelectedAnswer = request.getParameter("userSelectedAnswer");
         System.out.println("the user selected answer " + userSelectedAnswer);
         // get list of Questions get from session.getAtt test object
+
+        String[] elements = userSelectedAnswer.substring(2, userSelectedAnswer.length() - 2).split("\",\"");
+
+        // Create a new array and populate it with the elements
+        String[] array = new String[elements.length];
+        System.arraycopy(elements, 0, array, 0, elements.length);
+
+        // String[] elements = userSelectedAnswer.substring(1,
+        // userSelectedAnswer.length() - 1).split("\",\"");
+
+        // // Create a new array and populate it with the elements
+        // String[] array = new String[elements.length];
+
+        // String[] elements = userSelectedAnswer.split(",");
+
+        // Step 2: Create an ArrayList
+        ArrayList<String> selectedAnswerList = new ArrayList<>();
+
+        // Step 3: Add each element to the ArrayList
+        selectedAnswerList.addAll(Arrays.asList(array));
+
+        // Print the ArrayList
+        System.out.println("ArrayList selectedAnswerList: " + selectedAnswerList);
 
         System.out.println("userID=" + userID + "\ntestID=" + testID + "\ncorrectCount="
                 + correctCount + "\ntimeSpent=" + timeSpent + " \n score=" + score);
@@ -51,6 +84,10 @@ public class SaveTestResultServlet extends HttpServlet {
                 System.out.println("Successfuly inserted login");
                 // select query to get attemptID
                 // save to UserAnswer Table methdo()
+                String attemptID = getAttemptID(userID, testID);
+                Test testObj = (Test) session.getAttribute("test");
+                List<String> questionList = testObj.getTest_questions();
+                saveUserAnswer(attemptID, userID, questionList, selectedAnswerList);
                 out.print("saved success");
             } else {
                 out.print("failed");
@@ -63,14 +100,73 @@ public class SaveTestResultServlet extends HttpServlet {
 
     }
 
-    public String getAttemptID() {
+    public String getAttemptID(String userid, String testid) {
+        int attemptID = 0;
         // sql Attepth Table
         // select max(attempid()) from attempts;
-        return "attemptID";
+
+        String query = "SELECT MAX(attempt_id) FROM u933391433_onlinetest.TestAttempts where user_id=" + userid
+                + " and test_id=" + testid;
+
+        try {
+            // Create a connection to the database
+            Connection conn = DBConnection.getConnection();
+
+            // Create a statement object
+            Statement stmt = conn.createStatement();
+
+            // Execute the query and get the result set
+            ResultSet rs = stmt.executeQuery(query);
+
+            // Retrieve the attemptID value from the result set
+            if (rs.next()) {
+                attemptID = rs.getInt(1);
+                System.out.println("Attempt ID: " + attemptID);
+            }
+
+            // Close the resources
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // return attemptID + "";
+        return String.valueOf(attemptID); // return attemptID;
     }
 
-    public boolean saveUserAnswer(String attempID, String userid, String[] questionID) {
+    public boolean saveUserAnswer(String attempID, String userid, List<String> questionID, List<String> optionID) {
         // for loop of question array
+        System.out.println(userid + " " + attempID + " " + questionID + " selected option " + optionID);
+        // Create a connection to the database
+
+        try {
+
+            Connection conn = DBConnection.getConnection();
+            String query = "INSERT INTO u933391433_onlinetest.UserAnswers(attempt_id, question_id, selected_option) VALUES (?,?,?)";
+
+            // Create a statement object
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            for (int i = 0; i < questionID.size(); i++) {
+
+                pstmt.setInt(1, Integer.parseInt(attempID));
+                pstmt.setInt(2, Integer.parseInt(questionID.get(i)));
+                pstmt.setString(3, String.valueOf(optionID.get(i)));
+                // Execute the query and get the result set
+                int result = pstmt.executeUpdate();
+                if (result > 0) {
+                    System.out.println("Successfuly inserted answer for question " + questionID.get(i));
+                } else {
+                    System.out.println("Failed to insert answer for question " + questionID.get(i));
+                }
+            }
+            // Close the resources
+            pstmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return true;
     }
 
