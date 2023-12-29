@@ -330,6 +330,7 @@
                         <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
                         <a href="login.jsp" class="nav-item nav-link">Login</a>
+                        <a href="registerUser.jsp" class="nav-item nav-link">Sign Up</a>
                     </div>
                 </div>
                 <div class="d-none d-xl-flex flex-shirink-0">
