@@ -18,7 +18,7 @@ public class ShowTestAnswerServlet extends HttpServlet {
      PrintWriter out=response.getWriter();
      response.setContentType("text/html");
     String attemptId = request.getParameter("attemptID");
-    out.print(attemptId);
+    System.out.println("Attempt ID: " + attemptId);
     Connection connection = DBConnection.getConnection();
     StringBuilder answersTable = new StringBuilder();
     answersTable.append("<table class=\"table table-striped\">");
