@@ -30,8 +30,26 @@
                     console.log("error in ajax call " + error + " stutus " + status);
                 }
     
-               });
+               }); 
             });
+          function loadTestAttempts(attemptID){
+              alert(attemptID);
+              $.ajax({
+                    type: "Post",
+                    url: "ShowTestAnswerServlet",
+                    data:{
+
+                        attemptID:attemptID
+                    },
+                    success: function(response) {
+                        $("#question_table").append(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("error in ajax call " + error + " stutus " + status);
+                    }
+                });
+
+          }
             </script>
 
        <!--Session data-->
