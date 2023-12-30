@@ -5,6 +5,8 @@
 
     <meta charset="utf-8">
     <title>HighTech - IT Solutions Website Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -31,9 +33,91 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
+    <style>
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        #correctoption {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
     
 </head>
 <body>
+
+    <script>
+         $(document).ready(function () {
+            function getRandomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            function generateUsername() {
+                var firstName = $("#fnameId").val().toLowerCase();
+                var lastName = $("#lnameId").val().toLowerCase();
+                var randomNum = getRandomNumber(100, 999);
+                var suggestedUsername = firstName + lastName + randomNum;
+                $("#usernameId").val(suggestedUsername);
+            }
+
+            $("#fnameId, #lnameId").on("input", generateUsername);
+        });
+
+        $(document).ready(function () {
+            var passwordField1 = $("#passwordId1");
+            var toggleButton1 = $("#togglePassword1");
+
+            var passwordField2 = $("#passwordId2");
+            var toggleButton2 = $("#togglePassword2");
+
+            var correctOptionDiv = $("#correctoption");
+
+            toggleButton1.click(function () {
+                togglePasswordVisibility(passwordField1, toggleButton1);
+            });
+
+            toggleButton2.click(function () {
+                togglePasswordVisibility(passwordField2, toggleButton2);
+            });
+
+            $("form").submit(function () {
+                return checkPassword();
+            });
+
+            function togglePasswordVisibility(passwordField, toggleButton) {
+                var type = passwordField.attr("type");
+                if (type === "password") {
+                    passwordField.attr("type", "text");
+                    toggleButton.html('<i class="fa fa-eye" aria-hidden="true"></i>');
+                } else {
+                    passwordField.attr("type", "password");
+                    toggleButton.html('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
+                }
+            }
+
+            function checkPassword() {
+                var password1 = $("#passwordId1").val();
+                var password2 = $("#passwordId2").val();
+
+                if (password1 !== password2) {
+                    correctOptionDiv.text("Passwords do not match. Please enter matching passwords.");
+                    return false;
+                } else {
+                    correctOptionDiv.text("");
+                }
+
+                return true;
+            }
+        });
+    </script>
 
     <!-- Spinner Start -->
     <div id="spinner"
@@ -130,7 +214,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4">
                     <div class="p-2 rounded contact-form fadeIn" data-wow-delay=".5s">
-                        <form action="RegisterUser" method="post">
+                        <form action="RegisterUserServlet" method="post">
                             <div class="mb-4">
                                 <input type="text" id="fnameId" name="fname" class="form-control border-0 py-3"
                                     placeholder="First Name">
@@ -143,13 +227,35 @@
                                 <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3"
                                     placeholder="User Name">
                             </div>
-                            <div class="mb-4">
+                            <div class="mb-4 password-container">
                                 <input type="password" id="passwordId1" name="password1" class="form-control border-0 py-3"
                                     placeholder="Password">
+                                <span class="toggle-password" id="togglePassword1">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </span>
                             </div>
-                            <div class="mb-4">
+                            <div class="mb-4 password-container">
                                 <input type="password" id="passwordId2" name="password2" class="form-control border-0 py-3"
                                     placeholder="Confirm Password">
+                                <span class="toggle-password" id="togglePassword2">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </span>
+                                <div id="correctoption"></div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="gender" class="form-label">Gender:</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="other" value="other">
+                                    <label class="form-check-label" for="other">Other</label>
+                                </div>
                             </div>
                             <div class="mb-4">
                                 <input type="email" id="emailId" name="email" class="form-control border-0 py-3"
@@ -164,9 +270,9 @@
                                     placeholder="Birth Date">
                             </div>
 
-                            <div class="text-start d-flex justify-content-center">
-                                 <input type="submit" value="Login" class="btn btn-dark  text-white py-3 px-5"> 
-                                 <button type="reset" class="btn btn-danger btn-secondary">Reset</button>
+                            <div class="text-start d-flex justify-content-center ">
+                                 <input type="submit" value="Submit" style="margin-right: 10px;" class="btn btn-primary   text-white  py-3 px-5 "> 
+                                 <button type="reset" class="btn btn-outline btn-secondary">Reset</button>
                             </div>
                             <br>
                            
