@@ -224,7 +224,7 @@
                                     placeholder="Last Name">
                             </div>
                             <div class="mb-4">
-                                <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3"
+                                <input type="text" id="usernameId" name="username" class="form-control border-0 py-3"
                                     placeholder="User Name">
                             </div>
                             <div class="mb-4 password-container">
@@ -243,19 +243,17 @@
                                 <div id="correctoption"></div>
                             </div>
                             <div class="mb-4">
-                                <label for="gender" class="form-label">Gender:</label>
-                                <div class="form-check form-check-inline">
+                                <label for="gender" class="form-label" style="text-align: left; color: black;">Gender:</label>
+                                <div class="form-control border-0 py-3">
                                     <input class="form-check-input" type="radio" name="gender" id="male" value="male">
                                     <label class="form-check-label" for="male">Male</label>
-                                </div>
-                                <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender" id="female" value="female">
                                     <label class="form-check-label" for="female">Female</label>
-                                </div>
-                                <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender" id="other" value="other">
                                     <label class="form-check-label" for="other">Other</label>
                                 </div>
+                                
+                                
                             </div>
                             <div class="mb-4">
                                 <input type="email" id="emailId" name="email" class="form-control border-0 py-3"

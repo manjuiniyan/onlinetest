@@ -42,7 +42,7 @@
                         attemptID:attemptID
                     },
                     success: function(response) {
-                        $("#answer_table").append(response);
+                        //$("#answer_table").append(response);
                     },
                     error: function (xhr, status, error) {
                         console.log("error in ajax call " + error + " stutus " + status);
@@ -174,7 +174,37 @@
                         </div>
                         
                         <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="result_table"></div><br><br> 
-                        <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="answer_table"></div><br><br> 
+                        
+                        <div class="table-bordered rounded-lg border-4 border-success" style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="answer_table">
+                            <div id="test-result-answers" class="test-result">
+                                <h2>Test Results</h2>
+                                <div class="question">
+                                    <h3>Question 1</h3>
+                                    <p>What is the capital of France?</p>
+                                    <ul class="answer-options">
+                                        <li>Option A</li>
+                                        <li>Option B</li>
+                                        <li>Option C</li>
+                                        <li>Option D</li>
+                                    </ul>
+                                    <p>Correct Answer: Option B</p>
+                                </div>
+                                <div class="question">
+                                    <h3>Question 2</h3>
+                                    <p>Who invented the telephone?</p>
+                                    <ul class="answer-options">
+                                        <li>Option A</li>
+                                        <li>Option B</li>
+                                        <li>Option C</li>
+                                        <li>Option D</li>
+                                    </ul>
+                                    <p>Correct Answer: Option C</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        
 
                         <div style="height: 100vh"></div>
                         <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>

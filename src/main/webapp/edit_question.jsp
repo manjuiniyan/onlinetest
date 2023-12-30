@@ -71,6 +71,7 @@
                 console.log(response);
                 console.log(response.topic_id);
                 console.log(JSON.stringify(response));
+                        $("#formGroupExampleInput0").val(question_id);
                         $("#formGroupExampleInput1").val(response.topic_id);
                         $("#formGroupExampleInput2").val(response.question_text);
                         $("#formGroupExampleInput3").val(response.option_a);
@@ -201,6 +202,7 @@
                         <form class="row g-3 needs-validation" novalidate>
                                 
                             <div class="mb-4">
+                                <input type="hidden" id="formGroupExampleInput0" name="question_id" >
                                 <input type="text" id="formGroupExampleInput1" name="topicid"
                                     class="form-control border-0 py-3" placeholder="Topic ID" readonly>
                             </div>

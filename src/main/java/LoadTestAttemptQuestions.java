@@ -50,8 +50,7 @@ public class LoadTestAttemptQuestions extends HttpServlet {
                     options.add(resultSet.getString(7));
                     quizeQuestion.setOptions(options);
 
-                    int ansInt = Integer.parseInt(resultSet.getString(8));
-                    String correctAnwer = resultSet.getString((ansInt + 3));
+                    String correctAnwer = resultSet.getString(8);
                     System.out.println("correct Answer " + correctAnwer);
                     quizeQuestion.setCorrectAnswer(correctAnwer);
                     quizeQuestionList.add(quizeQuestion);
@@ -59,6 +58,7 @@ public class LoadTestAttemptQuestions extends HttpServlet {
                 }
 
             } catch (Exception e) {
+                e.printStackTrace();
                 System.err.println("exception while creating DBConnection =" + e.getMessage());
             }
             ObjectMapper mapper = new ObjectMapper();

@@ -28,7 +28,8 @@ public class RegisterUserServlet extends HttpServlet {
         String dob = request.getParameter("dob");
 
         System.out.println(
-                "firstname = " + firstname + "\n lastname = " + lastname + "\n username = " + username + "\n password = "
+                "firstname = " + firstname + "\n lastname = " + lastname + "\n username = " + username
+                        + "\n password = "
                         + password + "\n email = " + email + " \nmobile = " + mobile + "\n dob = " + dob);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -38,7 +39,7 @@ public class RegisterUserServlet extends HttpServlet {
         try (Connection connection = DriverManager.getConnection(
                 "jdbc:mysql://193.203.166.25:3306/u933391433_onlinetest", "u933391433_gurukalvi",
                 "GuruKalvi2023");) {
-            String insert_query = "INSERT INTO `u933391433_onlinetest`.`Users`(`first_name`, `last_name`, `username`, `password`, `email`, `phone`, `dob`) VALUES (?,?,?,?,?,?,?)";
+            String insert_query = "INSERT INTO `u933391433_onlinetest`.`Users`(`first_name`, `last_name`, `username`, `password`, `email`, `phone`, `dob`, `user_type`) VALUES (?,?,?,?,?,?,?,?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insert_query)) {
                 preparedStatement.setString(1, firstname);
                 preparedStatement.setString(2, lastname);
@@ -47,6 +48,7 @@ public class RegisterUserServlet extends HttpServlet {
                 preparedStatement.setString(5, email);
                 preparedStatement.setString(6, mobile);
                 preparedStatement.setString(7, dob);
+                preparedStatement.setString(8, "student");
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 if (rowsAffected > 0) {
