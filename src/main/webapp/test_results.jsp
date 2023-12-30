@@ -13,7 +13,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <link href="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+        <style>
+            .text-bg-success{
+                background-color: rgb(179, 208, 179);
+            }
+            .text-bg-danger{
+                background-color: rgb(228, 117, 117);
+            }
+            </style>
     </head>
     <body class="sb-nav-fixed">
 
@@ -37,11 +44,21 @@
               $.ajax({
                     type: "Post",
                     url: "ShowTestAnswerServlet",
+                    dataType: "json",
                     data:{
 
                         attemptID:attemptID
                     },
                     success: function(response) {
+                        console.log(response);
+                
+                        for (let i = 0; i < response.length; i++) {
+                            const question = response[i];
+                            loadTestAnswer(i+1, question.question, question.options, question.correctAnswer, question.answer_selected);
+                        }
+                        //loadTestAnswer(1, "What is your name", ["A", "B", "C", "D"], "A");  
+                        //loadTestAnswer(response.questionNumber, response.questionText, response.answerOptions, response.correctAnswer);
+
                         //$("#answer_table").append(response);
                     },
                     error: function (xhr, status, error) {
@@ -50,6 +67,57 @@
                 });
 
           }
+
+            function loadTestAnswer(questionNumber, questionText, answerOptions, correctAnswer, selectedAnswer) {
+                // Create main div
+                let questionDiv = document.createElement('div');
+                
+                //questionDiv.className = 'question';text-bg-danger
+
+                // Create question header
+                let questionHeader = document.createElement('h3');
+                questionHeader.textContent = `Question ${questionNumber}`;
+                questionDiv.appendChild(questionHeader);
+
+                // Create question text
+                let questionParagraph = document.createElement('p');
+                questionParagraph.textContent = questionText;
+                questionDiv.appendChild(questionParagraph);
+
+                // Create answer options list
+                let answerList = document.createElement('ul');
+                answerList.className = 'answer-options';
+                answerOptions.forEach(option => {
+                    let listItem = document.createElement('li');
+                    listItem.textContent = option;
+                    answerList.appendChild(listItem);
+                });
+                questionDiv.appendChild(answerList);
+
+                // Create correct answer text
+                let correctAnswerParagraph = document.createElement('p');
+                correctAnswerParagraph.textContent = `Correct Answer: ${correctAnswer}`;
+                questionDiv.appendChild(correctAnswerParagraph);
+
+                
+
+                // Create selected answer text
+                let selectedAnswerParagraph = document.createElement('p');
+                selectedAnswerParagraph.textContent = `Selected Answer: ${selectedAnswer}`;
+                questionDiv.appendChild(selectedAnswerParagraph);
+                //if correctAnswer and selectedAnswer are same then add class correct else add class incorrect
+                if(correctAnswer === selectedAnswer){
+                    //questionDiv.classList.add("correct");
+                    questionDiv.className = 'text-bg-success';
+                }else{
+                    //questionDiv.classList.add("incorrect");//text-bg-success
+                    questionDiv.className = 'text-bg-danger';
+                }
+
+                // Append the created div to the body or any other container
+                //document.body.appendChild(questionDiv);
+                $("#answer_table").append(questionDiv)
+            }
             </script>
 
        <!--Session data-->
@@ -174,33 +242,9 @@
                         </div>
                         
                         <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="result_table"></div><br><br> 
-                        
-                        <div class="table-bordered rounded-lg border-4 border-success" style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="answer_table">
-                            <div id="test-result-answers" class="test-result">
-                                <h2>Test Results</h2>
-                                <div class="question">
-                                    <h3>Question 1</h3>
-                                    <p>What is the capital of France?</p>
-                                    <ul class="answer-options">
-                                        <li>Option A</li>
-                                        <li>Option B</li>
-                                        <li>Option C</li>
-                                        <li>Option D</li>
-                                    </ul>
-                                    <p>Correct Answer: Option B</p>
-                                </div>
-                                <div class="question">
-                                    <h3>Question 2</h3>
-                                    <p>Who invented the telephone?</p>
-                                    <ul class="answer-options">
-                                        <li>Option A</li>
-                                        <li>Option B</li>
-                                        <li>Option C</li>
-                                        <li>Option D</li>
-                                    </ul>
-                                    <p>Correct Answer: Option C</p>
-                                </div>
-                            </div>
+                        <h2>Test Results</h2>
+                        <div class="table-bordered rounded-lg border-4 border-success" style="text-decoration-color: rgb(164, 33, 33); width: 100%" id="answer_table">
+                            
                         </div>
                         
 

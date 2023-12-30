@@ -75,7 +75,7 @@ public class SaveTestResultServlet extends HttpServlet {
 
             statement.setInt(1, Integer.parseInt(userID));
             statement.setInt(2, Integer.parseInt(testID));
-            statement.setInt(3, Integer.parseInt(score));
+            statement.setInt(3, (int) Double.parseDouble(score)); // Convert score to whole number
             statement.setInt(4, Integer.parseInt(correctCount));
             statement.setInt(5, Integer.parseInt(timeSpent));
 

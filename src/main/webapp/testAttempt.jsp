@@ -296,8 +296,8 @@
                     quizData.forEach((question, index) => {
                         //document.querySelector(`input[name="q${index}"]:checked`);
                         const selectedOption = selectedAnswer[index];
+                        userSelectedAnswerValue[index] = selectedOption.value;
                         if (selectedOption && selectedOption.value === question.correctAnswer) {
-                            userSelectedAnswerValue[index] = selectedOption.value;
                             correctCount++;
                         }
                     });

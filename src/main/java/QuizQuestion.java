@@ -1,21 +1,32 @@
 import java.util.List;
 
 public class QuizQuestion {
+    private String question_id;
+
     private String question;
     private List<String> options;
     private String correctAnswer;
-
-    // Constructors, getters, and setters
+    private String explaination;
 
     public QuizQuestion() {
     }
 
-    // public QuizQuestion(String question, List<String> options, String
-    // correctAnswer) {
-    // this.question = question;
-    // this.options = options;
-    // this.correctAnswer = correctAnswer;
-    // }
+    public String getQuestion_id() {
+        return question_id;
+    }
+
+    public void setQuestion_id(String question_id) {
+        this.question_id = question_id;
+    }
+
+    // genetare getter and setter for explaination
+    public String getExplaination() {
+        return explaination;
+    }
+
+    public void setExplaination(String explaination) {
+        this.explaination = explaination;
+    }
 
     public String getQuestion() {
         return question;
