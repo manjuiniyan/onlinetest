@@ -47,7 +47,7 @@
         }
 
         #correctoption {
-            color: red;
+            color: rgb(227, 48, 227);
             margin-top: 5px;
         }
     </style>
@@ -103,19 +103,19 @@
                 }
             }
 
-            function checkPassword() {
-                var password1 = $("#passwordId1").val();
-                var password2 = $("#passwordId2").val();
+        // function checkPassword() {
+                //var password1 = $("#passwordId1").val();
+                //var password2 = $("#passwordId2").val();
 
-                if (password1 !== password2) {
-                    correctOptionDiv.text("Passwords do not match. Please enter matching passwords.");
-                    return false;
-                } else {
-                    correctOptionDiv.text("");
-                }
+               // if (password1 !== password2) {
+                   // correctOptionDiv.text("Passwords do not match. Please enter matching passwords.");
+                   // return false;
+               // } else {
+                  //  correctOptionDiv.text("");
+               // }
 
-                return true;
-            }
+                //return true;
+           // } 
         });
     </script>
 
@@ -241,7 +241,14 @@
                                     <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                 </span>
                                 <div id="correctoption"></div>
-                            </div>
+                            </div><br>
+                            <% 
+                            String errorMessage = (String) request.getAttribute("errorMessage");
+                            if(errorMessage != null) {
+                        %>
+                               <div class="p-3 mb-2 bg-primary text-white"><%= errorMessage %> </div>
+
+                        <% } %>
                             <div class="mb-4">
                                 <label for="gender" class="form-label" style="text-align: left; color: black;">Gender:</label>
                                 <div class="form-control border-0 py-3">
@@ -272,15 +279,7 @@
                                  <input type="submit" value="Submit" style="margin-right: 10px;" class="btn btn-primary   text-white  py-3 px-5 "> 
                                  <button type="reset" class="btn btn-outline btn-secondary">Reset</button>
                             </div>
-                            <br>
-                           
-                            <% 
-                            String errorMessage = (String) request.getAttribute("errorMessage");
-                            if(errorMessage != null) {
-                        %>
-                               <div class="p-3 mb-2 bg-primary text-white"><%= errorMessage %> </div>
-
-                        <% } %>
+                            
                         </form>
                     </div>
                 </div>

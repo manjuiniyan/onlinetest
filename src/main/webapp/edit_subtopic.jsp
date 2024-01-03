@@ -160,8 +160,8 @@
                             </div>
                             <a href="testimonial.jsp" class="nav-item nav-link">Testimonial</a>
                             <a href="contact.jsp" class="nav-item nav-link">Contact</a>
-                            <a href="login.jsp" class="nav-item nav-link">Login</a>
-                        </div>
+                            <a href="login.jsp" class="nav-item nav-link" id="loginSection">Logout</a>
+                            <a href="#" class="nav-item nav-link" onclick="logout()" id="logoutSection" style="display: none;">Logout</a>                        </div>
                     </div>
                     <div class="d-none d-xl-flex flex-shirink-0">
                         <div id="phone-tada" class="d-flex align-items-center justify-content-center me-4">
@@ -335,6 +335,29 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <script>
+            // Check if the user is logged in
+            function checkLoginStatus() {
+                const isLoggedIn = localStorage.getItem('loggedIn');
+    
+                if (isLoggedIn) {
+                    document.getElementById('loginSection').style.display = 'none';
+                    document.getElementById('logoutSection').style.display = 'block';
+                } else {
+                    document.getElementById('loginSection').style.display = 'block';
+                    document.getElementById('logoutSection').style.display = 'none';
+                }
+            }
+    
+            // Simulating logout by clearing local storage
+            function logout() {
+                localStorage.removeItem('loggedIn');
+                checkLoginStatus();
+            }
+    
+            // Call this function to check login status on page load
+            checkLoginStatus();
+        </script>
 </body>
 
 </html>
