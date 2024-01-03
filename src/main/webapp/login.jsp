@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <title>HighTech - IT Solutions Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -31,6 +29,15 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
+    <style>
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
     
 </head>
 <body>
@@ -135,13 +142,18 @@
                                 <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3"
                                     placeholder="User Name">
                             </div>
-                            <div class="mb-4">
+                            <div class="mb-4 position-relative">
                                 <input type="password" id="passwordId" name="password" class="form-control border-0 py-3"
                                     placeholder="Password">
+                                <i class="bi bi-eye password-toggle" id="togglePassword"></i>
                             </div>
                             <div class="text-start d-flex justify-content-center">
-                                 <input type="submit" value="Login" class="btn btn-dark  text-white py-3 px-5"> 
-                                <!--button id="button" type="submit" onclick="showWindow()" class="btn btn-dark  text-white py-3 px-5">Submit</button>-->
+                                <div class="me-3">
+                                    <input type="submit" value="Login" class="btn btn-dark text-white py-3 px-5">
+                                </div>
+                                <div>
+                                    <input type="submit" value="Forget Password" class="btn btn-dark text-white py-3 px-5">
+                                </div>
                             </div>
                             <br>
                            
@@ -255,6 +267,18 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('passwordId');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
+
     <script src="js/main.js"></script>
 
 </body>
