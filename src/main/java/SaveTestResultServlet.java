@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -40,27 +42,13 @@ public class SaveTestResultServlet extends HttpServlet {
         // get user selectedAnswer
         String userSelectedAnswer = request.getParameter("userSelectedAnswer");
         System.out.println("the user selected answer " + userSelectedAnswer);
-        // get list of Questions get from session.getAtt test object
-
-        String[] elements = userSelectedAnswer.substring(2, userSelectedAnswer.length() - 2).split("\",\"");
-
-        // Create a new array and populate it with the elements
-        String[] array = new String[elements.length];
-        System.arraycopy(elements, 0, array, 0, elements.length);
-
-        // String[] elements = userSelectedAnswer.substring(1,
-        // userSelectedAnswer.length() - 1).split("\",\"");
-
-        // // Create a new array and populate it with the elements
-        // String[] array = new String[elements.length];
-
-        // String[] elements = userSelectedAnswer.split(",");
 
         // Step 2: Create an ArrayList
         ArrayList<String> selectedAnswerList = new ArrayList<>();
 
         // Step 3: Add each element to the ArrayList
-        selectedAnswerList.addAll(Arrays.asList(array));
+        // selectedAnswerList.addAll(Arrays.asList(array));
+        selectedAnswerList = convertArrayList(userSelectedAnswer);
 
         // Print the ArrayList
         System.out.println("ArrayList selectedAnswerList: " + selectedAnswerList);
@@ -98,6 +86,35 @@ public class SaveTestResultServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+    }
+
+    private ArrayList<String> convertArrayList(String inputAnswer) {
+        inputAnswer = inputAnswer.replace("[", "{")
+                .replace("]", "}")
+                .replace("\"", "");
+        System.out.println("the user selected answer after int = " + inputAnswer);
+
+        String[] splitArray = inputAnswer.split("},");
+        System.out.println("the user selected answer after int = " + splitArray.length);
+
+        String[] finalStrArray = new String[splitArray.length];
+
+        int i = 0;
+        for (String item : splitArray) {
+
+            System.out.println(item);
+            item = item.replace("{", "").replace("}", "");
+            System.out.println(item);
+            int[] finalArray = Arrays.stream(item.split(",")).mapToInt(Integer::parseInt).toArray();
+            finalStrArray[i] = Arrays.toString(finalArray);
+            System.out
+                    .println("the user selected answer after int = " + finalArray.length + " :: [0]=" + finalArray[0]);
+            i++;
+        }
+        ArrayList<String> selectedAnswerList = new ArrayList<>();
+        selectedAnswerList.addAll(Arrays.asList(finalStrArray));
+        System.out.println(" selectedAnswerList = " + selectedAnswerList);
+        return selectedAnswerList;
     }
 
     public String getAttemptID(String userid, String testid) {
@@ -148,7 +165,7 @@ public class SaveTestResultServlet extends HttpServlet {
             // Create a statement object
             PreparedStatement pstmt = conn.prepareStatement(query);
             for (int i = 0; i < questionID.size(); i++) {
-
+                System.out.println("the user selected answer = " + optionID.get(i));
                 pstmt.setInt(1, Integer.parseInt(attempID));
                 pstmt.setInt(2, Integer.parseInt(questionID.get(i)));
                 pstmt.setString(3, String.valueOf(optionID.get(i)));

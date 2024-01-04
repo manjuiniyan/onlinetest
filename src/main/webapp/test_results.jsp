@@ -94,30 +94,59 @@
                 });
                 questionDiv.appendChild(answerList);
 
-                // Create correct answer text
-                let correctAnswerParagraph = document.createElement('p');
-                correctAnswerParagraph.textContent = `Correct Answer: ${correctAnswer}`;
-                questionDiv.appendChild(correctAnswerParagraph);
+                 correctAnswer = "["+correctAnswer+"]";
+                var correctAnswerArray = JSON.parse(correctAnswer);
+                var selectedAnswerArray = JSON.parse(selectedAnswer);
 
-                
-
-                // Create selected answer text
-                let selectedAnswerParagraph = document.createElement('p');
-                selectedAnswerParagraph.textContent = `Selected Answer: ${selectedAnswer}`;
-                questionDiv.appendChild(selectedAnswerParagraph);
+                console.log("correctAnswer ="+correctAnswerArray+" \n selectedAnswer = "+selectedAnswerArray);
                 //if correctAnswer and selectedAnswer are same then add class correct else add class incorrect
-                if(correctAnswer === selectedAnswer){
-                    //questionDiv.classList.add("correct");
+                if(areArraysEqual(correctAnswerArray , selectedAnswerArray)){
                     questionDiv.className = 'text-bg-success';
                 }else{
-                    //questionDiv.classList.add("incorrect");//text-bg-success
                     questionDiv.className = 'text-bg-danger';
                 }
 
+                // Create selected answer text
+                let selectedAnswerParagraph = document.createElement('p');
+                selectedAnswerParagraph.textContent = `Selected Answer: ${selectedAnswerArray}`;
+                questionDiv.appendChild(selectedAnswerParagraph);
+               
+                // Create correct answer text
+                let correctAnswerParagraph = document.createElement('p');
+                correctAnswerParagraph.textContent = `Correct Answer: ${correctAnswerArray}`;
+                questionDiv.appendChild(correctAnswerParagraph);
+
                 // Append the created div to the body or any other container
-                //document.body.appendChild(questionDiv);
                 $("#answer_table").append(questionDiv)
             }
+
+            function areArraysEqual(array1, array2) {
+                // Check if the arrays have the same length
+                if (array1.length !== array2.length) {
+                    return false;
+                }
+
+                // Sort the arrays and compare each element
+                if(array1.length == 1){
+                    if(array1[0] == array2[0]){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }else{
+                    const sortedArray1 = array1.slice().sort();
+                    const sortedArray2 = array2.slice().sort();
+
+                    for (let i = 0; i < sortedArray1.length; i++) {
+                        if (sortedArray1[i] !== sortedArray2[i]) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+
+            }
+
             </script>
 
        <!--Session data-->

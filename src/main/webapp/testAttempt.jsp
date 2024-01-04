@@ -199,15 +199,22 @@
 
                             questionData.options.forEach((option, optionIndex) => {
                                 const inputId = `q${index}_o${optionIndex}`;
-                                console.log("inputId = "+inputId);
+                                var actualCorrectAnswers = questionData.correctAnswer;
+                                console.log("inputId = "+inputId+ " actualCorrectAnswers "+actualCorrectAnswers);
+                                    optionContainer.append(`
+                                        <a href="#" class="custom-control ${actualCorrectAnswers.length > 1 ? 'custom-checkbox' : 'custom-radio'}" onclick="selectOption('${inputId}')">
+                                            <input type="${actualCorrectAnswers.length > 1 ? 'checkbox' : 'radio'}" id="${inputId}" name="q${index}" class="custom-control-input" value="${(optionIndex + 1)}">
+                                            <label class="custom-control-label" for="${inputId}">${option}</label>
+                                        </a>
+                                    `);
+                                /*                               
                                 optionContainer.append(`
                                     <a href="#" class="custom-control custom-radio" onclick="selectOption('${inputId}')">
                                         <input type="radio" id="${inputId}" name="q${index}" class="custom-control-input" value="${option}">
                                         <label class="custom-control-label" for="${inputId}">${option}</label>
                                     </a>
                                 `);
-
-
+                                */
                             });
 
                             questionElement.append(optionContainer);
@@ -260,11 +267,9 @@
                 function nextQuestion() {
                     console.log("currentQuestionIndex = "+currentQuestionIndex);
 
-                    const selectedOption = document.querySelector(
-                        `input[name="q${currentQuestionIndex}"]:checked`
-                    );
+                    const selectedOption = document.querySelectorAll(`input[name="q${currentQuestionIndex}"]:checked`);
 
-                    selectedAnswer[currentQuestionIndex] = selectedOption;
+                    selectedAnswer[currentQuestionIndex] = Array.from(selectedOption).map(checkbox => checkbox.value);
 
                     console.log("selectedOption ="+(selectedOption));
 
@@ -289,6 +294,18 @@
                     // alert("Quiz submitted!");
                 }
 
+                function arraysHaveSameItems(array1, array2) {
+                    // Check if both arrays have the same length
+                    if (array1.length !== array2.length) {
+                        return false;
+                    }
+                    // Check if every item in array1 is present in array2
+                    const allItemsMatch = array1.every(item => array2.includes(item));
+
+                    return allItemsMatch;
+                }
+
+
                 function checkAnswers() {
                     var userSelectedAnswerValue= [];
                     var countdownElement = $("#countdown");
@@ -296,8 +313,10 @@
                     quizData.forEach((question, index) => {
                         //document.querySelector(`input[name="q${index}"]:checked`);
                         const selectedOption = selectedAnswer[index];
-                        userSelectedAnswerValue[index] = selectedOption.value;
-                        if (selectedOption && selectedOption.value === question.correctAnswer) {
+                        userSelectedAnswerValue[index] = selectedOption;
+                        const correctAnsArray = question.correctAnswer.split(',');
+                        console.log("correctAnsArray = "+correctAnsArray);
+                        if (selectedOption && arraysHaveSameItems(selectedOption, correctAnsArray)) {
                             correctCount++;
                         }
                     });
