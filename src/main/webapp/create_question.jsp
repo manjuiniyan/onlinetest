@@ -20,6 +20,9 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        <script>
+            
+        </script>
     </head>
     <body>
         <!-- Spinner Start -->
@@ -169,32 +172,12 @@
                                     placeholder="Question Id"
                                 >
                             </div>
-
+                            <div class="mb-4">
+                                <select id="mainTopic" class="form-select" name="main_topic" aria-label="Select Main Topic" ></select>
+                            </div>
                                 <div class="mb-4">
-                                    <select
-                                        class="form-select"
-                                        name="subtopic_id"
-                                        required
-                                        aria-label="select example"
-                                    >
-                                        <option value="">Select a Topic</option>
-                                        <option value="1">Data Types</option>
-                                        <option value="2">Array</option>
-                                        <option value="3">Structure</option>
-                                        <option value="4">User Input</option>
-                                        <option value="5">Conditions</option>
-                                        <option value="6">Statement</option>
-                                        <option value="7">Access Modifier</option>
-                                        <option value="8">Inheritance</option>
-                                        <option value="9">Overloading</option>
-                                        <option value="10">Overriding</option>
-                                        <option value="11">Abstract</option>
-                                        <option value="12">Interface</option>
-                                        <option value="13">Exception Handling</option>
-                                        <option value="14">File Input/Output</option>
-                                        <option value="15">Threads</option>
-                                        <option value="16">Collections</option>
-                                        <option value="17">JDBC</option>
+                                    <select class="form-select" id="subTopic" name="subtopic_id" required aria-label="select example" >
+                                        
                                     </select>
                                     <div class="invalid-feedback">Invalid Topic</div>
                                 </div>
@@ -418,6 +401,56 @@
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
         <script>
+
+$(document).ready(function () {
+            // Load Main Topics on page load
+            $.ajax({
+                    
+                url: 'loadMainTopicServlet',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Populate Main Topic dropdown
+                    var mainTopicDropdown = $('#mainTopic');
+                    $.each(data, function (index, item) {
+                        mainTopicDropdown.append($('<option>', {
+                            value: item.id,
+                            text: item.name
+                        }));
+                    });
+
+                    // Trigger change event to load subtopics based on the initially selected main topic
+                    mainTopicDropdown.change();
+                }
+            });
+
+            // Load Subtopics when Main Topic changes
+            $('#mainTopic').on('change', function () {
+                var selectedMainTopic = $(this).val();
+
+                // Clear Subtopic dropdown
+                $('#subTopic').empty();
+
+                // Load Subtopics dynamically based on the selected Main Topic
+                $.ajax({
+                    url: 'loadAllSubtopicServlet',
+                    method: 'GET',
+                    dataType: 'json',
+                    data: { mainTopic: selectedMainTopic },
+                    success: function (data) {
+                        // Populate Subtopic dropdown
+                        var subTopicDropdown = $('#subTopic');
+                        $.each(data, function (index, item) {
+                            subTopicDropdown.append($('<option>', {
+                                value: item.id,
+                                text: item.name
+                            }));
+                        });
+                    }
+                });
+            });
+        });
+
             // Check if the user is logged in
             function checkLoginStatus() {
                 const isLoggedIn = localStorage.getItem('loggedIn');

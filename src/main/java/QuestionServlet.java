@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,7 +28,11 @@ public class QuestionServlet extends HttpServlet {
         String explaination = req.getParameter("explaination");
         String subtopic_id = req.getParameter("subtopic_id");
 
-        System.out.println("Question ID="+ question_id + "\nQuestionText=" + questionText + "\nOptionA ="
+        String decodedCodeSnippet = URLDecoder.decode(questionText, "UTF-8");
+
+        System.out.println(" \n decodedCodeSnippet=" + decodedCodeSnippet);
+
+        System.out.println("Question ID=" + question_id + "\nOptionA ="
                 + optionA + "\nOptionB =" + optionB + "\nOptionC =" + optionC + "\nOptionD =" + optionD
                 + "\nCorrectOption =" + correctOption + "\nExplaination =" + explaination);
 
