@@ -78,11 +78,13 @@
                 let questionHeader = document.createElement('h3');
                 questionHeader.textContent = `Question ${questionNumber}`;
                 questionDiv.appendChild(questionHeader);
-
+            
                 // Create question text
-                let questionParagraph = document.createElement('p');
-                questionParagraph.textContent = questionText;
-                questionDiv.appendChild(questionParagraph);
+                //let questionParagraph = document.createElement('p');
+                let preTag = document.createElement('pre');
+                preTag.textContent = questionText;
+                //preTag.appendChild(questionParagraph);
+                questionDiv.appendChild(preTag);
 
                 // Create answer options list
                 let answerList = document.createElement('ul');

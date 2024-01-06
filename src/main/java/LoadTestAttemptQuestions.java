@@ -42,6 +42,8 @@ public class LoadTestAttemptQuestions extends HttpServlet {
 
                 while (resultSet.next()) {
                     QuizQuestion quizeQuestion = new QuizQuestion();
+                    String questionfromDB = resultSet.getString(3);
+                    System.out.println("question from DB " + questionfromDB);
                     quizeQuestion.setQuestion(resultSet.getString(3));
                     List<String> options = new ArrayList<>();
                     options.add(resultSet.getString(4));

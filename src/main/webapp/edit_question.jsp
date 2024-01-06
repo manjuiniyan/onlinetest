@@ -195,7 +195,8 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-8" style="display: flex; flex-direction: column;" >
-                     <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%" id="question_table"></div><br><br>    
+                     <div class="table-responsive table-bordered" style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218);" id="question_table">
+                     </div><br><br>    
                          
                     </div>
                     <div class="col-4 p-2 rounded contact-form fadeIn" style="display: flex; flex-direction: column;">

@@ -192,7 +192,7 @@
                             var questionElement = $("<div>");
                             questionElement.addClass("question mb-3 p-3 square");
                             console.log("questionData.question = "+ questionData.question);
-                            questionElement.html("<p>"+questionData.question+"</p>");
+                            questionElement.html("<p> <pre> "+questionData.question+"</pre></p>");
 
                             var optionContainer = $("<div>");
                             optionContainer.addClass("option-container");

@@ -42,7 +42,9 @@ public class ShowTestAnswerServlet extends HttpServlet {
             while (resultSet.next()) {
                 Answer answer = new Answer();
                 answer.setQuestion_id(resultSet.getString("question_id"));
-                answer.setQuestion(resultSet.getString("question_text"));
+                String questionTextDB = resultSet.getString("question_text");
+                System.out.println("question from DB " + questionTextDB);
+                answer.setQuestion(questionTextDB);
                 answer.setAnswer_selected(resultSet.getString("selected_option"));
 
                 List<String> options = new ArrayList<>();
