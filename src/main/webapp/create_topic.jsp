@@ -135,7 +135,7 @@
                 <div class="col-lg-6">
                     <div class="p-2 rounded contact-form fadeIn" data-wow-delay=".5s">
 
-              9          <form action="TopicServlet" method="post" class="row g-3 needs-validation" novalidate>
+                        <form action="TopicServlet" method="post" class="row g-3 needs-validation" novalidate>
 
                                 <div class="mb-4">
                                  <input type="text" name="topic_id" class="form-control border-0 py-3" placeholder="Topic ID" >

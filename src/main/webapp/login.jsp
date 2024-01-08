@@ -37,6 +37,17 @@
             transform: translateY(-50%);
             cursor: pointer;
         }
+        .mb-4.text-start.position-relative {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mb-4.text-start.position-relative input[type="submit"],
+        .mb-4.text-start.position-relative input[type="reset"] {
+            width: 48%; /* Adjust width as needed */
+        }
+         
     </style>
     
 </head>
@@ -133,30 +144,26 @@
     <div class="container-fluid page-header py-5">
         <div class="container text-center py-5">
             <h1 class="display-2 text-white mb-4 animated slideInDown">Login</h1>
-
+            
             <div class="row justify-content-center">
                 <div class="col-lg-4">
                     <div class="p-2 rounded contact-form fadeIn" data-wow-delay=".5s">
                         <form action="LoginServlet" method="post">
-                            <div class="mb-4">
-                                <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3"
-                                    placeholder="User Name">
+                        <div class="mb-4 text-start text-black">
+                            
+                            <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3" placeholder="User Name">
+                        </div>
+                        <div class="mb-4 text-start position-relative">
+                            
+                            <input type="password" id="passwordId" name="password" class="form-control border-0 py-3" placeholder="Password">
+                            <i class="bi bi-eye password-toggle" id="togglePassword"></i>
+                        </div>
+                            
+
+                            <div class="mb-4 text-start position-relative">
+                                <input type="submit" value="Login" class="btn btn-dark text-white py-3 px-5 me-3">
+                                <input type="reset" value="Reset" class="btn btn-dark text-white py-3 px-5">
                             </div>
-                            <div class="mb-4 position-relative">
-                                <input type="password" id="passwordId" name="password" class="form-control border-0 py-3"
-                                    placeholder="Password">
-                                <i class="bi bi-eye password-toggle" id="togglePassword"></i>
-                            </div>
-                            <div class="text-start d-flex justify-content-center">
-                                <div class="me-3">
-                                    <input type="submit" value="Login" class="btn btn-dark text-white py-3 px-5">
-                                </div>
-                                <div>
-                                    <input type="submit" value="Forget Password" class="btn btn-dark text-white py-3 px-5">
-                                </div>
-                            </div>
-                            <br>
-                           
                             <% 
                             String errorMessage = (String) request.getAttribute("errorMessage");
                             if(errorMessage != null) {

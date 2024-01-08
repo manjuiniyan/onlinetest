@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.google.gson.Gson;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,8 +21,13 @@ public class TestQuestionServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("Inside the TestQuestionServlet");
         String topic_id = req.getParameter("topic_id");
+        String testID = req.getParameter("testID");
+        System.out.println("topic_id=" + topic_id + " testID=" + testID);
 
+        TestAndQuestion testAndQuestion = new TestAndQuestion();
         PrintWriter out = resp.getWriter();
+
+        // resp.setContentType("application/json");
         resp.setContentType("text/html");
         Connection connection = DBConnection.getConnection();
         StringBuilder resultTable = new StringBuilder();
@@ -30,10 +37,23 @@ public class TestQuestionServlet extends HttpServlet {
         try {
             Statement stat = connection.createStatement();
 
+            String newQuery = "SELECT q.*, st.subtopic_name FROM u933391433_onlinetest.Questions q, u933391433_onlinetest.Subtopics st where st.topic_id = "
+                    + topic_id
+                    + " and st.subtopic_id = q.subtopic_id and q.question_id NOT IN (select tq.question_id from u933391433_onlinetest.TestQuestions tq where tq.test_id = "
+                    + testID + ")";
+
+            // String newQuery = "SELECT q.*, s.subtopic_name FROM
+            // u933391433_onlinetest.Questions q, u933391433_onlinetest.Subtopics s,
+            // u933391433_onlinetest.TestQuestions tq where s.topic_id="
+            // + topic_id + " and q.subtopic_id=s.subtopic_id and tq.test_id=" + testID
+            // + " and tq.question_id NOT IN (select tq.question_id from
+            // u933391433_onlinetest.TestQuestions tq where tq.test_id = "
+            // + testID + ")";
             String query = "SELECT q.*, s.subtopic_name FROM u933391433_onlinetest.Questions q, u933391433_onlinetest.Subtopics s where s.topic_id="
                     + topic_id + " and q.subtopic_id=s.subtopic_id";
-            ResultSet resultSet = stat.executeQuery(query);
-            System.out.println("Select Query=" + query);
+            ResultSet resultSet = stat.executeQuery(newQuery);
+            System.out.println("***************\n TestQuestionServlet Select Query newQuery=" + newQuery);
+            System.out.println("**************************************************************** \n");
             while (resultSet.next()) {
                 String question_id = resultSet.getString(1);
                 resultTable.append("<tr><td><input type=\"checkbox\" name=\"selectedQuestions\" value=\"" + question_id
@@ -55,6 +75,8 @@ public class TestQuestionServlet extends HttpServlet {
 
             }
             resultTable.append("</table>");
+            // testAndQuestion.setQuestions(resultTable.toString());
+            // String json = new Gson().toJson(testAndQuestion);
             System.out.println(resultTable);
             out.println(resultTable);
         } catch (SQLException e) {

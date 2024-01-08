@@ -20,6 +20,10 @@
             .text-bg-danger{
                 background-color: rgb(228, 117, 117);
             }
+
+            .table-text-color{
+                color: green;
+            }
             </style>
     </head>
     <body class="sb-nav-fixed">
@@ -273,7 +277,7 @@
                         </div>
                         
                         <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="result_table"></div><br><br> 
-                        <h2>Test Results</h2>
+                        <h2 class="table-text-color" >Test Results</h2>
                         <div class="table-bordered rounded-lg border-4 border-success" style="text-decoration-color: rgb(164, 33, 33); width: 100%" id="answer_table">
                             
                         </div>

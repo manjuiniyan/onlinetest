@@ -95,6 +95,14 @@
     var dataset = [
      
       {
+        message: 'ok Alex',
+        intent: 'activate'
+      },
+      {
+        message: 'hey Alex',
+        intent: 'activate'
+      },
+      {
         message: 'show me the login page',
         intent: 'login'
       },
@@ -194,10 +202,8 @@
 
 
         $(document).ready(function () {
-
            
-
-            $(".mic_btn").click(function () {
+               $(".mic_btn").click(function () {
                 console.log("mic btn clicked");
                 
                 if ($( '#pulse-ring' ).is( ':visible' ) ) {
@@ -213,14 +219,7 @@
         });
 
         recognition.onresult = function(event) {
-            // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-            // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-            // It has a getter so it can be accessed like an array
-            // The first [0] returns the SpeechRecognitionResult at the last position.
-            // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-            // These also have getters so they can be accessed like arrays.
-            // The second [0] returns the SpeechRecognitionAlternative at position 0.
-            // We then return the transcript property of the SpeechRecognitionAlternative object
+            
             var input = event.results[0][0].transcript;
             console.log(input + " " + event.results[0][0].confidence);
         
@@ -307,7 +306,7 @@
         <div class="container">
             <nav class="navbar navbar-dark navbar-expand-lg py-0">
                 <a href="index.jsp" class="navbar-brand">
-                    <h1 class="text-black-50 fw-bold d-block">Guru Tech </h1>
+                    <h1 class="fw-bold d-block">Guru Tech., </h1>
                 </a>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">

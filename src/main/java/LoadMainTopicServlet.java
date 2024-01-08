@@ -30,12 +30,14 @@ public class LoadMainTopicServlet extends HttpServlet {
             Connection connection = DBConnection.getConnection();
             Statement stat = connection.createStatement();
             ResultSet resultSet = stat.executeQuery("SELECT * FROM u933391433_onlinetest.Topics");
+            mainTopics.add(new Topic(Integer.parseInt("999"), "-------Select Topic-------"));
             while (resultSet.next()) {
                 String topic_id = resultSet.getString(1);
                 mainTopics.add(new Topic(Integer.parseInt(topic_id), resultSet.getString(2)));
             }
         } catch (Exception e) {
             System.err.println("Got an exception! " + e.getMessage());
+            e.printStackTrace();
         }
 
         // Convert the list to JSON and send it as the response

@@ -35,10 +35,29 @@
     <link href="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
-     -->
+<style>
+/* Add these styles to fix the table header and make tbody scrollable 
+table {
+    display: block;
+    overflow-x: auto;
+    max-height: 500px;
+}
 
+table thead
+table thead tbody {
+    display: block;
+}
 
+table tbody {
+    overflow-y: auto;
+}
+
+table th, table td {
+    width: 200px; 
+    text-align: left;
+}
+*/
+</style>
 
 </head>
 
@@ -49,37 +68,95 @@
                 type: "GET",
                 url: "getAllTestServlet",
                 success: function (response) {
-                    $("#test_table").append(response);
+                    
+                    $("#test_table").html(response);
                 },
                 error: function (xhr, status, error) {
                     console.log("error in ajax call " + error + " status " + status);
                 }
             });
 
-            $('#select_topic').change(function(){
+            $('#mainTopic').change(function(){
                 console.log($(this).val());
-                getQuestionForTopic($(this).val());
+                if($(this).val() != null && $(this).val() != '' && $(this).val() != 999)
+                    getQuestionForTopic($(this).val());
+
             });
 
         });
 
         function getQuestionForTopic(topic_id) {
             console.log(topic_id);
+            var test_id = $("#test_id_value").val();
+            console.log( "test_id ="+test_id);
             $.ajax({
                 type: "GET",
+                //dataType: "json",
                 data: {
                     "topic_id": topic_id,
+                    "testID": $("#test_id_value").val(),
                 },
+                
                 url: "TestQuestionServlet",
                 success: function (response) {
-                    $("#test_question_table").append(response);
+
+                    //var questions = JSON.parse(response).questions;
+                    //     console.log(questions);
+                    $("#test_question_table").html(response);
+                    //$("#existing_test_table").html(questions);
+                    $("#collapseTwo").removeClass("show");
+
+                    // Add the 'show' class to $("#collapseTwo")
+                    $("#collapseThree").addClass("show");
+                    $("#collapseFour").addClass("show");
+
+                    $("#headingTwo").children("button").removeClass("bg-success");
+                    $("#headingTwo").children("button").addClass("bg-danger");
+                    $("#headingThree").children("button").removeClass("bg-success");
+                    $("#headingFour").children("button").addClass("bg-success");
+
+                    document.getElementById("collapseFour").scrollIntoView();
+                    getExistingQuestion(test_id);
                 },
                 error: function (xhr, status, error) {
                     console.log("error in ajax call " + error + " status " + status);
                 }
             });
-
         }
+
+        function getExistingQuestion(testID){
+            $.ajax({
+                type: "POST",
+                //dataType: "json",
+                data: {
+                    "testID": testID,
+                },
+                
+                url: "TestExistingQuestionServlet",
+                success: function (response) {
+
+                    //var questions = JSON.parse(response).questions;
+                    //     console.log(questions);
+                    $("#existing_test_table").html(response);
+                    //$("#collapseTwo").removeClass("show");
+
+                    // Add the 'show' class to $("#collapseTwo")
+                    //$("#collapseThree").addClass("show");
+                    //$("#collapseFour").addClass("show");
+
+                    //$("#headingTwo").children("button").removeClass("bg-success");
+                    //$("#headingTwo").children("button").addClass("bg-danger");
+                    //$("#headingThree").children("button").removeClass("bg-danger");
+                    //$("#headingThree").children("button").addClass("bg-success");
+
+                    //document.getElementById("collapseThree").scrollIntoView();
+                },
+                error: function (xhr, status, error) {
+                    console.log("error in ajax call " + error + " status " + status);
+                }
+            });
+        }
+
         function loadTest(test_id) {
             console.log(test_id);
 
@@ -96,8 +173,41 @@
                     $("#test_name").html(response.test_name);
                     $("#test_name_value").val(response.test_name);
                     $("#test_duration").html(response.test_duration);
+                    // Remove the 'show' class from id="collapseOne"
+                    $("#collapseOne").removeClass("show");
+                    $("#headingOne").children("button").removeClass("bg-success");
+                    $("#headingOne").children("button").addClass("bg-danger");
+                    // Add the 'show' class to $("#collapseTwo")
+                    $("#collapseTwo").addClass("show");
+                    $("#headingTwo").children("button").removeClass("bg-danger");
+                    $("#headingTwo").children("button").addClass("bg-success");
+                    document.getElementById("collapseTwo").scrollIntoView();
+                    loadMainTopic();
                 });
 
+        }
+
+        function loadMainTopic(){
+            $.ajax({
+                    
+                    url: 'loadMainTopicServlet',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        // Populate Main Topic dropdown
+                        var mainTopicDropdown = $('#mainTopic');
+                        mainTopicDropdown.empty(); 
+                        $.each(data, function (index, item) {
+                            mainTopicDropdown.append($('<option>', {
+                                value: item.id,
+                                text: item.name
+                            }));
+                        });
+    
+                        // Trigger change event to load subtopics based on the initially selected main topic
+                        mainTopicDropdown.change();
+                    }
+                });
         }
 
     </script>
@@ -207,42 +317,142 @@
 
 
     <!-- Page Header Start -->
-<form action="AddTestQuestionServlet" method="get">
+
     <div class="container-fluid page-header py-5">
         <div class="container text-center py-5">
             <div class="container">
                 <h1 class="display-2 text-white mb-4 animated slideInDown">Add Test Question</h1>
+                <!--  *************************************  -->
+                <div class="accordion" id="accordionExample">
+
+                    <!-- First Accordion Item -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button bg-success" style="color: #163ba4;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Available Tests
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="row justify-content-center">
+                                    <div class="col-8" style="display: flex; flex-direction: column;">
+                                        <div class="table-bordered" style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%; height:100%; align-self: center; max-height: 500px; overflow-x: auto; overflow-y: auto;" id="test_table"></div><br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Second Accordion Item -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header " id="headingTwo">
+                            <button class="accordion-button collapsed bg-danger" style="color: #163ba4;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Test Details
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="row bg-primary text-white justify-content-center">
+                                    <div class="col-2" style="display: flex; flex-direction: column;"  > Test ID: <div id="test_id"></div>  </div>
+                                    <div class="col-2" style="display: flex; flex-direction: column;" >Name : <div id="test_name"></div> <input type="hidden" id="test_name_value" name="test_name_value" value="" ></input> </div>
+                                    <div class="col-2" style="display: flex; flex-direction: column;"  > Duration: <div id="test_duration"></div></div>
+                                    <div class="col-4" style="display: flex; flex-direction: column;">
+                                        Topic: 
+
+                                        <select id="mainTopic" class="form-select mb-2 " name="topic" aria-label="Select Main Topic" ></select>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Third Accordion Item -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed bg-danger" style="color: #163ba4;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Existing Questions for This Test:
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="row bg-primary text-white justify-content-center">
+                                    <div class="col-8" style="display: flex; flex-direction: column;">
+                                        <div class="table-bordered" style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%; height:100%; align-self: center; max-height: 500px; overflow-x: auto; overflow-y: auto;" id="existing_test_table"></div><br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Fourth Accordion Item -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header bg-secondary" id="headingFour">
+                            <button class="accordion-button collapsed bg-danger" style="color: #163ba4;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Questions
+                            </button>
+                        </h2>
+                        <form action="AddTestQuestionServlet" method="get">
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row justify-content-center">
+                                            <div class="col-8" style="display: flex; flex-direction: column;">
+                                                <div><input type="hidden" id="test_id_value" name="test_id_value" value="" ></input> </div>
+                                                    <div class="table-bordered"
+                                                        style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%; height:100%; align-self: center; max-height: 500px; overflow: auto; overflow-x: auto; overflow-y: auto;" id="test_question_table">
+                                                    </div><br><br>
+                                                    <div class="text-start d-flex justify-content-center">
+                                                        <input type="submit" value="Submit" class="btn btn-dark  text-white py-3 px-5" style="margin-right: 75px;"> 
+                                                        <input type="reset" value="Reset" class="btn btn-dark  text-white py-3 px-5">
+                                                        <!--button id="button" type="submit" onclick="showWindow()" class="btn btn-dark  text-white py-3 px-5">Submit</button>-->
+                                                    </div>
+                                                
+                                            </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                
+                
+                </div>
+                
+
+                <!--  *************************************  
                 <div class="row justify-content-center">
                     <div class="col-8" style="display: flex; flex-direction: column;">
+                        
                         <div class="table-bordered"
                         style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%; height:100%; align-self: center" id="test_table"></div><br><br>
                     </div>
                 </div>
-                <div class="row justify-content-center"> 
+                <div class="row bg-primary text-white justify-content-center"> 
                     <div class="col-2" style="display: flex; flex-direction: column;"  > Test ID: <dev id="test_id"></dev> <input type="hidden" id="test_id_value" name="test_id_value" value="" ></input>  </div>
                     <div class="col-2" style="display: flex; flex-direction: column;" >Name : <div id="test_name"></div> <input type="hidden" id="test_name_value" name="test_name_value" value="" ></input> </div>
                     <div class="col-2" style="display: flex; flex-direction: column;"  > Duration: <div id="test_duration"></div></div>
                     <div class="col-4" style="display: flex; flex-direction: column;">
-                        <select id="select_topic" name="topic" >
-                            <option value="">---Select Topic---</option>
-                            <option value="1">Java</option>
-                            <option value="2">J2EE</option>
-                        </select>
+                        Topic: 
+
+                        <select id="mainTopic" class="form-select mb-2 " name="topic" aria-label="Select Main Topic" ></select>
+                        
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-8" style="display: flex; flex-direction: column;">
-                        <div class="table-bordered"
-                            style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%; height:100%; align-self: center" id="test_question_table">
-                        </div><br><br>
-                        <div class="text-start d-flex justify-content-center">
-                            <input type="submit" value="Submit" class="btn btn-dark  text-white py-3 px-5" style="margin-right: 75px;"> 
-                            <input type="reset" value="Reset" class="btn btn-dark  text-white py-3 px-5">
-                            <!--button id="button" type="submit" onclick="showWindow()" class="btn btn-dark  text-white py-3 px-5">Submit</button>-->
-                       </div>
+                    <form action="AddTestQuestionServlet" method="get"></form>
+                        <div class="col-8" style="display: flex; flex-direction: column;">
+                            <div class="table-bordered"
+                                style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 150%; height:100%; align-self: center; overflow: auto;" id="test_question_table">
+                            </div><br><br>
+                            <div class="text-start d-flex justify-content-center">
+                                <input type="submit" value="Submit" class="btn btn-dark  text-white py-3 px-5" style="margin-right: 75px;"> 
+                                <input type="reset" value="Reset" class="btn btn-dark  text-white py-3 px-5">
+                                
+                            </div>
                         </div>
-                </form>
-                </div>
+                    </form>
+                </div>  -->
+                 <!--  *************************************  -->
             </div>
         </div>
     </div>
