@@ -41,7 +41,25 @@
 
 
 </head>
+<style>
+    .mb-4.text-start.position-relative {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
+    /* Media query for smaller screens */
+    @media screen and (max-width: 600px) {
+        .mb-4.text-start.position-relative {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+</style>
 <body>
         <script>
             $(document).ready(function () {
@@ -206,13 +224,17 @@
                                     <input type="text" id="formGroupExampleInput2" name="topic_name"
                                         class="form-control border-0 py-3" placeholder="Topic Name">
                                 </div>
-
+                                  <div class="col-lg-4">
                                 <div class="text-start d-flex justify-content-center">
+                                    
+                                    <button class="btn btn-dark  text-white py-3 px-5" type="submit">Add</button>
+                                    &nbsp;
                                     <button class="btn btn-dark  text-white py-3 px-5" type="submit">Update</button>
                                     &nbsp;
                                     <button class="btn btn-secondary text-white py-3 px-5" type="reset">Reset</button>
                                     &nbsp;
                                 </div>
+                            </div>
 
                             </form>
                         </div>
