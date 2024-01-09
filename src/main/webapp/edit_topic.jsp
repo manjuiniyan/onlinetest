@@ -41,25 +41,7 @@
 
 
 </head>
-<style>
-    .mb-4.text-start.position-relative {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
 
-    /* Media query for smaller screens */
-    @media screen and (max-width: 600px) {
-        .mb-4.text-start.position-relative {
-            flex-direction: column;
-        }
-
-        .btn {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    }
-</style>
 <body>
         <script>
             $(document).ready(function () {
@@ -165,10 +147,8 @@
                                 <a href="#" class="nav-link dropdown-toggle active text-secondary"
                                     data-bs-toggle="dropdown">Test</a>
                                     <div class="dropdown-menu rounded">
-                                        <a href="create_topic.jsp" class="dropdown-item"> Create Topic</a>
-                                        <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
-                                        <a href="create_subtopic.jsp" class="dropdown-item"> Create SubTopic</a>
-                                        <a href="edit_subtopic.jsp" class="dropdown-item">Edit SubTopic</a>
+                                        <a href="edit_topic.jsp" class="dropdown-item">Add/Edit Topics</a>
+                                        <a href="edit_subtopic.jsp" class="dropdown-item">Add/Edit SubTopic</a>
                                         <a href="create_question.jsp" class="dropdown-item"> Create Questions</a>
                                         <a href="edit_question.jsp " class="dropdown-item"> Edit Question</a>
                                         <a href="create_test.jsp" class="dropdown-item"> Create Test</a>
@@ -209,32 +189,31 @@
             <div class="container text-center py-5">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-8" style="display: flex; flex-direction: column;">
+                        <div class="col-6" style="display: flex; flex-direction: column;">
                             <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 50%" id="topic_table"></div><br><br>
                         </div>
-                        <div class="col-4 p-2 rounded contact-form fadeIn"
+                        <div class="col-6 p-2 rounded contact-form fadeIn"
                             style="display: flex; flex-direction: column;">
                             <form action="updateTopicServlet" method="post" class="row g-3 needs-validation" novalidate>
                                 
                                 <div class="mb-4">
                                     <input type="text" id="formGroupExampleInput" name="topic_id"
-                                        class="form-control border-0 py-3" placeholder="Topic ID" readonly >
+                                        class="form-control border-0 py-3" placeholder="Topic ID"  >
                                 </div>
                                 <div class="mb-4">
                                     <input type="text" id="formGroupExampleInput2" name="topic_name"
                                         class="form-control border-0 py-3" placeholder="Topic Name">
                                 </div>
                                   <div class="col-lg-4">
-                                <div class="text-start d-flex justify-content-center">
-                                    
-                                    <button class="btn btn-dark  text-white py-3 px-5" type="submit">Add</button>
-                                    &nbsp;
-                                    <button class="btn btn-dark  text-white py-3 px-5" type="submit">Update</button>
-                                    &nbsp;
-                                    <button class="btn btn-secondary text-white py-3 px-5" type="reset">Reset</button>
-                                    &nbsp;
-                                </div>
-                            </div>
+                                    <div class="text-start d-flex justify-content-center">
+                                        <input name="addtopic" value="Add" id="subTopicForm" class="btn btn-dark text-white py-3 px-5" type="submit">
+                                        &nbsp;
+                                        <input name="updatetopic" value="Update" class="btn btn-dark text-white py-3 px-5" type="submit">
+                                        &nbsp;
+                                        <input name="reset" value="Reset" class="btn btn-dark text-white py-3 px-5" type="reset">
+                                        &nbsp;
+                                    </div>
+                                 </div>
 
                             </form>
                         </div>

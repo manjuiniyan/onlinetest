@@ -20,11 +20,50 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/updateTopicServlet")
 public class updateTopicServlet extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("Inside the UpdateTopicServlet ");
+        String add_topic = request.getParameter("addtopic");
+        String update_topic = request.getParameter("updatetopic");
+        System.out.println("Add Topic =" + add_topic + "Update Topic =" + update_topic);
+         
+      if(add_topic != null){
+        System.out.println("add_topic"); 
+        System.out.println("Inside the Topic Servlet");
+            String topic_id = request.getParameter("topic_id");
+            String topic_name = request.getParameter("topic_name");
+            System.out.println("Topic ID="+topic_id+"\nTopic Name="+topic_name);
+            try{
+
+                Connection con=DBConnection.getConnection();
+                String insert_query="INSERT INTO u933391433_onlinetest.Topics (topic_id, topic_name) VALUES (?,?)";
+                try (PreparedStatement preparedStatement = con.prepareStatement(insert_query)) {
+                    preparedStatement.setString(1, topic_id);
+                    preparedStatement.setString(2, topic_name);
+                    int rowsAffected = preparedStatement.executeUpdate();
+                    if(rowsAffected > 0){
+                        System.out.println("Successful login");
+                        response.getWriter().write("Topic data added successful");
+
+                    }else{
+                       System.out.println("failed login");
+                        response.getWriter().write("Failed to add Topic data"); 
+                    }
+                    preparedStatement.close();
+                    con.close();               
+                 }
+            }catch(SQLException e){
+                e.printStackTrace();
+               response.getWriter().write("Database error: " + e.getMessage());
+
+            }
+            RequestDispatcher dispatcher = null;
+		dispatcher = request.getRequestDispatcher("edit_topic.jsp");
+		dispatcher.forward(request, response);
+ 
+      }else if(update_topic != null){
+        System.out.println("update_topic");
         String topicid = request.getParameter("topic_id");
         String topicname = request.getParameter("topic_name");
       
@@ -59,8 +98,10 @@ public class updateTopicServlet extends HttpServlet {
             response.getWriter().write("Database error:" + e.getMessage());
         }
         RequestDispatcher dispatcher = null;
-        dispatcher = request.getRequestDispatcher("create_topic.jsp");
+        dispatcher = request.getRequestDispatcher("edit_topic.jsp");
         dispatcher.forward(request, response);
+      }
+        
     }
 
 }
