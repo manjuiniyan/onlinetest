@@ -37,7 +37,9 @@ public class updateTopicServlet extends HttpServlet {
             try{
 
                 Connection con=DBConnection.getConnection();
-                String insert_query="INSERT INTO u933391433_onlinetest.Topics (topic_id, topic_name) VALUES (?,?)";
+
+                String insert_query="INSERT INTO `u933391433_onlinetest`.`Topics` (`topic_id`, `topic_name`) VALUES (?,?)";
+
                 try (PreparedStatement preparedStatement = con.prepareStatement(insert_query)) {
                     preparedStatement.setString(1, topic_id);
                     preparedStatement.setString(2, topic_name);

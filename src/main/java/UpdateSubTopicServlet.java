@@ -25,6 +25,47 @@ public class UpdateSubTopicServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("Inside the UpdateSubTopicServlet ");
+        String add_sub_topic = request.getParameter("addsubtopic");
+        String update_sub_topic = request.getParameter("updatesubtopic");
+        System.out.println("Add SubTopic =" + add_sub_topic + "Update SubTopic =" + update_sub_topic);
+      
+      if(add_sub_topic != null){
+        System.out.println("Add SubTopic");
+        System.out.println("Inside the SubTopic Servlet");
+    String sub_topic_id = request.getParameter("subtopic_id");
+    String topic_id = request.getParameter("topic_id");
+    String sub_topic_name = request.getParameter("subtopic_name");
+    System.out
+        .println(" SubTopic Id=" + sub_topic_id + "\n Topic ID=" + topic_id + "\n SubTopic Name=" + sub_topic_name);
+    try {
+      Connection con = DBConnection.getConnection();
+      String insert_query = "INSERT INTO `u933391433_onlinetest`.`Subtopics` ( `topic_id`, `subtopic_name`) VALUES (?,?)";
+      try (PreparedStatement preparedStatement = con.prepareStatement(insert_query)) {
+        // preparedStatement.setString(1, sub_topic_id);
+        preparedStatement.setString(1, topic_id);
+        preparedStatement.setString(2, sub_topic_name);
+        int rowsAffected = preparedStatement.executeUpdate();
+        if (rowsAffected > 0) {
+          System.out.println("Sucessful Added");
+          response.getWriter().write("SubTopic data added successful");
+
+        } else {
+          System.out.println("Failed login");
+          response.getWriter().write("Failed to add SubTopic data");
+        }
+        preparedStatement.close();
+        con.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      response.getWriter().write("Database error : " + e.getMessage());
+    }
+    RequestDispatcher dispatcher = null;
+    dispatcher = request.getRequestDispatcher("edit_subtopic.jsp");
+    dispatcher.forward(request, response);
+
+      }else if(update_sub_topic != null){
+        System.out.println("Update SubTopic");
         String subtopic_id = request.getParameter("subtopic_id");
         String topic_id = request.getParameter("topic_id");
         String subtopic_name = request.getParameter("subtopic_name");
@@ -60,8 +101,10 @@ public class UpdateSubTopicServlet extends HttpServlet {
             response.getWriter().write("Database error:" + e.getMessage());
         }
         RequestDispatcher dispatcher = null;
-        dispatcher = request.getRequestDispatcher("create_subtopic.jsp");
+        dispatcher = request.getRequestDispatcher("edit_subtopic.jsp");
         dispatcher.forward(request, response);
-    }
+ 
+      }
+           }
 
 }

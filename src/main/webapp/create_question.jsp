@@ -105,10 +105,8 @@
                                     Test
                                 </a>
                                 <div class="dropdown-menu rounded">
-                                    <a href="create_topic.jsp" class="dropdown-item"> Create Topic</a>
-                                    <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
-                                    <a href="create_subtopic.jsp" class="dropdown-item"> Create SubTopic</a>
-                                    <a href="edit_subtopic.jsp" class="dropdown-item">Edit SubTopic</a>
+                                    <a href="edit_topic.jsp" class="dropdown-item">Add/Edit Topics</a>
+                                    <a href="edit_subtopic.jsp" class="dropdown-item">Add/Edit SubTopic</a>
                                     <a href="create_question.jsp" class="dropdown-item"> Create Questions</a>
                                     <a href="edit_question.jsp " class="dropdown-item"> Edit Question</a>
                                     <a href="create_test.jsp" class="dropdown-item"> Create Test</a>
@@ -402,7 +400,7 @@
         <script src="js/main.js"></script>
         <script>
 
-$(document).ready(function () {
+          $(document).ready(function () {
             // Load Main Topics on page load
             $.ajax({
                     

@@ -38,7 +38,20 @@
     <!-- <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
      -->
 
+<style>
+        .text-start d-flex justify-content-center {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
+        .text-start d-flex justify-content-center input[type="submit"],
+        .text-start d-flex justify-content-center input[type="reset"] {
+            width: 15%; /* Adjust width as needed */
+        }
+         
+
+</style>
 
 </head>
 
@@ -147,10 +160,8 @@
                                 <a href="#" class="nav-link dropdown-toggle active text-secondary"
                                     data-bs-toggle="dropdown">Test</a>
                                     <div class="dropdown-menu rounded">
-                                        <a href="create_topic.jsp" class="dropdown-item"> Create Topic</a>
-                                        <a href="edit_topic.jsp" class="dropdown-item">Edit Topics</a>
-                                        <a href="create_subtopic.jsp" class="dropdown-item"> Create SubTopic</a>
-                                        <a href="edit_subtopic.jsp" class="dropdown-item">Edit SubTopic</a>
+                                        <a href="edit_topic.jsp" class="dropdown-item">Add/Edit Topics</a>
+                                        <a href="edit_subtopic.jsp" class="dropdown-item">Add/Edit SubTopic</a>
                                         <a href="create_question.jsp" class="dropdown-item"> Create Questions</a>
                                         <a href="edit_question.jsp " class="dropdown-item"> Edit Question</a>
                                         <a href="create_test.jsp" class="dropdown-item"> Create Test</a>
@@ -194,21 +205,21 @@
                     <h1 class="display-2 text-white mb-4 animated slideInDown">Edit SubTopic</h1>
 
                     <div class="row justify-content-center">
-                        <div class="col-8" style="display: flex; flex-direction: column;">
+                        <div class="col-6" style="display: flex; flex-direction: column;">
                             <!--<div class="container-fluid" id="exam_table"></div><br><br>-->
                             <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 100%" id="subtopic_table"></div><br><br>
                         </div>
-                        <div class="col-4 p-2 rounded contact-form fadeIn"
+                        <div class="col-6 p-2 rounded contact-form fadeIn"
                             style="display: flex; flex-direction: column;">
                             <form action="UpdateSubTopicServlet" method="post" class="row g-3 needs-validation" novalidate>
 
                                 <div class="mb-4">
                                     <input type="text" id="formGroupExampleInput11" name="subtopic_id"
-                                        class="form-control border-0 py-3" placeholder="SubTopic ID" readonly>
+                                        class="form-control border-0 py-3" placeholder="SubTopic ID" >
                                 </div>
                                 <div class="mb-4">
                                     <input type="text" id="formGroupExampleInput22" name="topic_id"
-                                        class="form-control border-0 py-3" placeholder="Topic ID" readonly>
+                                        class="form-control border-0 py-3" placeholder="Topic ID" >
                                 </div>
                                 <div class="mb-4">
                                     <input type="text" id="formGroupExampleInput33" name="subtopic_name"
@@ -216,9 +227,11 @@
                                 </div>
                                 
                                 <div class="text-start d-flex justify-content-center">
-                                    <button class="btn btn-dark  text-white py-3 px-5" type="submit">Update</button>
+                                    <input name="addsubtopic" value="Add" id="subTopicForm" class="btn btn-dark text-white py-3 px-5" type="submit">
                                     &nbsp;
-                                    <button class="btn btn-secondary text-white py-3 px-5" type="reset">Reset</button>
+                                    <input name="updatesubtopic" value="Update" class="btn btn-dark text-white py-3 px-5" type="submit">
+                                    &nbsp;
+                                    <input name="reset" value="Reset" class="btn btn-dark text-white py-3 px-5" type="reset">
                                     &nbsp;
                                 </div>
 
@@ -358,6 +371,7 @@
             // Call this function to check login status on page load
             checkLoginStatus();
         </script>
+        
 </body>
 
 </html>
