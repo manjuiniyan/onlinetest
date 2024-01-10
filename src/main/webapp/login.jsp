@@ -150,14 +150,17 @@
                     <div class="p-2 rounded contact-form fadeIn" data-wow-delay=".5s">
                         <form action="LoginServlet" method="post">
                         <div class="mb-4 text-start text-black">
-                            
+                            <label for="usernameId" class="form-label">User Name</label>
                             <input type="text" id="usernameId" name="user_name" class="form-control border-0 py-3" placeholder="User Name">
                         </div>
-                        <div class="mb-4 text-start position-relative">
-                            
+                        <div class="mb-4 text-start text-black">
+                            <label for="passwordId" class="form-label">Password</label>
                             <input type="password" id="passwordId" name="password" class="form-control border-0 py-3" placeholder="Password">
                             <i class="bi bi-eye password-toggle" id="togglePassword"></i>
                         </div>
+                        <div class="mb-4 text-start text-black">
+                            Remember Me <input type="checkbox" name="remember_me" value="true">
+                            </div>
                             
 
                             <div class="mb-4 text-start position-relative">
@@ -288,6 +291,38 @@
 
     <script src="js/main.js"></script>
 
+
+    <script>
+        
+    <%
+    Cookie[] my = request.getCookies();
+    String username = "";
+    String password = "";
+    for(int i=0;i<my.length;i++){
+        String comment = my[i].getName();
+        if(my[i].getName() != null && my[i].getName().equals("rememberMe")){
+            System.out.println("inside if condition "+my[i].getName() + " "+my[i].getValue());
+            String cookieData = my[i].getValue();
+            String[] data = cookieData.split(":");
+            username = data[0];
+            password = data[1];
+
+        }
+        System.out.println("Cookie "+comment+" valeu "+my[i].getValue());
+    }
+%>
+
+        const un = "<%= username %>";
+        const pw = "<%= password %>";
+
+    $(document).ready(function(){
+        console.log("un "+un);
+        console.log("pw "+pw);
+        $("#usernameId").val(un);
+        $("#passwordId").val(pw);
+    });
+
+    </script>
 </body>
 
 </html>

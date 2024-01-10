@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,6 +31,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession(true); // true create new session
         String username = request.getParameter("user_name");
         String password = request.getParameter("password");
+        String rememberMe = request.getParameter("remember_me");
         String errorMessage = "";
         try {
             if (username.length() < 3) {
@@ -54,6 +57,20 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("userID", userId);
                     session.setAttribute("userType", userType);
 
+                    if (rememberMe != null && Boolean.parseBoolean(rememberMe)) {
+                        System.out.println("Remember Me is checked");
+
+                        Cookie rememberMeCookie = new Cookie("rememberMe", username + ":" + password);
+                        // rememberMeCookie.setPath("/");
+                        rememberMeCookie.setMaxAge(60 * 60 * 24 * 30); // 30 days
+                        // rememberMeCookie.setDomain("gurutech.com");
+                        rememberMeCookie.setHttpOnly(true);
+                        // rememberMeCookie.setAttribute("username", username);
+                        // rememberMeCookie.setAttribute("password", password);
+                        response.addCookie(rememberMeCookie);
+
+                    }
+
                     if (userType.equals("staff")) {
                         System.out.println("In side user type Staff");
                         response.sendRedirect("create_question.jsp");
@@ -74,6 +91,11 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("errorMessage", errorMessage);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
+    }
+
+    private static String encodeString(String input) {
+        byte[] encodedBytes = Base64.getEncoder().encode(input.getBytes());
+        return new String(encodedBytes);
     }
 
     private Map<String, String> validateUser(String username, String password) {
