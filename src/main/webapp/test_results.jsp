@@ -76,41 +76,53 @@
                 // Create main div
                 let questionDiv = document.createElement('div');
                 
-                //questionDiv.className = 'question';text-bg-danger
-
                 // Create question header
                 let questionHeader = document.createElement('h3');
                 questionHeader.textContent = `Question ${questionNumber}`;
                 questionDiv.appendChild(questionHeader);
             
                 // Create question text
-                //let questionParagraph = document.createElement('p');
                 let preTag = document.createElement('pre');
                 preTag.textContent = questionText;
-                //preTag.appendChild(questionParagraph);
                 questionDiv.appendChild(preTag);
+                 correctAnswer = "["+correctAnswer+"]";
+                var correctAnswerArray = JSON.parse(correctAnswer);
+                var selectedAnswerArray = JSON.parse(selectedAnswer);
+                
+                console.log("correctAnswer ="+correctAnswerArray+" \n selectedAnswer = "+selectedAnswerArray);
 
                 // Create answer options list
                 let answerList = document.createElement('ul');
                 answerList.className = 'answer-options';
-                answerOptions.forEach(option => {
+                var listItemArray = [];
+                
+                answerOptions.forEach((option, index) => {
+                    var newIndex = index+1;
                     let listItem = document.createElement('li');
                     listItem.textContent = option;
+
+                    // Check if the current option value is in both correct and selected answers
+                    if (correctAnswerArray.includes(newIndex) && selectedAnswerArray.includes(newIndex)) {
+                        listItem.className = 'text-bg-success'; // Green for correct and selected
+                    } else if (selectedAnswerArray.includes(newIndex)) {
+                        listItem.className = 'text-bg-danger'; // Red for selected but incorrect
+                    }
+                    listItemArray.push(listItem);
                     answerList.appendChild(listItem);
                 });
+
+                listItemArray.forEach((listItem, index) => {
+                    var newIndex = index+1;
+                    if (correctAnswerArray.includes(newIndex) && !selectedAnswerArray.includes(newIndex)) {
+                        listItem.className = 'text-bg-warning';
+                    }
+
+                    if (selectedAnswerArray.includes(newIndex) && !correctAnswerArray.includes(newIndex)) {
+                        listItem.className = 'text-bg-danger'; // Mark in red if selected but not correct
+                    }
+                });
+
                 questionDiv.appendChild(answerList);
-
-                 correctAnswer = "["+correctAnswer+"]";
-                var correctAnswerArray = JSON.parse(correctAnswer);
-                var selectedAnswerArray = JSON.parse(selectedAnswer);
-
-                console.log("correctAnswer ="+correctAnswerArray+" \n selectedAnswer = "+selectedAnswerArray);
-                //if correctAnswer and selectedAnswer are same then add class correct else add class incorrect
-                if(areArraysEqual(correctAnswerArray , selectedAnswerArray)){
-                    questionDiv.className = 'text-bg-success';
-                }else{
-                    questionDiv.className = 'text-bg-danger';
-                }
 
                 // Create selected answer text
                 let selectedAnswerParagraph = document.createElement('p');
