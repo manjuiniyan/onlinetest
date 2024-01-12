@@ -202,7 +202,7 @@
         <div class="container-fluid page-header py-5">
             <div class="container text-center py-5">
                 <div class="container">
-                    <h1 class="display-2 text-white mb-4 animated slideInDown">Edit SubTopic</h1>
+                    <h1 class="display-2 text-white mb-4 animated slideInDown">Add/Edit SubTopic</h1>
 
                     <div class="row justify-content-center">
                         <div class="col-6" style="display: flex; flex-direction: column;">
@@ -218,9 +218,11 @@
                                         class="form-control border-0 py-3" placeholder="SubTopic ID" >
                                 </div>
                                 <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput22" name="topic_id"
-                                        class="form-control border-0 py-3" placeholder="Topic ID" >
+                                   
+                                        <select id="formGroupExampleInput22" name="topic_id" class="form-select"> </select>
                                 </div>
+                                
+                                
                                 <div class="mb-4">
                                     <input type="text" id="formGroupExampleInput33" name="subtopic_name"
                                         class="form-control border-0 py-3" placeholder="SubTopic Name">
@@ -370,6 +372,30 @@
     
             // Call this function to check login status on page load
             checkLoginStatus();
+
+            $(document).ready(function () {
+            // Load Main Topics on page load
+            $.ajax({
+                    
+                url: 'loadMainTopicServlet',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Populate Main Topic dropdown
+                    var mainTopicDropdown = $('#formGroupExampleInput22');
+                    $.each(data, function (index, item) {
+                        mainTopicDropdown.append($('<option>', {
+                            value: item.id,
+                            text: item.name
+                        }));
+                    });
+
+                    // Trigger change event to load subtopics based on the initially selected main topic
+                    mainTopicDropdown.change();
+                }
+            });   
+        });
+            
         </script>
         
 </body>

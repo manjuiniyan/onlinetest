@@ -37,9 +37,36 @@
 
     <!-- <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
      -->
+    <!-- Add this CSS to your existing styles -->
+    <style>
+       
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
 
+    .table-container,
+    .form-container {
+        flex: 1;
+        max-height: 500px; /* Set a maximum height for the containers */
+    }
 
+    .table-bordered {
+        text-decoration-color: rgb(164, 33, 33);
+        background-color: rgb(234, 222, 218);
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ddd; /* Add this line for border styling */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
 
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+    }
+     </style>
+        
 </head>
 
 <body>
@@ -188,35 +215,51 @@
         <div class="container-fluid page-header py-5">
             <div class="container text-center py-5">
                 <div class="container">
+                    <h1 class="display-2 text-white mb-4 animated slideInDown">Add/Edit Topic</h1>
                     <div class="row justify-content-center">
-                        <div class="col-6" style="display: flex; flex-direction: column;">
-                            <div class="table-bordered " style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218); width: 50%" id="topic_table"></div><br><br>
-                        </div>
-                        <div class="col-6 p-2 rounded contact-form fadeIn"
-                            style="display: flex; flex-direction: column;">
-                            <form action="updateTopicServlet" method="post" class="row g-3 needs-validation" novalidate>
-                                
-                                <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput" name="topic_id"
-                                        class="form-control border-0 py-3" placeholder="Topic ID"  >
-                                </div>
-                                <div class="mb-4">
-                                    <input type="text" id="formGroupExampleInput2" name="topic_name"
-                                        class="form-control border-0 py-3" placeholder="Topic Name">
-                                </div>
-                                  <div class="col-lg-4">
-                                    <div class="text-start d-flex justify-content-center">
-                                        <input name="addtopic" value="Add" id="subTopicForm" class="btn btn-dark text-white py-3 px-5" type="submit">
-                                        &nbsp;
-                                        <input name="updatetopic" value="Update" class="btn btn-dark text-white py-3 px-5" type="submit">
-                                        &nbsp;
-                                        <input name="reset" value="Reset" class="btn btn-dark text-white py-3 px-5" type="reset">
-                                        &nbsp;
-                                    </div>
-                                 </div>
+                           <div class="col-6" style="display: flex; flex-direction: column;">
+	<!-- Set explicit height for the table container -->
+                        <div class="table-container" >
 
-                            </form>
+                            <!-- Set explicit height for the table -->
+                              <div class="table-bordered" style="width: 100%;" id="topic_table"></div>
+                        </div><br><br>
                         </div>
+                           <div class="col-6 p-2 rounded contact-form fadeIn" style="display: flex; flex-direction: column;">
+                          <!-- Wrap the form and buttons inside a container -->
+                       
+                            <div class="form-container d-flex flex-column align-items-center">
+                                <form action="updateTopicServlet" method="post" class="row g-3 needs-validation" novalidate>
+                                    <div class="mb-4">
+                                        <input type="text" id="formGroupExampleInput" name="topic_id" class="form-control border-0 py-3" placeholder="Topic ID">
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="text" id="formGroupExampleInput2" name="topic_name" class="form-control border-0 py-3" placeholder="Topic Name">
+                                    </div>
+
+                                    <!-- Responsive button placement -->
+                                    <div class="col-md-4 mb-2">
+                                        <div class="text-start d-flex justify-content-center">
+                                            <input name="addtopic" value="Add" id="subTopicForm" class="btn btn-dark text-white py-3 px-5" type="submit">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="text-start d-flex justify-content-center">
+                                            <input name="updatetopic" value="Update" class="btn btn-dark text-white py-3 px-5" type="submit">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="text-start d-flex justify-content-center">
+                                            <input name="reset" value="Reset" class="btn btn-dark text-white py-3 px-5" type="reset">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+<!-- ... (remaining code) ... -->
+
+<!-- ... (remaining code) ... -->
+
                     </div>
                 </div>
             </div>
@@ -350,6 +393,19 @@
     
             // Call this function to check login status on page load
             checkLoginStatus();
+	        function adjustTableHeight() {
+            // Get the heights of both containers
+            var tableContainerHeight = $(".table-container").height();
+            var formContainerHeight = $(".form-container").height();
+
+            // Set the height of the shorter container to match the taller one
+            if (tableContainerHeight > formContainerHeight) {
+                $(".form-container").height(tableContainerHeight);
+            } else {
+                $(".table-container").height(formContainerHeight);
+            }
+        }
+	
         </script>
    
 </body>
