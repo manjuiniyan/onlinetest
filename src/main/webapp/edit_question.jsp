@@ -37,7 +37,27 @@
     
     <!-- <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
      -->
-    
+    <style>
+ .scroll-container {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            max-height: 700px; /* Adjust as needed */
+        }
+
+        .horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            width: 100%; /* Table width will be 100% of the container */
+        }
+
+        .question-table {
+            text-decoration-color: rgb(164, 33, 33);
+            background-color: rgb(234, 222, 218);
+            height:1000px;
+        }
+    </style>
 
     
 </head>
@@ -193,9 +213,15 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-8" style="display: flex; flex-direction: column;" >
-                     <div class="table-responsive table-bordered" style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218);" id="question_table">
-                     </div><br><br>    
-                         
+
+                            <!-- Your table content here -->
+                            
+                            <div class="scroll-container">
+                             <div class="horizontal-scroll">
+                                <div class="table-responsive table-bordered" style="text-decoration-color: rgb(164, 33, 33); background-color: rgb(234, 222, 218);" id="question_table">
+                                </div>
+                                </div>
+                            </div>  
                     </div>
                     <div class="col-4 p-2 rounded contact-form fadeIn" style="display: flex; flex-direction: column;">
                         <form class="row g-3 needs-validation" novalidate>

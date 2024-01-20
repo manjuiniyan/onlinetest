@@ -41,14 +41,6 @@ public class TestQuestionServlet extends HttpServlet {
                     + topic_id
                     + " and st.subtopic_id = q.subtopic_id and q.question_id NOT IN (select tq.question_id from u933391433_onlinetest.TestQuestions tq where tq.test_id = "
                     + testID + ")";
-
-            // String newQuery = "SELECT q.*, s.subtopic_name FROM
-            // u933391433_onlinetest.Questions q, u933391433_onlinetest.Subtopics s,
-            // u933391433_onlinetest.TestQuestions tq where s.topic_id="
-            // + topic_id + " and q.subtopic_id=s.subtopic_id and tq.test_id=" + testID
-            // + " and tq.question_id NOT IN (select tq.question_id from
-            // u933391433_onlinetest.TestQuestions tq where tq.test_id = "
-            // + testID + ")";
             String query = "SELECT q.*, s.subtopic_name FROM u933391433_onlinetest.Questions q, u933391433_onlinetest.Subtopics s where s.topic_id="
                     + topic_id + " and q.subtopic_id=s.subtopic_id";
             ResultSet resultSet = stat.executeQuery(newQuery);

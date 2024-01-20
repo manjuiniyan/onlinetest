@@ -20,9 +20,22 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
-        <script>
-            
-        </script>
+        <style>
+            /* Add this style for vertical scrollbar */
+            .table-container {
+                max-height: 400px;
+                overflow-y: auto;
+            }
+        
+            /* Add this style for horizontal scrollbar */
+            .table-container table {
+                table-layout: fixed;
+                width: 100%;
+                white-space: nowrap;
+                overflow-x: auto;
+            }
+        </style>
+        
     </head>
     <body>
         <!-- Spinner Start -->
@@ -174,10 +187,7 @@
                                 <select id="mainTopic" class="form-select" name="main_topic" aria-label="Select Main Topic" ></select>
                             </div>
                                 <div class="mb-4">
-                                    <select class="form-select" id="subTopic" name="subtopic_id" required aria-label="select example" >
-                                        
-                                    </select>
-                                    <div class="invalid-feedback">Invalid Topic</div>
+                                    <select class="form-select" id="subTopic" name="subtopic_id" required aria-label="select example" > </select>
                                 </div>
                                 <div class="mb-4">
                                     <textarea

@@ -29,12 +29,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
   try {
             Statement stat = connection.createStatement();
-            ResultSet resultSet = stat.executeQuery("SELECT * FROM u933391433_onlinetest.Subtopics");
+            ResultSet resultSet = stat.executeQuery("SELECT st.*,t.topic_name FROM u933391433_onlinetest.Subtopics st, u933391433_onlinetest.Topics t where st.topic_id=t.topic_id");
             while (resultSet.next()) {
                 String subtopic_id = resultSet.getString(1);
                 resultTable.append("<tr><td> <a href='#' onclick=\"loadSubTopic(" + subtopic_id + ")\">" + subtopic_id
                         + "</a> </td><td>"
-                        + resultSet.getString(2)
+                        + resultSet.getString("topic_name")
                         + "</td><td>" + resultSet.getString(3) +"</td></tr>");
 
             }
